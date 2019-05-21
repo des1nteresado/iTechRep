@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
 }
 
 A:link { 
@@ -58,6 +59,7 @@ header nav .nav__list {
     height: 100%;
     width: 40%;
     margin: 0 auto;
+    text-transform: uppercase;
 }
 
 .nav__list a { 
@@ -78,7 +80,7 @@ header nav .nav__list {
 
 header .wrapper .bottom-header {
     height: 430px;
-    background: url(/iTechRep/htmlcss/task2/images/banner.png) no-repeat;
+    background: url(images/banner.png) no-repeat;
     background-size: cover;
     width: inherit;
 }
@@ -100,10 +102,16 @@ header .bottom-header .bottom-header__btext {
 
 header .bottom-header .bottom-header__button {
     background-color: #03a8cb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 135px;
     margin: 0 auto;
-    border-radius: 20%;
-    padding: 17px;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 25px;
+    height: 50px;
     font-size: 22px;
     text-transform: uppercase;
+    letter-spacing: 1px;
 }
