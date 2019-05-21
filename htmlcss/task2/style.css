@@ -37,27 +37,50 @@ header .top-header .top-header__logo {
     margin-bottom: 12px;
 }
 
+header .nav-container {
+    width: 100%;
+}
+
 header nav {
-    padding: 34px 0;
+
+    width: inherit;
+    display: flex;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
     background-color: #03a8cb;
 }
 
 header nav .nav__list {
     display: flex;
-    justify-content: space-between;  
+    justify-content: center;
+    align-items: center;
+    height: 100%;
     width: 40%;
     margin: 0 auto;
 }
 
-header .wrapper nav .nav__list a { 
+.nav__list a { 
+    border-left: 1px solid #fff;
+    padding-right: 25px;
+    padding-left: 25px;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
     color: #fff;
     font-size: 20px;
+}
+
+.nav__list :last-child {
+    border-right: 1px solid #fff;
 }
 
 header .wrapper .bottom-header {
     height: 430px;
     background: url(/iTechRep/htmlcss/task2/images/banner.png) no-repeat;
-    background-size: 100%;
+    background-size: cover;
+    width: inherit;
 }
 
 header .bottom-header .bottom-header__text {
