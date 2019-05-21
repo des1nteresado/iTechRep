@@ -1,0 +1,20 @@
+.adv-container {
+    display: flex;
+}
+
+.adv-list {
+    width: 50%;
+}
+
+.adv-blocks {
+    width: 50%;
+}
+
+.info-blocks {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.info-blocks .block {
+    display: flex;
+}
