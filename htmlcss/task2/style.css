@@ -50,6 +50,7 @@ header nav {
     justify-content: center;
     align-items: center;
     background-color: #03a8cb;
+    border-radius: 5px 5px 0 0; 
 }
 
 header nav .nav__list {
@@ -78,11 +79,12 @@ header nav .nav__list {
     border-right: 1px solid #fff;
 }
 
-header .wrapper .bottom-header {
-    height: 430px;
-    background: url(images/banner.png) no-repeat;
-    background-size: cover;
-    width: inherit;
+header .wrapper .bottom-header { 
+    height: 430px; 
+    background: url(images/banner1.png) no-repeat; 
+    background-size: cover; 
+    width: inherit; 
+    border-radius: 0 0 5px 5px; 
 }
 
 header .bottom-header .bottom-header__text {
