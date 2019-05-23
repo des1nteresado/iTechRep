@@ -1,0 +1,76 @@
+.footer {
+    display: flex;
+    background-color: #ececec;
+}
+
+.footer .wrapper {
+    display: flex;
+}
+
+.footer .wrapper .art-blocks {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.wrapper .art-blocks .block {
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper .art-blocks .i-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.art-blocks .block .block__name {
+    text-transform: uppercase;
+    font-size: 18px;
+    text-align: left;
+    color: #454855;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+.art-blocks .block .block__link {
+    color:#aaaaaa;
+    padding-bottom: 15px;
+    font-size: 14px;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.art-blocks .i-block .i-block__name {
+    text-transform: uppercase;
+    font-size: 18px;
+    text-align: left;
+    color: #454855;
+    font-weight: bold;
+    padding-bottom: 30px;
+}
+
+.art-blocks .i-block .i-block__sbar {
+    width: 270px;
+    height: 35px;
+    background-color: #fff;
+    border-radius: 20px;
+    display: flex;
+}
+
+.i-block .i-block__sbar .iblock__text {
+}
+
+.i-block .i-block__sbar .iblock__but {
+    background-color: #03a8cb;
+    width: 60%;
+}
+
+.art-blocks .i-block .links {
+    display: flex;
+}
+
+.i-block .links .links__img {
+    padding-right: 10px;
+}
