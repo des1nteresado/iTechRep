@@ -4,8 +4,13 @@
     font-family: sans-serif;
 }
 
+body {
+    background:#26272f url(images/Background.png) no-repeat; 
+}
+
 A:link { 
-    text-decoration: none; /* Убирает подчеркивание для ссылок */ 
+    text-decoration: none; /* Убирает подчеркивание для ссылок */
+     
 } 
 
 A:visited { 
@@ -22,20 +27,27 @@ header {
 }
 
 .wrapper {
-    width: 90%;
+    width: 65%;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.sub-wrapper {
+    width: 96%;
     margin: 0 auto;
 }
 
 header .top-header {
-    margin-top: 27px;
+    padding-top: 27px;
     margin-bottom: 36px;
+    margin-top: 110px;
 }
 
 header .top-header .top-header__logo {
     text-transform: uppercase;
     font-size: 44px;
-    margin-top: 24px;
-    margin-bottom: 12px;
+    margin-top: 11px;
 }
 
 header .nav-container {
@@ -43,7 +55,6 @@ header .nav-container {
 }
 
 header nav {
-
     width: inherit;
     display: flex;
     height: 80px;
@@ -72,34 +83,34 @@ header nav .nav__list {
     justify-content: center;
     align-items: center;
     color: #fff;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .nav__list :last-child {
     border-right: 1px solid #fff;
 }
 
-header .wrapper .bottom-header { 
-    height: 430px; 
+.bottom-header { 
     background: url(images/banner1.png) no-repeat; 
     background-size: cover; 
     width: inherit; 
     border-radius: 0 0 5px 5px; 
+    padding-top: 130px;
+    height: 290px;
 }
 
 header .bottom-header .bottom-header__text {
     font-size: 60px;
     text-transform: uppercase;
     text-align: center;
-    padding-top: 147px;
-    padding-bottom: 37px;
     color: #fff; 
 }
 
 header .bottom-header .bottom-header__btext {
     font-size: 28px;
     color: #fff;
-    padding-bottom: 34px;
+    padding-bottom: 30px;
+    text-align: center;
 }
 
 header .bottom-header .bottom-header__button {

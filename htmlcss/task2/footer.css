@@ -13,6 +13,7 @@
     justify-content: space-between;
     margin-top: 60px;
     margin-bottom: 60px;
+    padding-right: 40px;
 }
 
 .wrapper .art-blocks .block {
@@ -48,7 +49,7 @@
     text-align: left;
     color: #454855;
     font-weight: bold;
-    padding-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .art-blocks .i-block .i-block__sbar {
@@ -57,14 +58,33 @@
     background-color: #fff;
     border-radius: 20px;
     display: flex;
+    overflow: hidden;
 }
 
-.i-block .i-block__sbar .iblock__text {
-}
-
-.i-block .i-block__sbar .iblock__but {
-    background-color: #03a8cb;
+.i-block .i-block__sbar .i-block__text {
+    height: 100%;
     width: 60%;
+}
+
+.i-block .i-block__sbar .i-block__input {
+    height: 100%;
+    width: 100%;
+    border:none;
+    padding-left: 10px;
+}
+
+.i-block .i-block__sbar .i-block__but {
+    background-color: #03a8cb;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    width: 40%;
+    cursor: pointer;
+    font-size: 14px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .art-blocks .i-block .links {
@@ -73,4 +93,5 @@
 
 .i-block .links .links__img {
     padding-right: 10px;
-}
+    cursor: pointer;
+    }
