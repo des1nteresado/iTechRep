@@ -3,11 +3,11 @@
     background-color: #ececec;
 }
 
-.footer .wrapper {
+.footer .sub-wrapper {
     display: flex;
 }
 
-.footer .wrapper .art-blocks {
+.footer .sub-wrapper .art-blocks {
     width: 50%;
     display: flex;
     justify-content: space-between;
@@ -16,12 +16,12 @@
     padding-right: 40px;
 }
 
-.wrapper .art-blocks .block {
+.sub-wrapper .art-blocks .block {
     display: flex;
     flex-direction: column;
 }
 
-.wrapper .art-blocks .i-block {
+.sub-wrapper .art-blocks .i-block {
     display: flex;
     flex-direction: column;
 }

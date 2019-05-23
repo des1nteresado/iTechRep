@@ -2,33 +2,38 @@
     display: flex;
     border-top: 1px solid #e6e6e6;
     border-bottom: 1px solid #e6e6e6;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 .adv-blocks {
     width: 50%;
     margin-top: 40px;
     margin-bottom: 40px;
+    line-height: 1.1;
 }
 
 .adv-list {
     width: 50%;
     margin-top: 40px;
     margin-bottom: 40px;
+    line-height: 1.1;
 }
 
 .adv-blocks .adv-blocks__text {
     font-size:  28px;
     text-transform: uppercase;
+    font-family: 'SourceSansPro-Bold', sans-serif;
     color: #454855;
     text-align: left;
-    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 .adv-blocks .adv-blocks__subtext {
     font-size: 18px;
     color: #828282;
     text-align: left;
+    font-family: 'SourceSansPro-Light', sans-serif;
+    letter-spacing: 1px;
 }
 
 .info-blocks {
@@ -48,31 +53,37 @@
 
 .block .block__text {
     font-size: 16px;
-    font-weight: bold;
     text-transform: uppercase;
     color: #03a8cb;
     text-align: left;
     margin-bottom: 20px;
+    font-family: 'SourceSansPro-Bold', sans-serif;
+    letter-spacing: 1px;
 }
 
 .block .block__subtext {
     font-size: 14px;
     color: #828282;
     text-align: left;
+    font-family: 'SourceSansPro-Regular', sans-serif;
+    line-height: 1.2;
 }
 
 .adv-list .adv-list__text {
     font-size:  28px;
     text-transform: uppercase;
+    font-family: 'SourceSansPro-Bold', sans-serif;
     color: #454855;
     text-align: left;
-    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 .adv-list .adv-list__subtext {
     font-size: 18px;
     color: #828282;
     text-align: left;
+    font-family: 'SourceSansPro-Light', sans-serif;
+    letter-spacing: 1px;
 }
 
 .info-subblocks {
