@@ -8,15 +8,15 @@
 .adv-blocks {
     width: 50%;
     margin-top: 40px;
-    margin-bottom: 40px;
     line-height: 1.1;
+    margin-bottom: 10px;
 }
 
 .adv-list {
     width: 50%;
     margin-top: 40px;
-    margin-bottom: 40px;
     line-height: 1.1;
+    margin-bottom: 10px;
 }
 
 .adv-blocks .adv-blocks__text {
@@ -51,22 +51,23 @@
  
 }
 
-.block .block__text {
+.block__container .block__text {
     font-size: 16px;
     text-transform: uppercase;
     color: #03a8cb;
     text-align: left;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-family: 'SourceSansPro-Bold', sans-serif;
     letter-spacing: 1px;
 }
 
-.block .block__subtext {
+.block__container .block__subtext {
     font-size: 14px;
     color: #828282;
     text-align: left;
     font-family: 'SourceSansPro-Regular', sans-serif;
-    line-height: 1.2;
+    line-height: 1.5;
+    width: 90%;
 }
 
 .adv-list .adv-list__text {
@@ -115,20 +116,27 @@
 .block .sub-text {
     background-color: #f0f0f0;
     width: 100%;
-    margin-top: 2px;
     border-top: 1px solid #e6e6e6;
     display: none;
+    padding-right: 20px;
 }
 
 .block.block__active .sub-block .sub-block__text{
     color: #fff;
+    font-size: 16px;
+    text-align: left;
+    font-family: 'SourceSansPro-Regular', sans-serif;
+    letter-spacing: 1px;
 }
 
 .block .sub-text .sub-text__text{
-    font-size: 14px;
     margin-left: 20px;
     margin-bottom: 20px;
     margin-top: 20px;
+    font-size: 14px;
+    text-align: left;
+    font-family: 'SourceSansPro-Regular', sans-serif;
+    color: #828282;
 }
 
 .news-blocks .block .block__text {
@@ -149,7 +157,6 @@
     color: #828282;
     font-size: 16px;
     margin-left: 20px;
-
 }
 
 .news-blocks .block .sub-block:after {
@@ -172,4 +179,5 @@
 
 .news-blocks .block.block__active .sub-block:after {
     content: "-";
+    padding-bottom: 5px;
 }
