@@ -2,19 +2,19 @@
     display: flex;
     border-top: 1px solid #e6e6e6;
     border-bottom: 1px solid #e6e6e6;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 .adv-blocks {
-    width: 50%;
-    margin-top: 40px;
+    width: 600px;
+    margin-top: 33px;
     line-height: 1.1;
     margin-bottom: 10px;
 }
 
 .adv-list {
-    width: 50%;
-    margin-top: 40px;
+    width: 575px;
+    margin-top: 33px;
     line-height: 1.1;
     margin-bottom: 10px;
 }
@@ -67,7 +67,8 @@
     text-align: left;
     font-family: 'SourceSansPro-Regular', sans-serif;
     line-height: 1.5;
-    width: 90%;
+    letter-spacing: 1px;
+    width: 85%;
 }
 
 .adv-list .adv-list__text {
@@ -126,17 +127,17 @@
     font-size: 16px;
     text-align: left;
     font-family: 'SourceSansPro-Regular', sans-serif;
-    letter-spacing: 1px;
 }
 
 .block .sub-text .sub-text__text{
-    margin-left: 20px;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    margin-left: 30px;
+    margin-bottom: 23px;
+    margin-top: 23px;
     font-size: 14px;
     text-align: left;
     font-family: 'SourceSansPro-Regular', sans-serif;
     color: #828282;
+    letter-spacing: 1px;
 }
 
 .news-blocks .block .block__text {

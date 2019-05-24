@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-top: 40px;
+    margin-top: 37px;
 }
 
 .info-container__block {
@@ -32,11 +32,12 @@
 
 .info-container__subtext {
     font-size:  14px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     margin-top: 10px;
     color: #828282;
     font-family: 'SourceSansPro-Regular', sans-serif;
-    line-height: 1.5;
+    line-height: 1.7;
+    letter-spacing: 1px;
 }
 
 .info-container__but {

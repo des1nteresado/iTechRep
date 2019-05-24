@@ -9,7 +9,7 @@ body {
 }
 
 A:link { 
-    text-decoration: none; /* Убирает подчеркивание для ссылок */
+    text-decoration: none; 
      
 } 
 
@@ -27,14 +27,14 @@ header {
 }
 
 .wrapper {
-    width: 80%; /* 65% БЫЛО */
+    width: 1230px; /* 65% БЫЛО */
     margin: 0 auto;
     background-color: #fff;
     border-radius: 10px;
 }
 
 .sub-wrapper {
-    width: 96%;
+    width: 1170px;
     margin: 0 auto;
 }
 
@@ -66,10 +66,6 @@ header .top-header .top-header__text {
     letter-spacing: 1px;
 }
 
-header .nav-container {
-    width: 100%;
-}
-
 header nav {
     width: inherit;
     display: flex;
@@ -91,10 +87,11 @@ header nav .nav__list {
 
 .nav__list a { 
     border-left: 1px solid #4fc2db;
-    padding-right: 20px; /*паддинг меню*/
+    padding-right: 20px; 
     padding-left: 20px;
     display: flex;
     height: 100%;
+    letter-spacing: 1px;
     justify-content: center;
     align-items: center;
     color: #fff;
@@ -127,12 +124,12 @@ header .bottom-header .bottom-header__text {
 header .bottom-header .bottom-header__btext {
     font-size: 28px;
     color: #fff;
-    padding-bottom: 30px;
+    padding-bottom: 26px;
     text-align: center;
     font-family: 'SourceSansPro-Light', sans-serif;
-    padding-right: 250px;
-    padding-left: 250px;
-    letter-spacing: 3px;
+    padding-right: 200px;
+    padding-left: 255px;
+    letter-spacing: 4px;
 }
 
 header .bottom-header .bottom-header__button {
@@ -147,7 +144,6 @@ header .bottom-header .bottom-header__button {
     height: 50px;
     font-size: 22px;
     text-transform: uppercase;
-    letter-spacing: 1px;
     font-family: 'SourceSansPro-Bold', sans-serif;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 }
