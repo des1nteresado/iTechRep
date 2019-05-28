@@ -14,31 +14,29 @@
 <body>
     <div class="wrapper">
         <div class="sub-wrapper">
-            <header>
-                <div class="top-header">
+            <div class="header">
+                <div class="logo">
                     <img src="images/logo.png" alt="logo">
-                    <p class="top-header__logo">sitename</p>
-                    <p class="top-header__text">lorem ipsum dolor sit amet vivamus</p>
+                    <p class="logo__name">sitename</p>
+                    <p class="logo__text">lorem ipsum dolor sit amet vivamus</p>
                 </div>
                 <div class="nav-container">
-                    <nav>
-                        <div class="nav__list">
-                            <a href="">home</a>
-                            <a href="">about</a>
-                            <a href="">services</a>
-                            <a href="">solutions</a>
-                            <a href="">portfolio</a>
-                            <a href="">contact</a>
-                        </div>
-                    </nav>
-                    <div class="bottom-header">
-                        <p class="bottom-header__text">Morbi semuis</p>
-                        <p class="bottom-header__btext">Praesent dapibus, neque id cursus faucibus tor
-                            tas augue eu vulputate</p>
-                        <div class="bottom-header__button">facilis</div>
-                    </div>
+                    <ul class="nav__list">
+                        <a class="nav__link" href="">home</a>
+                        <a class="nav__link" href="">about</a>
+                        <a class="nav__link" href="">services</a>
+                        <a class="nav__link" href="">solutions</a>
+                        <a class="nav__link" href="">portfolio</a>
+                        <a class="nav__link" href="">contact</a>
+                    </ul>
                 </div>
-            </header>
+            </div>
+            <section class="banner">
+                <p class="banner__text">Morbi semuis</p>
+                <p class="banner__btext">Praesent dapibus, neque id cursus faucibus tor
+                    tas augue eu vulputate</p>
+                <button class="banner__button">facilis</button>
+            </section>
         </div>
 
         <div class="sub-wrapper">
@@ -50,7 +48,7 @@
                         <p class="info-container__subtext">Cuibstui ipsum dolor sit amet, consectetuer adipiscing eli
                             onec
                             odio cuisque volutpat mattis</p>
-                        <div class="info-container__but">more</div>
+                        <button class="info-container__but">more</button>
                     </div>
                 </div>
                 <div class="info-container__block">
@@ -59,7 +57,7 @@
                         <div class="info-container__text">Fusce lacinia arcu</div>
                         <p class="info-container__subtext">Pellentesque fermentum dolor. Aliquam quam lectus, facilisis
                             ctor, ultrices ut, element</p>
-                        <div class="info-container__but">more</div>
+                        <button class="info-container__but">more</button>
                     </div>
                 </div>
                 <div class="info-container__block">
@@ -69,7 +67,7 @@
                         <p class="info-container__subtext">Donec nec justo eget felis facilisis fermentum. Aliquam
                             porttitor
                             mauris sit amet orci. Aenean</p>
-                        <div class="info-container__but">more</div>
+                        <button class="info-container__but">more</button>
                     </div>
                 </div>
                 <div class="info-container__block">
@@ -79,14 +77,13 @@
                         <p class="info-container__subtext">Morbi in sem quis dui placerat ornare. Pellentesque odio
                             nisi,
                             mod in, pharetra ultrici</p>
-                        <div class="info-container__but">more</div>
+                        <button class="info-container__but">more</button>
                     </div>
                 </div>
             </div>
             <div class="adv-container">
                 <div class="adv-blocks">
                     <p class="adv-blocks__text">Cras ornare tristi</p>
-                    <!--28,18-->
                     <p class="adv-blocks__subtext">Vivamus vestibulum nulla nec ante pellentesque</p>
                     <div class="info-blocks">
                         <div class="info-subblocks">
@@ -94,7 +91,6 @@
                                 <img src="images/adv1.png" alt="adv1" class="block__img">
                                 <div class="block__container">
                                     <p class="block__text">Tim nulla nec </p>
-                                    <!--16,14-->
                                     <p class="block__subtext">Cuibstui ipsum dolor sit amet, consectetu</p>
                                 </div>
                             </div>
@@ -141,7 +137,6 @@
                 </div>
                 <div class="adv-list">
                     <p class="adv-list__text">Aliquam tincidunt</p>
-                    <!--28,18-->
                     <p class="adv-list__subtext">Integer vitae libero ac risus egestas placerat</p>
                     <div class="news-blocks">
                         <div class="block block__active">
@@ -157,7 +152,6 @@
                         <div class="block">
                             <div class="sub-block">
                                 <p class="sub-block__text">Vivamus molestie gravida turpis</p>
-                                <!--16-->
                             </div>
                             <div class="sub-text">
                                 <p class="sub-text__text">Morbi in sem quis dui placerat ornare. Pellentesque odio nisi
@@ -233,6 +227,7 @@
                         <p class="block__name">Lorem, ipsum.</p>
                         <div class="links">
                             <p class="block__link">Lorem, ip ipsum.</p>
+                            <a href="" class="block__link"></a>
                             <p class="block__link">Lorem, ipsum dolor.</p>
                             <p class="block__link">Lorem, ipsum dolor.</p>
                         </div>

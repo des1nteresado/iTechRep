@@ -51,6 +51,8 @@
     color: #fff;
     font-weight: bold;
     border-radius: 13px;
+    border: none;
+    cursor: pointer;
     height: 26px;
     text-transform: uppercase;
     letter-spacing: 1px;
