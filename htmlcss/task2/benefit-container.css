@@ -41,17 +41,17 @@
     margin-top: 40px;
 }
 
-.info-blocks .block {
+.info-blocks .info-section {
     display: flex;
     margin-bottom: 30px;
 }
 
-.block .block__container {
+.info-section .info-section__container {
     margin-left: 30px;
  
 }
 
-.block__container .block__text {
+.info-section__container .info-section__text {
     font-size: 16px;
     text-transform: uppercase;
     color: #03a8cb;
@@ -61,7 +61,7 @@
     letter-spacing: 1px;
 }
 
-.block__container .block__subtext {
+.info-section__container .info-section__subtext {
     font-size: 14px;
     color: #828282;
     text-align: left;
