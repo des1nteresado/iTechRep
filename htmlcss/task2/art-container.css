@@ -67,6 +67,8 @@
     align-items: center;
     justify-content: center;
     width: 54px;
+    cursor: pointer;
+    border: none;
     margin: 0;
     color: #fff;
     font-weight: bold;

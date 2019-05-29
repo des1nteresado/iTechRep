@@ -5,95 +5,74 @@
 }
 
 body {
-    background:#26272f url(images/Background.png) no-repeat; 
+    background: #26272f url(images/Background.png) no-repeat;
 }
 
-A:link { 
-    text-decoration: none; 
-     
-} 
-
-A:visited { 
-    text-decoration: none;
-} 
-    
- A:active {
-      text-decoration: none;
-} 
-
-header {
+.header {
     text-align: center;
     font-size: 18px;
 }
 
 .wrapper {
-    width: 1230px; /* 65%  */
-    margin: 0 auto;
-    background-color: #fff;
-    border-radius: 10px;
-}
-
-.sub-wrapper {
     width: 1170px;
     margin: 0 auto;
+    background-color: #fff;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    padding-right: 30px;
+    padding-left: 30px;
 }
 
-header .top-header {
+
+.header .logo {
     padding-top: 27px;
     margin-bottom: 26px;
     margin-top: 110px;
 }
 
-header .top-header p {
-    line-height: 1.1;
-}
-
-header .top-header .top-header__logo {
+.header .logo .logo__name {
     text-transform: uppercase;
     font-size: 44px;
     margin-top: 11px;
     font-family: 'SourceSansPro-Bold', sans-serif;
-    color:#3b3e4a;
+    color: #3b3e4a;
     letter-spacing: 4px;
+    line-height: 1.1;
+
 }
 
-header .top-header .top-header__text {
+.header .logo .logo__text {
     font-size: 18px;
     color: #828282;
-    margin-bottom: 30px; 
+    margin-bottom: 30px;
     font-weight: 300;
     font-family: 'SourceSansPro-Light', sans-serif;
     letter-spacing: 1px;
+    line-height: 1.1;
+
 }
 
-header nav {
-    width: inherit;
+.header .nav__list {
     display: flex;
+    justify-content: center;
+    align-items: center;
     height: 80px;
-    justify-content: center;
-    align-items: center;
-    background-color: #03a8cb;
-    border-radius: 5px 5px 0 0; 
-}
-
-header nav .nav__list {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
     margin: 0 auto;
     text-transform: uppercase;
+    background-color: #03a8cb;
+    border-radius: 5px 5px 0 0;
 }
 
-.nav__list a { 
+.nav__list .nav__link {
     border-left: 1px solid #4fc2db;
-    padding-right: 20px; 
+    padding-right: 20px;
     padding-left: 20px;
     display: flex;
     height: 100%;
     letter-spacing: 1px;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
     color: #fff;
     font-size: 16px;
     font-family: 'SourceSansPro-Bold', sans-serif;
@@ -103,25 +82,30 @@ header nav .nav__list {
     border-right: 1px solid #4fc2db;
 }
 
-.bottom-header { 
-    background: url(images/banner1.png) no-repeat; 
-    background-size: cover; 
-    border-radius: 0 0 5px 5px; 
-    padding-top: 130px;
-    height: 302px; /*300? */
+.nav__list .nav__element {
+    list-style-type: none;
+    height: 100%;
 }
 
-header .bottom-header .bottom-header__text {
+.banner {
+    background: url(images/banner1.png) no-repeat;
+    background-size: cover;
+    border-radius: 0 0 5px 5px;
+    padding-top: 130px;
+    height: 302px;
+}
+
+.banner .banner__text {
     font-size: 60px;
     text-transform: uppercase;
     text-align: center;
-    color: #fff; 
+    color: #fff;
     font-family: 'SourceSansPro-Bold', sans-serif;
     letter-spacing: 5px;
     padding-bottom: 6px;
 }
 
-header .bottom-header .bottom-header__btext {
+.banner .banner__btext {
     font-size: 28px;
     color: #fff;
     padding-bottom: 26px;
@@ -132,7 +116,7 @@ header .bottom-header .bottom-header__btext {
     letter-spacing: 4px;
 }
 
-header .bottom-header .bottom-header__button {
+.banner .banner__button {
     background-color: #03a8cb;
     display: flex;
     align-items: center;
@@ -141,6 +125,8 @@ header .bottom-header .bottom-header__button {
     margin: 0 auto;
     color: #fff;
     border-radius: 25px;
+    border: none;
+    cursor: pointer;
     height: 50px;
     font-size: 22px;
     text-transform: uppercase;
