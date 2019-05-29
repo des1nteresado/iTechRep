@@ -1,38 +1,18 @@
-/*var map = function(arr, callback, thisArgs) {
-    var i, length = arr.length, results = [];
-    for(i = 0; i < length; i += 1) {
-        results.push(callback.call(thisArgs, arr[i], i, arr)); //callback??? call??
-    }
-    return results;
-  };
-
-  
-  var pows = map([10, 20, 30], Math.pow);
-var frameworks = map(['Knockout', 'Backbone', 'Angular'], function(framework) {
-  return framework.slice(0, 5);
-});
-console.log(pows); // [1,20,900]
-console.log(frameworks); // ["Knock","Backb","Angul"]
-
-
+// a) Создать свою реализацию функции map для массивов
 Array.prototype.map = function(projectionFunction) {
 	let length = this.length, results = [];
     for(i = 0; i < length; i += 1) {
-        results.push(projectionFunction(this[i])); //callback??? call??
+        results.push(projectionFunction(this[i]));
     }
     return results;
   };
 
-  console.log(  [1,2,3].map(x => x**2));
+  console.log([1,2,3].map(x => x**2));
   
   console.log(JSON.stringify([1,2,3].map(function(x) { return x + 1; })) === '[2,3,4]');
-  */
-
-
 
 //б) Переделайте массив так, чтобы объекты были следующего вида { id: …, title: … }. Использовать функцию map
 
-/*
 var newReleases = [{
 	"id": 70111470,
 	"title": "Die Hard",
@@ -68,9 +48,9 @@ var veryNewReleases = newReleases.map(x => {
 }); 
 
 console.log(veryNewReleases);
-*/
 
-//в
+
+//в) Создать свою реализацию функции filter для массивов
 /*
   Array.prototype.filter = function(predicateFunction) {
 	  let length = this.length, results = [];
@@ -85,7 +65,8 @@ console.log(veryNewReleases);
   console.log([1,2,3].filter(x => x > 1));
 */
 
-//г
+//г) Выведите массив ids для видео у которых рейтинг 5.0. В качестве входных данных используйте newReleases из предыдущих заданий.
+// [675465, …]
 
 /*
 
