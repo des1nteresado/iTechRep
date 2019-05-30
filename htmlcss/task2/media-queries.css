@@ -1,34 +1,109 @@
-@media only screen and (max-width : 1024px) and (min-width: 768px) {
-    
+@media only screen and (min-width: 768px) and (max-width : 1024px) {
     .wrapper  {
-        width: 850px;
+        width: 100%;
+        border-top-right-radius: 0px;
+        border-top-left-radius: 0px;
+        padding-right: 0px;
+        padding-left: 0px;
     }
 
     .sub-wrapper {
-        width: 910px;
+        width: 100%;
+    }
+
+    .header .logo {
+        padding-top: 10px;
+        margin-bottom: 26px;
+        margin-top: 0px;
+        height: 135px;
+    }
+
+    .header .logo .logo__name {
+        font-size: 30px;
+        margin-top: 5px;
+    }
+    
+    .header .logo .logo__text {
+        font-size: 18px;
+        font-weight: 300;
+    }
+
+    .header .nav__list {
+        height: 80px;
+        margin: 0 auto;
+        text-transform: uppercase;
+        background-color: #03a8cb;
+        border-radius: 5px 5px 0 0;
     }
 
     .banner {
         padding-top: 50px;
-        height: 250px;
+        height: 270px;
     }
 
     .banner .banner__text {
-        font-size: 44px;
+        font-size: 46px;
     }
 
     .banner .banner__btext {
-        font-size: 18px;
-        padding-right: 150px;
-        padding-left: 145px;
+        font-size: 20px;
+        padding-right: 300px;
+        padding-left: 300px;
+    }
+
+    .info-container {
+        padding-left: 20px;
+        width: 96%;
+        padding-right: 20px;
     }
 
     .info-container__block {
-        width: 190px;
+        width: 220px;
+        height: 430px;
+        height: 430px;
+    }
+
+    .info-container__sub-block {
+        height: 250px;
+        position: relative;
+    }
+
+    .info-container__text {
+        font-size:  22px;
+    }
+    
+    .info-container__subtext {
+        font-size:  16px;
+    }
+
+    .info-container__but {
+        position: absolute;
+        font-size: 15px;
+        height: 30px;
+        width: 65px;
+        bottom: 0;
+    }
+
+    .benefit-container {
+        padding-left: 20px;
+        width: 96%;
+        padding-right: 20px;
     }
 
     .benefit-list {
         width: 440px;
+    }
+
+    .block.block__active .sub-block .sub-block__text{
+        font-size: 20px;
+    }
+
+    .block .sub-block .sub-block__text {
+        font-size: 20px;
+    }
+
+    .block .sub-text .sub-text__text{
+        font-size: 16px;
     }
 
     .info-blocks .info-section {
@@ -46,20 +121,66 @@
         margin-left: 20px;
     }
 
+    .art-container {
+        padding-left: 20px;
+        width: 96%;
+        padding-right: 20px;
+    }
+
     .article-top .article-top__img {
-        height: 200px;
+        height: 220px;
         width: 150px;
     }
 
-    .art-blocks .i-block .i-block__sbar {
-        width: 230px;
-        height: 35px;
+    .article-top .article-top__info {
+        width: 100%;
+        margin-left: 10px;
+    }
+
+    .article-top .article-top__info .article-top__name {
+        font-size: 22px;
+    }
+
+    .article-top .article-top__info .article-top__subname {
+        font-size: 20px;
+    }
+
+    .article-top .article-top__info .article-top__text {
+        font-size: 16px;
+    }
+
+    .article-bot {
+        margin-top: 10px;
+        width: 100%;
+    }
+    
+    .article-bot .article-bot__text {
+        font-size: 16px;
+        text-align: left;
+        color: #828282;
+        font-family: 'SourceSansPro-Regular', sans-serif;
+        line-height: 1.7;
+    }
+
+    .footer {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .footer  {
+        display: flex;
     }
 
     .footer .art-blocks {
-        margin-top: 30px;
-        margin-bottom: 20px;
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 0px;
         padding-right: 5px;
+    }
+
+    .art-blocks .i-block {
+        padding-left: 0px;
+        margin-right: 0px;
     }
 
     .i-block .i-block__sbar .i-block__but {
@@ -67,23 +188,32 @@
     }
 
     .art-blocks .block .block__name {
-        font-size: 14px;
+        font-size:  24px;
+    }
+
+    .block .links .block__link {
+        padding-bottom: 15px;
+        font-size: 18px;
     }
 
     .art-blocks .i-block .i-block__name {
-        font-size: 14px;
+        font-size: 24px;
+        margin-bottom: 20px;
     }
 
     .article-bot .article-bot__button {
-        font-size: 16px;
+        font-size: 20px;
         height: 35px;
         width: 70px;
     }
 
-    .info-container__but {
-        font-size: 15px;
-        height: 30px;
-        width: 65px;
+    .art-blocks .i-block .i-block__sbar {
+        width: 440px;
+        height: 35px;
     }
+   
+}
+
+@media only screen and (min-width: 412px) and (max-width : 768px) {
 
 }
