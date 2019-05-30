@@ -1,0 +1,89 @@
+@media only screen and (max-width : 1024px) and (min-width: 768px) {
+    
+    .wrapper  {
+        width: 850px;
+    }
+
+    .sub-wrapper {
+        width: 910px;
+    }
+
+    .banner {
+        padding-top: 50px;
+        height: 250px;
+    }
+
+    .banner .banner__text {
+        font-size: 44px;
+    }
+
+    .banner .banner__btext {
+        font-size: 18px;
+        padding-right: 150px;
+        padding-left: 145px;
+    }
+
+    .info-container__block {
+        width: 190px;
+    }
+
+    .benefit-list {
+        width: 440px;
+    }
+
+    .info-blocks .info-section {
+        height: 90px;
+    }
+
+    .info-section__container .info-section__subtext {
+        width: 90%;
+    }
+
+    .article-top .article-top__info {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin-left: 20px;
+    }
+
+    .article-top .article-top__img {
+        height: 200px;
+        width: 150px;
+    }
+
+    .art-blocks .i-block .i-block__sbar {
+        width: 230px;
+        height: 35px;
+    }
+
+    .footer .art-blocks {
+        margin-top: 30px;
+        margin-bottom: 20px;
+        padding-right: 5px;
+    }
+
+    .i-block .i-block__sbar .i-block__but {
+        font-size: 11px;
+    }
+
+    .art-blocks .block .block__name {
+        font-size: 14px;
+    }
+
+    .art-blocks .i-block .i-block__name {
+        font-size: 14px;
+    }
+
+    .article-bot .article-bot__button {
+        font-size: 16px;
+        height: 35px;
+        width: 70px;
+    }
+
+    .info-container__but {
+        font-size: 15px;
+        height: 30px;
+        width: 65px;
+    }
+
+}
