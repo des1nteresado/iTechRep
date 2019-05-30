@@ -33,12 +33,13 @@
         margin: 0 auto;
         text-transform: uppercase;
         background-color: #03a8cb;
-        border-radius: 5px 5px 0 0;
+        border-radius: 0;
     }
 
     .banner {
         padding-top: 50px;
         height: 270px;
+        border-radius: 0;
     }
 
     .banner .banner__text {
@@ -169,6 +170,8 @@
     
     .footer  {
         display: flex;
+        padding-left: 50px;
+        padding-right: 50px;
     }
 
     .footer .art-blocks {
@@ -181,14 +184,19 @@
     .art-blocks .i-block {
         padding-left: 0px;
         margin-right: 0px;
+        margin-bottom: 20px;    
     }
 
     .i-block .i-block__sbar .i-block__but {
-        font-size: 11px;
+        font-size: 16px;
     }
 
     .art-blocks .block .block__name {
         font-size:  24px;
+    }
+
+    .art-blocks .i-block .links {
+        justify-content: left;
     }
 
     .block .links .block__link {
@@ -202,7 +210,7 @@
     }
 
     .article-bot .article-bot__button {
-        font-size: 20px;
+        font-size: 18px;
         height: 35px;
         width: 70px;
     }
@@ -210,6 +218,10 @@
     .art-blocks .i-block .i-block__sbar {
         width: 440px;
         height: 35px;
+    }
+
+    .s-article {
+        margin-bottom: 20px;
     }
    
 }
