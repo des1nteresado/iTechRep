@@ -26,7 +26,7 @@
     }
 
     .header .logo .logo__name {
-        font-size: 30px;
+        font-size: 30px;    
         margin-top: 5px;
     }
     
@@ -175,7 +175,9 @@
         font-family: 'SourceSansPro-Regular', sans-serif;
         line-height: 1.7;
         width: 95%;
+        margin-bottom: 60px;
     }
+
 
     .footer {
         display: flex;
@@ -197,7 +199,7 @@
 
     .art-blocks .i-block {
         padding-left: 0px;
-        margin-right: 0px;
+        margin-right: 10px;
         margin-bottom: 20px;    
     }
 
@@ -206,7 +208,7 @@
     }
 
     .art-blocks .block .block__name {
-        font-size:  24px;
+        font-size:  22px;
     }
 
     .art-blocks .i-block .links {
@@ -219,23 +221,31 @@
     }
 
     .art-blocks .i-block .i-block__name {
-        font-size: 24px;
+        font-size: 22px;
         margin-bottom: 20px;
     }
 
-    .article-bot .article-bot__button {
+    .article-bot__button {
         font-size: 18px;
         height: 35px;
         width: 70px;
+        position: absolute;
+        bottom: 0;
+        margin-bottom: 20px;
     }
 
     .art-blocks .i-block .i-block__sbar {
-        width: 440px;
+        width: 350px;
         height: 35px;
     }
 
-    .s-article {
-        margin-bottom: 20px;
+    .art-container .s-article {
+        position: relative;
+
+    }
+
+    .art-container .article {
+        position: relative;
     }
    
 }
