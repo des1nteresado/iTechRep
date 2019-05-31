@@ -1,10 +1,17 @@
-@media only screen and (min-width: 768px) and (max-width : 1024px) {
+@media screen and (min-width: 480px) and (max-width : 768px) {
+    .wrapper {
+        background-color: red;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width : 1024px) {
     .wrapper  {
         width: 100%;
         border-top-right-radius: 0px;
         border-top-left-radius: 0px;
         padding-right: 0px;
         padding-left: 0px;
+        background-color: #fff;
     }
 
     .sub-wrapper {
@@ -48,8 +55,7 @@
 
     .banner .banner__btext {
         font-size: 20px;
-        padding-right: 300px;
-        padding-left: 300px;
+        padding-left: 170px;
     }
 
     .info-container {
@@ -62,11 +68,11 @@
         width: 220px;
         height: 430px;
         height: 430px;
+        position: relative;
     }
 
     .info-container__sub-block {
         height: 250px;
-        position: relative;
     }
 
     .info-container__text {
@@ -83,6 +89,7 @@
         height: 30px;
         width: 65px;
         bottom: 0;
+        margin-bottom: 20px;
     }
 
     .benefit-container {
@@ -96,15 +103,20 @@
     }
 
     .block.block__active .sub-block .sub-block__text{
-        font-size: 20px;
+        font-size: 16px;
     }
 
     .block .sub-block .sub-block__text {
-        font-size: 20px;
+        font-size: 16px;
+        margin-left: 10px;
     }
 
     .block .sub-text .sub-text__text{
-        font-size: 16px;
+        font-size: 15px;
+    }
+
+    .info-blocks .info-section__container {
+        margin-left: 10px;
     }
 
     .info-blocks .info-section {
@@ -148,6 +160,7 @@
 
     .article-top .article-top__info .article-top__text {
         font-size: 16px;
+        width: 95%;
     }
 
     .article-bot {
@@ -161,6 +174,7 @@
         color: #828282;
         font-family: 'SourceSansPro-Regular', sans-serif;
         line-height: 1.7;
+        width: 95%;
     }
 
     .footer {
@@ -226,6 +240,3 @@
    
 }
 
-@media only screen and (min-width: 412px) and (max-width : 768px) {
-
-}
