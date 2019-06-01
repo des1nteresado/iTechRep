@@ -1,6 +1,290 @@
-@media screen and (min-width: 480px) and (max-width : 768px) {
-    .wrapper {
-        background-color: red;
+@media screen and (min-width: 412px) and (max-width : 768px) {
+    .wrapper  {
+        width: 100%;
+        border-top-right-radius: 0px;
+        border-top-left-radius: 0px;
+        padding-right: 0px;
+        padding-left: 0px;
+        background-color: #fff;
+    }
+
+    .sub-wrapper {
+        width: 100%;
+    }
+
+    .header .logo {
+        padding-top: 10px;
+        margin-bottom: 26px;
+        margin-top: 0px;
+        height: 135px;
+    }
+
+    .header .logo .logo__name {
+        font-size: 30px;    
+        margin-top: 5px;
+    }
+    
+    .header .logo .logo__text {
+        font-size: 18px;
+    }
+
+    .header .nav__list {
+        height: 40px;
+        border-radius: 0;
+        display: none;
+    }
+
+    .nav__list .nav__link {
+        padding-left: 5px;
+        padding-right: 5px;
+        letter-spacing: normal;
+        font-size: 13px;
+    }
+
+    .banner {
+        padding-top: 30px;
+        height: 200px;
+        border-radius: 0;
+    }
+
+    .banner .banner__text {
+        font-size: 36px;
+    }
+
+    .banner .banner__btext {
+        font-size: 16px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .banner .banner__button {
+        height: 30px;
+        width: 100px;
+        font-size: 18px;
+    }
+
+    .info-container {
+        width: 97%;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .info-container__block {
+        width: 170px;
+        height: 370px;
+        position: relative;
+        margin-bottom: 10px;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .info-container__sub-block {
+        height: 250px;
+        margin-top: 10px;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .info-container__text {
+        font-size:  18px;
+    }
+    
+    .info-container__subtext {
+        font-size:  14px;
+        margin-top: 0;
+    }
+
+    .info-container__but {
+        position: absolute;
+        font-size: 15px;
+        height: 30px;
+        width: 65px;
+        bottom: 0;
+        margin-bottom: 20px;
+    }
+
+    .benefit-container {
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .benefit-list {
+        margin-top: 0px;
+        margin-bottom: 0;
+        width: 100%;
+    }
+
+    .benefit-blocks {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .news-blocks {
+        margin-top: 10px;
+    }
+
+    .block.block__active .sub-block .sub-block__text{
+        font-size: 16px;
+    }
+
+    .block .sub-block .sub-block__text {
+        font-size: 16px;
+        margin-left: 10px;
+    }
+
+    .block .sub-text .sub-text__text{
+        font-size: 15px;
+    }
+
+    .info-blocks {
+        margin-top: 20px;
+    }
+
+    .info-blocks .info-section__container {
+        margin-left: 10px;
+    }
+
+    .info-blocks .info-section {
+        height: 90px;
+        margin-bottom: 10px;
+    }
+
+    .info-blocks .info-section .info-section__img {
+        max-height: 70px;
+    }
+
+    .info-section__container .info-section__text {
+        margin-bottom: 0;
+        letter-spacing: 0;
+    }
+
+    .info-section__container .info-section__subtext {
+        width: 95%;
+    }
+
+    .article-top .article-top__info {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin-left: 20px;
+    }
+
+    .art-container {
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .article-top .article-top__img {
+        max-height: 220px;
+        width: 150px;
+    }
+
+    .article-top .article-top__info {
+        width: 100%;
+        margin-left: 10px;
+    }
+
+    .article-top .article-top__info .article-top__name {
+        font-size: 22px;
+    }
+
+    .article-top .article-top__info .article-top__subname {
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+
+    .article-top .article-top__info .article-top__text {
+        font-size: 16px;
+        width: 95%;
+        line-height: 1.4;
+    }
+
+    .article-bot {
+        margin-top: 10px;
+        width: 100%;
+    }
+    
+    .article-bot .article-bot__text {
+        font-size: 16px;
+        width: 95%;
+        margin-bottom: 60px;
+    }
+
+
+    .footer {
+        display: flex;
+        flex-wrap: wrap;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    .footer .art-blocks {
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 0px;
+        padding-right: 5px;
+    }
+
+    .art-blocks .i-block {
+        padding-left: 0px;
+        margin-right: 10px;
+        margin-bottom: 10px;    
+    }
+
+    .i-block .i-block__sbar .i-block__but {
+        font-size: 12px;
+    }
+
+    .art-blocks .block .block__name {
+        font-size:  16px;
+    }
+
+    .art-blocks .i-block .links {
+        justify-content: left;
+    }
+
+    .block .links .block__link {
+        padding-bottom: 10px;
+        font-size: 14px;
+    }
+
+    .art-blocks .i-block .i-block__name {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .article-bot__button {
+        position: absolute;
+        font-size: 15px;
+        height: 30px;
+        width: 65px;
+        bottom: 0;
+        margin-bottom: 20px;
+    }
+
+    .art-blocks .i-block .i-block__sbar {
+        width: 210px;
+        height: 35px;
+    }
+
+    .art-container .s-article {
+        position: relative;
+        width: 100%;
+    }
+
+    .art-container .article {
+        position: relative;
+        width: 100%;
+
     }
 }
 
@@ -38,8 +322,6 @@
     .header .nav__list {
         height: 80px;
         margin: 0 auto;
-        text-transform: uppercase;
-        background-color: #03a8cb;
         border-radius: 0;
     }
 
@@ -121,6 +403,10 @@
 
     .info-blocks .info-section {
         height: 90px;
+    }
+
+    .info-blocks .info-section .info-section__img {
+        max-height: 70px;
     }
 
     .info-section__container .info-section__subtext {
@@ -247,6 +533,5 @@
     .art-container .article {
         position: relative;
     }
-   
 }
 
