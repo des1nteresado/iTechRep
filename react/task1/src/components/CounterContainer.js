@@ -11,7 +11,7 @@ class CounterContainer extends React.Component {
         this.handleDecrement = this.handleDecrement.bind(this);
         this.handleReset = this.handleReset.bind(this);
     }
-    
+
     handleIncrement() {
         this.setState({
             count: this.state.count + 1
@@ -32,11 +32,11 @@ class CounterContainer extends React.Component {
 
     render() {
         return (
-            <Counter    count={this.state.count} 
-                        handleIncrement={this.handleIncrement} 
-                        handleDecrement={this.handleDecrement} 
-                        handleReset={this.handleReset} />
-        ); 
+            <Counter count={this.state.count}
+                handleIncrement={this.handleIncrement}
+                handleDecrement={this.handleDecrement}
+                handleReset={this.handleReset} />
+        );
     }
 }
 
