@@ -68,7 +68,13 @@ class CounterParent extends React.Component {
     }
 
     handleAddCounter = () => {
-        let newCounters = this.state.counters.concat([{ count: 0, id: this.randomInteger(0, 1000000) }]);
+        let newCounters = this.state.counters.map((counter) => {
+            if (counter.count % 2 === 0 && counter.count !== 0) {
+                return ({ count: counter.count + 1, id: counter.id })
+            }
+            return counter;
+        })
+        newCounters = newCounters.concat([{ count: 0, id: this.randomInteger(0, 1000000) }]);
         this.setState({
             counters: newCounters
         });
@@ -77,7 +83,13 @@ class CounterParent extends React.Component {
     handleRemoveCounter = () => {
         let newCounters = this.state.counters;
         if (newCounters.length > 1)
-            newCounters.pop();
+            newCounters = newCounters.map((counter) => {
+                if (counter.count % 2 !== 0 && counter.count !== 0) {
+                    return ({ count: counter.count - 1, id: counter.id })
+                }
+                return counter;
+            })
+        newCounters.pop();
         this.setState({
             counters: newCounters
         });
@@ -104,26 +116,26 @@ class CounterParent extends React.Component {
                 <p style={TextStyle}>{this.state.counters.length}</p>
                 <Grid container style={GridStyle} spacing={5}>
                     <Grid item>
-                <Button onClick={() => this.handleAddCounter()}>add counter</Button>
+                        <Button onClick={() => this.handleAddCounter()}>add counter</Button>
                     </Grid>
                     <Grid item>
-                <Button onClick={() => this.handleRemoveCounter()}>remove counter</Button>
+                        <Button onClick={() => this.handleRemoveCounter()}>remove counter</Button>
                     </Grid>
                     <Grid item>
-                <Button onClick={() => this.handleResetCounter()}>reset counter</Button>
+                        <Button onClick={() => this.handleResetCounter()}>reset counter</Button>
                     </Grid>
                 </Grid>
                 <div style={CounterContainerStyle}>
                     {
-                        this.state.counters.map((counterObj) => 
-                        <CounterContainer
-                            handleReset={this.handleReset}
-                            handleIncrement={this.handleIncrement}
-                            handleDecrement={this.handleDecrement}
-                            key={counterObj.id}
-                            counterState={counterObj}
-                        />
-                    )
+                        this.state.counters.map((counterObj) =>
+                            <CounterContainer
+                                handleReset={this.handleReset}
+                                handleIncrement={this.handleIncrement}
+                                handleDecrement={this.handleDecrement}
+                                key={counterObj.id}
+                                counterState={counterObj}
+                            />
+                        )
                     }
                 </div>
             </React.Fragment>
