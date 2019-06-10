@@ -1,6 +1,6 @@
 {
   "name": "task1",
-  "homepage": "https://des1nteresado.github.io/react/task2/",
+  "homepage": "https://des1nteresado.github.io/react/task3/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -8,6 +8,7 @@
     "material-ui": "^0.20.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "react-scroll-to-component": "^1.0.2"
   },
