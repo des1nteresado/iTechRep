@@ -4,19 +4,36 @@ import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-export default function Header() {
-    const [value, setValue] = React.useState(null);
+let urls = [
+    '/about',
+    '/counters',
+    '/',
+];
+
+const Header = () => {
+    let hid = false;
+    const [value, setValue] = React.useState(()=> {
+        if(window.location.pathname === '/404') {
+            hid = true;
+        }
+        return urls.indexOf(window.location.pathname) === 2 ? false : urls.indexOf(window.location.pathname);
+    });
+
     function handleChange(event, newValue) {
         setValue(newValue);
     }
+    
+    const style = hid === true ? {display: 'none'} : {};
 
     return (
-        <Paper square>
-            <Tabs value={value} indicatorColor="primary" textColor="primary" onChange={handleChange}>
+        <div style={style}>
+            <Paper  square>
+            <Tabs value={value} indicatorColor="secondary" textColor="secondary" onChange={handleChange}>
                 <Tab label="о нас" component={Link} to="/about" />
                 <Tab label="счетчики" component={Link} to="/counters" />
             </Tabs>
         </Paper>
+        </div>
     );
 }
 
@@ -28,6 +45,11 @@ export default function Header() {
 //         };
 //       }
 
+//       handleChange = (event, newValue) => {
+//           this.setState({
+//               value:
+//           })
+//       }
 //       render() {
 //         return (
 //             <Paper square>
@@ -41,3 +63,5 @@ export default function Header() {
 //         );
 //       }
 // }
+
+export default Header;
