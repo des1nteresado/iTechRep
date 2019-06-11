@@ -22,4 +22,23 @@ const TabStyle = {
     indicatorColor: 'secondary',
 }
 
-export { ButtonStyle, TextStyle, GridStyle, CounterContainerStyle, TabStyle };
+const FormStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+}
+
+const FormWrapperStyle = {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '250px'
+}
+
+const FormButStyle = {
+    backgroundColor: "#b71c1c",
+    color: '#fff',
+    marginTop: '10px'
+}
+
+export { ButtonStyle, TextStyle, GridStyle, CounterContainerStyle, TabStyle, FormStyle, FormWrapperStyle, FormButStyle };
