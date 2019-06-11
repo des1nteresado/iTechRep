@@ -11,7 +11,7 @@ const Header = () => {
             hidden = true;
             return false;
         }
-        return urls.indexOf(window.location.pathname) === 2 ? false : urls.indexOf(window.location.pathname);
+        return urls.indexOf(window.location.pathname) === 3 ? false : urls.indexOf(window.location.pathname);
     });
 
     function handleChange(event, newValue) {
@@ -26,6 +26,7 @@ const Header = () => {
                 <Tabs value={value} centered style={TabStyle} onChange={handleChange}>
                     <Tab label="about us" component={Link} to="/about" />
                     <Tab label="counters" component={Link} to="/counters" />
+                    <Tab label="sign in" component={Link} to="/login" />
                 </Tabs>
             </Paper>
         </div>

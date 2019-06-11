@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom'
 import CounterParent from '../Counter/CounterParent';
 import About from "../../views/TabsRouter/About";
+import Login from "../../views/TabsRouter/Login";
 import NotFound from "../../views/TabsRouter/NotFound";
 
 const Main = () => (
@@ -10,7 +11,7 @@ const Main = () => (
             <Route exact path='/'/>
             <Route path='/about' component={About} />
             <Route path='/counters' component={CounterParent} />
-            <Route path='/login' component={About} />
+            <Route path='/login' component={Login} />
             <Route path='/404' component={NotFound} />
             <Redirect to='/404' />
         </Switch>
