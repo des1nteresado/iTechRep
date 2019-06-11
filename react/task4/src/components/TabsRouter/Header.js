@@ -7,7 +7,7 @@ import urls from '../../routes';
 const Header = () => {
     let hidden = false;
     const [value, setValue] = React.useState(() => {
-        if (window.location.pathname === '/react/task3/404' || urls.indexOf(window.location.pathname) === -1) {
+        if (window.location.pathname === '/404' || urls.indexOf(window.location.pathname) === -1) {
             hidden = true;
             return false;
         }
@@ -24,8 +24,8 @@ const Header = () => {
         <div style={style}>
             <Paper square>
                 <Tabs value={value} centered style={TabStyle} onChange={handleChange}>
-                    <Tab label="about us" component={Link} to="/react/task3/about" />
-                    <Tab label="counters" component={Link} to="/react/task3/counters" />
+                    <Tab label="about us" component={Link} to="/about" />
+                    <Tab label="counters" component={Link} to="/counters" />
                 </Tabs>
             </Paper>
         </div>
