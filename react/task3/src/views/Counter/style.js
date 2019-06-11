@@ -1,5 +1,5 @@
 const ButtonStyle = {
-    backgroundColor: "green"
+    backgroundColor: "#b71c1c"
 };
 
 const GridStyle = {
@@ -18,4 +18,8 @@ const CounterContainerStyle = {
     justifyContent: 'center'
 };
 
-export { ButtonStyle, TextStyle, GridStyle, CounterContainerStyle };
+const TabStyle = {
+    indicatorColor: 'secondary',
+}
+
+export { ButtonStyle, TextStyle, GridStyle, CounterContainerStyle, TabStyle };

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom'
-import CounterParent from '../components/CounterParent';
-import About from "./About";
-import NotFound from "./NotFound";
+import CounterParent from '../Counter/CounterParent';
+import About from "../../views/TabsRouter/About";
+import NotFound from "../../views/TabsRouter/NotFound";
 
 const Main = () => (
     <main>
