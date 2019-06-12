@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { FormStyle, FormButStyle, FormWrapperStyle } from '../Counter/style'
-import Button from '@material-ui/core/Button';
+import { RaisedButton } from 'material-ui';
 
 function validateEmail(email) {
   var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -9,39 +9,42 @@ function validateEmail(email) {
 };
 
 export default class Login extends React.Component {
-  state = {
-    isFormValid: false,
-    formControls: {
-      email: {
-        id: 'outlined-email-input',
-        value: '',
-        type: 'email',
-        label: 'Email',
-        name: 'email',
-        margin: 'normal',
-        variant: 'outlined',
-        autoComplete: 'email',
-        helperText: '',
-        error: false,
-        validation: {
-          required: true,
-          email: true
-        }
-      },
-      password: {
-        id: 'outlined-password-input',
-        value: '',
-        type: 'password',
-        label: 'Password',
-        name: 'password',
-        margin: 'normal',
-        variant: 'outlined',
-        autoComplete: "current-password",
-        helperText: '',
-        error: false,
-        validation: {
-          required: true,
-          minLength: 6
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      formControls: {
+        email: {
+          id: 'outlined-email-input',
+          value: '',
+          type: 'email',
+          label: 'Email',
+          name: 'email',
+          margin: 'normal',
+          variant: 'outlined',
+          autoComplete: 'email',
+          helperText: '',
+          error: false,
+          validation: {
+            required: true,
+            email: true
+          }
+        },
+        password: {
+          id: 'outlined-password-input',
+          value: '',
+          type: 'password',
+          label: 'Password',
+          name: 'password',
+          margin: 'normal',
+          variant: 'outlined',
+          autoComplete: "current-password",
+          helperText: '',
+          error: false,
+          validation: {
+            required: true,
+            minLength: 6
+          }
         }
       }
     }
@@ -68,12 +71,45 @@ export default class Login extends React.Component {
     return isValid;
   }
 
+  validateForm = (e) => {
+    let isValidForm = true;
+    const formControls = { ...this.state.formControls };
+
+    Object.keys(this.state.formControls).forEach((controlName) => {
+      let control = { ...this.state.formControls[controlName] };
+      control.error = !this.validateControl(control.value, control.validation);
+      isValidForm &= !control.error;
+      if (control.error && control.type === 'email') {
+        control.helperText = 'Invalid email adress.';
+      } else if (control.error && control.type === 'password') {
+        control.helperText = 'Min. pass length 6 characters.';
+      }
+      else {
+        control.helperText = '';
+      }
+  
+      formControls[controlName] = control;
+  
+      
+    });
+    this.setState({
+      formControls
+    });
+    if (!isValidForm)
+      e.preventDefault();
+
+    return isValidForm;
+  }
+
+  loginHandler = () => {
+    console.log('kek');
+  }
+
   onChangeHandler = (e, controlName) => {
     const formControls = { ...this.state.formControls };
     const control = { ...formControls[controlName] };
     control.value = e.target.value;
     control.error = !this.validateControl(control.value, control.validation);
-
     if (control.error && control.type === 'email') {
       control.helperText = 'Invalid email adress.';
     } else if (control.error && control.type === 'password') {
@@ -85,14 +121,8 @@ export default class Login extends React.Component {
 
     formControls[controlName] = control;
 
-    let isFormValid = true;
-
-    Object.keys(formControls).forEach(name => {
-      isFormValid = !formControls[name].error && isFormValid;
-    })
-
     this.setState({
-      formControls, isFormValid
+      formControls
     });
   }
 
@@ -120,12 +150,12 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <form style={FormStyle} onSubmit={this.submitHandler}>
+      <form style={FormStyle}>
         <div style={FormWrapperStyle}>
           {
             this.renderInputs()
           }
-          <Button style={FormButStyle} variant="contained" onClick={this.loginHandler} disabled={!this.state.isFormValid} > Send </Button>
+          <RaisedButton type='submit' style={FormButStyle} variant="contained" onClick={(e) => this.validateForm(e)} > Send </RaisedButton>
         </div>
       </form>
     )
