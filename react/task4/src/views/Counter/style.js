@@ -1,5 +1,6 @@
 const ButtonStyle = {
-    backgroundColor: "#b71c1c"
+    backgroundColor: "#b71c1c",
+    color: "#fff"
 };
 
 const GridStyle = {
@@ -9,7 +10,8 @@ const GridStyle = {
 
 const TextStyle = {
     textAlign: "center",
-    fontSize: 22
+    fontSize: 22,
+    marginTop: "30px"
 }
 
 const CounterContainerStyle = {
@@ -24,7 +26,11 @@ const TabStyle = {
 
 const FormStyle = {
     display: 'flex',
+    flexWrap: 'wrap',
     justifyContent: 'center',
+    alignItems: 'center',
+    width: '250px',
+    margin: 'auto'
 }
 
 const FormWrapperStyle = {
@@ -41,4 +47,9 @@ const FormButStyle = {
     marginTop: '10px'
 }
 
-export { ButtonStyle, TextStyle, GridStyle, CounterContainerStyle, TabStyle, FormStyle, FormWrapperStyle, FormButStyle };
+const MainFormStyle = {
+    display: 'flex',
+    justifyContent: 'space-between'
+}
+
+export { ButtonStyle, TextStyle, GridStyle, MainFormStyle,  CounterContainerStyle, TabStyle, FormStyle, FormWrapperStyle, FormButStyle };
