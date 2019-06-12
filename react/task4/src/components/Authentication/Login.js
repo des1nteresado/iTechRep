@@ -1,13 +1,7 @@
 import React from 'react';
+import validateEmail from '../../validEmail';
 import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import { FormStyle, FormWrapperStyle, ButtonStyle, TextStyle } from '../Counter/style'
-
-function validateEmail(email) {
-  let validStructure = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return validStructure.test(String(email).toLowerCase());
-};
+import AuthForm from '../../views/Authentication/AuthForm'
 
 export default class Login extends React.Component {
   initialState = {
@@ -47,6 +41,7 @@ export default class Login extends React.Component {
       }
     }
   }
+
   constructor(props) {
     super(props);
     this.state = this.initialState;
@@ -172,28 +167,13 @@ export default class Login extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <form style={FormStyle} onSubmit={(e) => this.handleSubmit(e)} onReset={this.handleFormReset}>
-          <div style={FormWrapperStyle}>
-            {
-              this.renderInputs()
-            }
-            <Button type='submit' style={ButtonStyle} onClick={(e) => this.onClickButton(e)} > Send </Button>
-          </div>
-        </form>
-        <div style={TextStyle}>
-          <Typography variant="h5">
-            Email: {this.state.formControls['email'].value}
-          </Typography>
-          <Typography variant="h5">
-            Password: {this.state.formControls['password'].value}
-          </Typography>
-          <Typography variant="h5">
-            Data to be sent:
-          </Typography>
-          <Typography variant="h5">
-            {this.state.data}
-          </Typography>
-        </div>
+        <AuthForm
+          formState={this.state}
+          handleSubmit={this.handleSubmit}
+          handleFormReset={this.handleFormReset}
+          onClickButton={this.onClickButton}
+          renderInputs={this.renderInputs}
+        />
       </React.Fragment>
     );
   };

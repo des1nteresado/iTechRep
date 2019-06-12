@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom'
 import CounterParent from '../Counter/CounterParent';
 import About from "../../views/TabsRouter/About";
-import Login from "../../views/Authentication/Login";
+import Login from "../Authentication/Login";
 import NotFound from "../../views/TabsRouter/NotFound";
 
 const Main = () => (
