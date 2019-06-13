@@ -1,19 +1,31 @@
 import React from 'react';
 import { TextStyle } from '../Counter/style'
 import Typography from '@material-ui/core/Typography';
-import store from '../../store';
-import { connect } from 'react-redux';
+import { styled } from '@material-ui/styles';
+import { compose, spacing, palette } from '@material-ui/system';
+
+const Box = styled('div')(
+   compose(
+      spacing,
+      palette,
+   ),
+);
+
 
 const Success = (props) => {
-   console.log(store.getState().data)
+   const { store } = props.location.state;
    return (
       <div style={TextStyle}>
-      <Typography variant="h1" component="h2" gutterBottom>
-        {store.getState().data}
-     </Typography>
-   </div>
+         <Box color="white" bgcolor="gray" p={1}>
+            <Typography variant="h3">
+               Email: {store.formControls['email'].value}
+            </Typography>
+            <Typography variant="h3">
+               Password: {store.formControls['password'].value}
+            </Typography>
+         </Box>
+      </div>
    )
 };
 
-const mapStateToProps = state => ({ data: state.data, formControls: state.formControls });
-export default connect(mapStateToProps)(Success);
+export default Success;

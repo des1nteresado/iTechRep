@@ -15,7 +15,7 @@ const Main = () => (
             <Route exact path='/counters' component={CounterParent} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/login-redux' component={LoginRedux} />
-            <Route path='/login-redux/success' component={Success} />
+            <Route exact path='/login-redux/success' component={Success} />
             <Route exact path='/404' component={NotFound} />
             <Redirect to='/404' />
         </Switch>

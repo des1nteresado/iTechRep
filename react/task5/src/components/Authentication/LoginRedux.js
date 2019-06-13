@@ -3,8 +3,6 @@ import validateEmail from '../../validEmail';
 import TextField from '@material-ui/core/TextField';
 import AuthFormRedux from '../../views/Authentication/AuthFormRedux'
 import store from '../../store';
-import { connect } from 'react-redux';
-import fetch from 'isomorphic-fetch';
 
 class LoginRedux extends React.Component {
   constructor(props) {
@@ -96,9 +94,8 @@ class LoginRedux extends React.Component {
   }
 
   handleSubmit(event) {
-    const data = new FormData(event.target);
-    store.dispatch({type: 'SET_DATA', data: this.stringifyFormData(data)})
-    console.log(data);
+    store.dispatch({ type: 'SET_DATA', data: { email: store.getState().formControls['email'].value, password: store.getState().formControls['password'].value } });
+    event.preventDefault();
   }
 
   handleFormReset = (e) => {
@@ -120,6 +117,4 @@ class LoginRedux extends React.Component {
   };
 };
 
-const mapStateToProps = state => ({ data: state.data, formControls: state.formControls });
-
-export default connect(mapStateToProps)(LoginRedux);
+export default LoginRedux;

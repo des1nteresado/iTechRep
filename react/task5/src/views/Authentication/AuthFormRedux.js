@@ -3,16 +3,19 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { FormStyle, FormWrapperStyle, ButtonStyle } from '../Counter/style';
 import PropTypes from 'prop-types'
+import store from '../../store';
 
 const AuthFormRedux = props => {
   return (
     <React.Fragment>
-      <form data-method='post' action='/login-redux/success' style={FormStyle} onSubmit={(e) => props.handleSubmit(e)}>
+      <form style={FormStyle} onSubmit={(e) => props.handleSubmit(e)}>
         <div style={FormWrapperStyle}>
           {
             props.renderInputs()
           }
+          <Link to={{ pathname: '/login-redux/success', state: { store: store.getState()}}} style={{ textDecoration: 'none' }}>
             <Button type='submit' style={ButtonStyle} onClick={(e) => props.onClickButton(e)} > Send </Button>
+          </Link>
         </div>
       </form>
     </React.Fragment>
