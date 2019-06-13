@@ -13,7 +13,10 @@ export default (state = initialState, action) => {
                 action.control.helperText = '';
             }
             action.formControls[action.controlName] = action.control;
-            return {...state, formControls: action.formControls};
+            return { ...state, formControls: action.formControls };
+        case 'SET_DATA':
+            return { ...state, data: action.data }
+        default:
     }
     return state;
 };

@@ -92,7 +92,7 @@ export default class Login extends React.Component {
 
     return isValid;
   }
-//
+
   validateForm = (e) => {
     let isValidForm = true;
     const formControls = { ...this.state.formControls };

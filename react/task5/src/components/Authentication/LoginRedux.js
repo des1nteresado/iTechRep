@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import AuthFormRedux from '../../views/Authentication/AuthFormRedux'
 import store from '../../store';
 import { connect } from 'react-redux';
+import fetch from 'isomorphic-fetch';
 
 class LoginRedux extends React.Component {
   constructor(props) {
@@ -13,7 +14,6 @@ class LoginRedux extends React.Component {
     this.validateForm = this.validateForm.bind(this);
     this.onClickButton = this.onClickButton.bind(this);
     this.renderInputs = this.renderInputs.bind(this);
-    this.stringifyFormData = this.stringifyFormData.bind(this);
   }
 
   validateControl = (value, validation) => {
@@ -88,21 +88,21 @@ class LoginRedux extends React.Component {
   }
 
   stringifyFormData = (sentData) => {
-    // const data = {};
-    // for (let key of sentData.keys()) {
-    //   data[key] = sentData.get(key);
-    // }
-    // return JSON.stringify(data);
+    const data = {};
+    for (let key of sentData.keys()) {
+      data[key] = sentData.get(key);
+    }
+    return JSON.stringify(data);
   }
 
   handleSubmit(event) {
-    //   const data = new FormData(event.target);
-    //   event.preventDefault();
-    //   event.target.reset();
-    //   // this.setState({
-    //   //   data: this.stringifyFormData(data)
-    //   // });
-    //   console.log('Email: ' + store.getState().formControls['email'].value + ' Password: ' + store.getState().formControls['password'].value);
+    const data = new FormData(event.target);
+    store.dispatch({type: 'SET_DATA', data: this.stringifyFormData(data)})
+    console.log(data);
+  }
+
+  handleFormReset = (e) => {
+    // this.setState(() => this.initialState);
   }
 
   render() {
