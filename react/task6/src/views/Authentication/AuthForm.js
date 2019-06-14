@@ -1,19 +1,17 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { FormStyle, FormWrapperStyle, ButtonStyle, TextStyle } from '../../views/Counter/style';
+import { FormStyle, ButtonStyle, TextStyle } from '../../views/Counter/style';
 import PropTypes from 'prop-types'
 
 const AuthForm = props => {
     return (
         <React.Fragment>
           <form style={FormStyle} onSubmit={(e) => props.handleSubmit(e)} onReset={props.handleFormReset}>
-            <div style={FormWrapperStyle}>
               {
                 props.renderInputs()
               }
               <Button type='submit' style={ButtonStyle} onClick={(e) => props.onClickButton(e)} > Send </Button>
-            </div>
           </form>
           <div style={TextStyle}>
             <Typography variant="h5">

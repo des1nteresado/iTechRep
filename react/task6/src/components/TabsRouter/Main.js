@@ -6,7 +6,9 @@ import Login from "../Authentication/Login";
 import LoginRedux from "../Authentication/LoginRedux";
 import LRF from "../Authentication/LRF";
 import NotFound from "../../views/TabsRouter/NotFound";
-import Success from "../../views/TabsRouter/Success";
+import SuccessRedux from "../../views/TabsRouter/SuccessRedux";
+import SuccessReduxForm from "../../views/TabsRouter/SuccessReduxForm";
+
 
 const Main = () => (
     <main>
@@ -16,9 +18,9 @@ const Main = () => (
             <Route exact path='/counters' component={CounterParent} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/login-redux' component={LoginRedux} />
-            <Route exact path='/login-redux/success' component={Success} />
+            <Route exact path='/login-redux/success' component={SuccessRedux} />
             <Route exact path='/login-redux-form' component={LRF} />
-            <Route exact path='/login-redux-form/success' component={Success} />
+            <Route exact path='/login-redux-form/success' component={SuccessReduxForm} />
             <Route exact path='/404' component={NotFound} />
             <Redirect to='/404' />
         </Switch>

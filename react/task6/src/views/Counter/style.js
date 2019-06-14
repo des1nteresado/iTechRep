@@ -1,6 +1,15 @@
 const ButtonStyle = {
     backgroundColor: "#b71c1c",
-    color: "#fff"
+    color: "#fff",
+    border: 'none',
+    textTransform: 'uppercase',
+    borderRadius: '5px',
+    width: '64px',
+    height: '36px',
+    fontSize: '14px',
+    fontFamily: 'Arial',
+    letterSpacing: 0.5,
+    cursor: 'Pointer'
 };
 
 const GridStyle = {
@@ -30,7 +39,19 @@ const FormStyle = {
     justifyContent: 'center',
     alignItems: 'center',
     width: '250px',
-    margin: 'auto'
+    margin: 'auto',
+    height: '200px'
+}
+
+const FormStyleRedux = {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '250px',
+    margin: 'auto',
+    height: '230px',
+    paddingTop: '7px'
 }
 
 const FormWrapperStyle = {
@@ -52,4 +73,4 @@ const MainFormStyle = {
     justifyContent: 'space-between'
 }
 
-export { ButtonStyle, TextStyle, GridStyle, MainFormStyle,  CounterContainerStyle, TabStyle, FormStyle, FormWrapperStyle, FormButStyle };
+export { ButtonStyle, TextStyle, GridStyle, MainFormStyle,  CounterContainerStyle, TabStyle, FormStyle, FormWrapperStyle, FormButStyle, FormStyleRedux };

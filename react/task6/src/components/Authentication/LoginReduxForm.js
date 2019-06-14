@@ -3,9 +3,10 @@ import { connect } from 'react-redux'
 import { Field, reduxForm, formValueSelector } from 'redux-form'
 import TextField from '@material-ui/core/TextField';
 import validateEmail from '../../validEmail';
-import Button from '@material-ui/core/Button';
-import { FormStyle, FormWrapperStyle, ButtonStyle, TextStyle } from '../../views/Counter/style';
+import { FormStyleRedux, ButtonStyle, TextStyle } from '../../views/Counter/style';
 import Typography from '@material-ui/core/Typography';
+import { Link } from 'react-router-dom';
+
 
 const validate = values => {
   const errors = {}
@@ -45,15 +46,25 @@ const renderTextField = ({
   )
 
 let LoginReduxForm = props => {
-  const { handleSubmit, pristine, submitting, emailValue, passwordValue } = props;
-  console.log(selector)
+  const { handleSubmit, pristine, submitting, emailValue, passwordValue, invalid } = props;
   return (
-    <form style={FormStyle} onSubmit={handleSubmit}>
-      <div style={FormWrapperStyle}>
-        <Field name="email" component={renderTextField} label="Email" />
-        <Field name="password" component={renderTextField} label="Password" />
-        <Button type='submit' style={ButtonStyle} disabled={pristine || submitting}> Submit </Button>
-      </div>
+    <React.Fragment>
+      <form style={FormStyleRedux} onSubmit={handleSubmit}>
+        <Field name="email" variant='outlined' component={renderTextField} label="Email" />
+        <Field name="password" type="password" variant='outlined' component={renderTextField} label="Password" />
+        <Link to={{
+          pathname: '/login-redux-form/success', state: {
+            store: {
+              email:
+                emailValue, password: passwordValue
+            }
+          }
+        }} style={{ textDecoration: 'none' }}>
+          <button type="submit" style={ButtonStyle} disabled={invalid || submitting || pristine}  >
+            SEND
+        </button>
+        </Link>
+      </form>
       <div style={TextStyle}>
         <Typography variant="h5">
           Email: {emailValue}
@@ -62,7 +73,7 @@ let LoginReduxForm = props => {
           Password: {passwordValue}
         </Typography>
       </div>
-    </form>
+    </React.Fragment>
   )
 }
 

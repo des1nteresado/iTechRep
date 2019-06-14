@@ -11,7 +11,7 @@ const Box = styled('div')(
    ),
 );
 
-const Success = (props) => {
+const SuccessRedux = (props) => {
    const { store } = props.location.state;
    return (
       <div style={TextStyle}>
@@ -27,4 +27,4 @@ const Success = (props) => {
    )
 };
 
-export default Success;
+export default SuccessRedux;
