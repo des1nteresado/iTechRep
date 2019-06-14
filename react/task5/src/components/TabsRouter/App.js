@@ -11,5 +11,4 @@ const App = () => (
 )
 
 const mapStateToProps = state => ({ data: state.data, formControls: state.formControls });
-
 export default connect(mapStateToProps)(App);

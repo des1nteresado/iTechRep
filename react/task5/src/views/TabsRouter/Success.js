@@ -11,7 +11,6 @@ const Box = styled('div')(
    ),
 );
 
-
 const Success = (props) => {
    const { store } = props.location.state;
    return (

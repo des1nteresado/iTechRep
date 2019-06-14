@@ -85,21 +85,9 @@ class LoginRedux extends React.Component {
     });
   }
 
-  stringifyFormData = (sentData) => {
-    const data = {};
-    for (let key of sentData.keys()) {
-      data[key] = sentData.get(key);
-    }
-    return JSON.stringify(data);
-  }
-
   handleSubmit(event) {
     store.dispatch({ type: 'SET_DATA', data: { email: store.getState().formControls['email'].value, password: store.getState().formControls['password'].value } });
     event.preventDefault();
-  }
-
-  handleFormReset = (e) => {
-    // this.setState(() => this.initialState);
   }
 
   render() {

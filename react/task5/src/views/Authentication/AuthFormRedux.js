@@ -20,7 +20,7 @@ const AuthFormRedux = props => {
       </form>
     </React.Fragment>
   );
-}
+};
 
 AuthFormRedux.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
