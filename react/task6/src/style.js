@@ -20,7 +20,8 @@ const GridStyle = {
 const TextStyle = {
     textAlign: "center",
     fontSize: 22,
-    marginTop: "30px"
+    marginTop: "30px",
+    fontFamily: 'Arial'
 }
 
 const CounterContainerStyle = {
@@ -40,7 +41,17 @@ const FormStyle = {
     alignItems: 'center',
     width: '250px',
     margin: 'auto',
-    height: '200px'
+    height: '200px',
+    marginTop: '25px'
+}
+
+const FormDataStyle = {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '500px',
+    margin: 'auto'
 }
 
 const FormStyleRedux = {
@@ -73,4 +84,4 @@ const MainFormStyle = {
     justifyContent: 'space-between'
 }
 
-export { ButtonStyle, TextStyle, GridStyle, MainFormStyle,  CounterContainerStyle, TabStyle, FormStyle, FormWrapperStyle, FormButStyle, FormStyleRedux };
+export { ButtonStyle, TextStyle, GridStyle, MainFormStyle, FormDataStyle,  CounterContainerStyle, TabStyle, FormStyle, FormWrapperStyle, FormButStyle, FormStyleRedux };

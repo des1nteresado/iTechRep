@@ -1,1 +1,0 @@
-export default validPassword = (val) => val && val.length > 5;

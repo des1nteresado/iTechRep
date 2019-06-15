@@ -1,11 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Field, reduxForm, formValueSelector } from 'redux-form'
+import { reduxForm, formValueSelector } from 'redux-form'
 import TextField from '@material-ui/core/TextField';
 import validateEmail from '../../validEmail';
-import { FormStyleRedux, ButtonStyle, TextStyle } from '../../views/Counter/style';
-import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
+import AuthFormReduxForm from '../../views/Authentication/AuthFormReduxForm';
 
 
 const validate = values => {
@@ -22,7 +20,7 @@ const validate = values => {
   if (!validateEmail(values.email)) {
     errors.email = 'Invalid email address'
   }
-  if (values.password != null && !(values.password.length >= 6)) {
+  if (values.password && !(values.password.length >= 6)) {
 
     errors.password = 'Too short'
   }
@@ -48,44 +46,25 @@ const renderTextField = ({
 let LoginReduxForm = props => {
   const { handleSubmit, pristine, submitting, emailValue, passwordValue, invalid } = props;
   return (
-    <React.Fragment>
-      <form style={FormStyleRedux} onSubmit={handleSubmit}>
-        <Field name="email" variant='outlined' component={renderTextField} label="Email" />
-        <Field name="password" type="password" variant='outlined' component={renderTextField} label="Password" />
-        <Link to={{
-          pathname: '/login-redux-form/success', state: {
-            store: {
-              email:
-                emailValue, password: passwordValue
-            }
-          }
-        }} style={{ textDecoration: 'none' }}>
-          <button type="submit" style={ButtonStyle} disabled={invalid || submitting || pristine}  >
-            SEND
-        </button>
-        </Link>
-      </form>
-      <div style={TextStyle}>
-        <Typography variant="h5">
-          Email: {emailValue}
-        </Typography>
-        <Typography variant="h5">
-          Password: {passwordValue}
-        </Typography>
-      </div>
-    </React.Fragment>
+    <AuthFormReduxForm
+      renderTextField={renderTextField}
+      handleSubmit={handleSubmit}
+      emailValue={emailValue}
+      passwordValue={passwordValue}
+      pristine={pristine}
+      submitting={submitting}
+      invalid={invalid}
+    />
   )
 }
 
 LoginReduxForm = reduxForm({
-  form: 'loginReduxForm', // a unique identifier for this form
+  form: 'loginReduxForm',
   validate,
 })(LoginReduxForm);
 
-// Decorate with connect to read form values
-const selector = formValueSelector('loginReduxForm') // <-- same as form name
+const selector = formValueSelector('loginReduxForm')
 LoginReduxForm = connect(state => {
-  // can select values individually
   const emailValue = selector(state, 'email')
   const passwordValue = selector(state, 'password')
   return {
