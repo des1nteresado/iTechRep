@@ -13,16 +13,16 @@ import SuccessReduxForm from "../../views/TabsRouter/SuccessReduxForm";
 const Main = () => (
     <main>
         <Switch>
-            <Route exact path='/' />
-            <Route exact path='/about' component={About} />
-            <Route exact path='/counters' component={CounterParent} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/login-redux' component={LoginRedux} />
-            <Route exact path='/login-redux/success' component={SuccessRedux} />
-            <Route exact path='/login-redux-form' component={LRF} />
-            <Route exact path='/login-redux-form/success' component={SuccessReduxForm} />
-            <Route exact path='/404' component={NotFound} />
-            <Redirect to='/404' />
+            <Route exact path={process.env.PUBLIC_URL + '/'} />
+            <Route exact path={process.env.PUBLIC_URL + '/about'} component={About} />
+            <Route exact path={process.env.PUBLIC_URL + '/counters'} component={CounterParent} />
+            <Route exact path={process.env.PUBLIC_URL + '/login'} component={Login} />
+            <Route exact path={process.env.PUBLIC_URL + '/login-redux'} component={LoginRedux} />
+            <Route exact path={process.env.PUBLIC_URL + '/login-redux/success'} component={SuccessRedux} />
+            <Route exact path={process.env.PUBLIC_URL + '/login-redux-form'} component={LRF} />
+            <Route exact path={process.env.PUBLIC_URL + '/login-redux-form/success'} component={SuccessReduxForm} />
+            <Route exact path={process.env.PUBLIC_URL + '/404'} component={NotFound} />
+            <Redirect to={process.env.PUBLIC_URL + '/404'} />
         </Switch>
     </main>
 )

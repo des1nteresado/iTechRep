@@ -3,10 +3,10 @@ import Header from './Header';
 import Main from './Main';
 
 const App = () => (
-    <div>
+    <React.Fragment>
         <Header />
         <Main />
-    </div>
+    </React.Fragment>
 )
 
 export default App;

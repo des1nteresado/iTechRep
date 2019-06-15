@@ -9,7 +9,8 @@ const GridStyle = {
 
 const TextStyle = {
     textAlign: "center",
-    fontSize: 22
+    fontSize: 22,
+    fontFamily: 'Arial'
 }
 
 const CounterContainerStyle = {
