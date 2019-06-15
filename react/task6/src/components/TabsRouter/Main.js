@@ -13,7 +13,7 @@ import SuccessReduxForm from "../../views/TabsRouter/SuccessReduxForm";
 const Main = () => (
     <main>
         <Switch>
-            <Route exact path='/'/>
+            <Route exact path='/' />
             <Route exact path='/about' component={About} />
             <Route exact path='/counters' component={CounterParent} />
             <Route exact path='/login' component={Login} />
