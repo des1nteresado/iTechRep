@@ -3,8 +3,11 @@ import { TextStyle } from '../style'
 import TextField from '@material-ui/core/TextField';
 
 const Success = (props) => {
-   const { store } = props.location.state;
-   const value = store.formControls['email'].value + '/' + store.formControls['password'].value;
+   const { store } = props.location.state ? props.location.state : 'undefined';
+   let value = 'nice try';
+   if (props.location.state) {
+      value = store.formControls['email'].value + '/' + store.formControls['password'].value;
+   }
    return (
       <div style={TextStyle}>
          <TextField

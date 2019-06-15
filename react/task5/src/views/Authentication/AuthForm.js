@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 
 const AuthForm = props => {
+  const email = props.formState.formControls['email'].value ? props.formState.formControls['email'].value : ' ';
+  const password = props.formState.formControls['password'].value ? props.formState.formControls['password'].value : ' ';
+  const data = props.formState.data ? props.formState.data : ' ';
   return (
     <React.Fragment>
       <form style={FormStyle} onSubmit={(e) => props.handleSubmit(e)} onReset={props.handleFormReset}>
@@ -19,7 +22,7 @@ const AuthForm = props => {
         <TextField
           id="outlined-email"
           label="Email"
-          value={props.formState.formControls['email'].value}
+          value={email}
           margin="normal"
           InputProps={{
             readOnly: true
@@ -30,7 +33,7 @@ const AuthForm = props => {
         <TextField
           id="outlined-password"
           label="Password"
-          value={props.formState.formControls['password'].value}
+          value={password}
           margin="normal"
           InputProps={{
             readOnly: true
@@ -44,7 +47,7 @@ const AuthForm = props => {
           id="outlined-data"
           label="Data to be sent"
           style={{ width: 450 }}
-          value={props.formState.data}
+          value={data}
           margin="normal"
           InputProps={{
             readOnly: true
