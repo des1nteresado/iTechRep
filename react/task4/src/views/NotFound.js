@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextStyle } from '../Counter/style'
+import { TextStyle } from '../style'
 import Typography from '@material-ui/core/Typography';
 
 const NotFound = () => (

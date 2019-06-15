@@ -1,7 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { FormStyle, FormWrapperStyle, ButtonStyle, TextStyle } from '../../views/Counter/style';
+import { FormStyle, FormWrapperStyle, ButtonStyle, TextStyle } from '../../style';
 import PropTypes from 'prop-types'
 
 const AuthForm = props => {

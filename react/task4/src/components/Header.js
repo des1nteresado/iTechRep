@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Paper, Tabs, Tab } from '@material-ui/core';
-import { TabStyle } from '../../views/Counter/style';
-import urls from '../../routes';
+import { TabStyle } from '../style';
+import urls from '../routes';
 
 const Header = () => {
     let hidden = false;
@@ -24,9 +24,9 @@ const Header = () => {
         <div style={style}>
             <Paper square>
                 <Tabs value={value} centered style={TabStyle} onChange={handleChange}>
-                    <Tab label="about us" component={Link} to="/about" />
-                    <Tab label="counters" component={Link} to="/counters" />
-                    <Tab label="sign in" component={Link} to="/login" />
+                    <Tab label="about us" component={Link} to={process.env.PUBLIC_URL + "/about"} />
+                    <Tab label="counters" component={Link} to={process.env.PUBLIC_URL + "/counters"} />
+                    <Tab label="sign in" component={Link} to={process.env.PUBLIC_URL + "/login"} />
                 </Tabs>
             </Paper>
         </div>
