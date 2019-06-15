@@ -34,6 +34,16 @@ const FormStyle = {
     margin: 'auto'
 }
 
+const FormDataStyle = {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '450px',
+    margin: 'auto'
+}
+
+
 const FormWrapperStyle = {
     display: 'flex',
     flexWrap: 'wrap',
@@ -53,4 +63,4 @@ const MainFormStyle = {
     justifyContent: 'space-between'
 }
 
-export { ButtonStyle, TextStyle, GridStyle, MainFormStyle,  CounterContainerStyle, TabStyle, FormStyle, FormWrapperStyle, FormButStyle };
+export { ButtonStyle, TextStyle, GridStyle, MainFormStyle, FormDataStyle,  CounterContainerStyle, TabStyle, FormStyle, FormWrapperStyle, FormButStyle };
