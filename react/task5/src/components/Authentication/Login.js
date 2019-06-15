@@ -124,7 +124,7 @@ export default class Login extends React.Component {
   }
 
   handleFormReset = (e) => {
-    this.setState(() => this.initialState);
+    this.setState(() => initialState);
   }
 
   render() {

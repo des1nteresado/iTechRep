@@ -2,7 +2,7 @@ import React from "react";
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import CounterContainer from "./CounterContainer";
-import { CounterContainerStyle, TextStyle, GridStyle } from '../../views/Counter/style'
+import { CounterContainerStyle, TextStyle, GridStyle } from '../../style'
 import scrollToComponent from 'react-scroll-to-component';
 
 const initialState = [{ count: 0, id: 1 }]
