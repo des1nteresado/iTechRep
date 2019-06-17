@@ -60,7 +60,7 @@
     line-height: 1.7;
 }
 
-.article-bot .article-bot__button {
+.article-bot__button {
     font-size:  12px;
     background-color: #03a8cb;
     display: flex;
@@ -71,7 +71,7 @@
     border: none;
     margin: 0;
     color: #fff;
-    font-weight: bold;
+    font-family: 'SourceSansPro-Regular', sans-serif;
     border-radius: 13px;
     height: 26px;
     text-transform: uppercase;
