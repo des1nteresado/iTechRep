@@ -18,10 +18,8 @@ const Header = () => {
         setValue(newValue);
     }
 
-    const style = hidden === true ? { display: 'none' } : {};
-
     return (
-        <div style={style}>
+        <div style={{ display: hidden ? 'none' : 'visible' }}>
             <Paper square>
                 <Tabs value={value} centered style={TabStyle} onChange={handleChange}>
                     <Tab label="about us" component={Link} to={process.env.PUBLIC_URL + "/about"} />

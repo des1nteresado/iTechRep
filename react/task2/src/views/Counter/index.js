@@ -24,10 +24,7 @@ const Counter = props => {
 }
 
 Counter.propTypes = {
-    count: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]),
+    count: PropTypes.number,
     handleIncrement: PropTypes.func.isRequired,
     handleDecrement: PropTypes.func.isRequired,
     handleReset: PropTypes.func.isRequired

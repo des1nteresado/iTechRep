@@ -5,7 +5,7 @@ import CounterContainer from "./CounterContainer";
 import { CounterContainerStyle, TextStyle, GridStyle } from '../views/Counter/style'
 import scrollToComponent from 'react-scroll-to-component';
 
-const initialState = [{ count: 0, id: 1 }]
+const initialState = [{ count: 0, id: 0 }]
 
 class CounterParent extends React.Component {
     constructor(props) {
