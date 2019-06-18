@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -10,8 +11,13 @@ namespace WebApiTask1.Controllers
     {
         // GET api/values
         [HttpGet("{a}/{b}.{format}"), FormatFilter]
-        public ActionResult Get(int a, int b)
+        public ActionResult Get(int? a, int? b)
         {
+            int validValue;
+            if ((a != null && a.GetType() != typeof(int)) || (b != null && b.GetType() != typeof(int)))
+            {
+                return HttpNotFound();
+            }
             var values = new Dictionary<string, int>(3) { { "a", a }, { "b", b }, { "sum", a + b } };
             var myJsonValues = JsonConvert.SerializeObject(values);
             return Content(myJsonValues, "application/json");
