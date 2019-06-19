@@ -20,12 +20,12 @@ namespace WebApiTask1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddMvc(options =>
+            services.AddMvc()
+                .AddXmlDataContractSerializerFormatters()
+                .AddMvcOptions(opts =>
                 {
-                    options.FormatterMappings.SetMediaTypeMappingForFormat
-                        ("xml", MediaTypeHeaderValue.Parse("application/xml"));
-                })
-                .AddXmlSerializerFormatters();
+                    opts.FormatterMappings.SetMediaTypeMappingForFormat("xml", new MediaTypeHeaderValue("application/xml"));
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
