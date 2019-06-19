@@ -1,7 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+using WebApiTask1.Models;
 
 namespace WebApiTask1.Controllers
 {
@@ -9,18 +11,16 @@ namespace WebApiTask1.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        // GET api/values
-        [HttpGet("{a}/{b}.{format}"), FormatFilter]
-        public ActionResult Get(int? a, int? b)
+        // GET /sum/5/6.json
+        [HttpGet("{a:int:min(0)}/{b:int:max(0)}.{format?}"), FormatFilter]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult Get(string a, string b)//int int
         {
-            int validValue;
-            if ((a != null && a.GetType() != typeof(int)) || (b != null && b.GetType() != typeof(int)))
-            {
-                return HttpNotFound();
-            }
-            var values = new Dictionary<string, int>(3) { { "a", a }, { "b", b }, { "sum", a + b } };
-            var myJsonValues = JsonConvert.SerializeObject(values);
-            return Content(myJsonValues, "application/json");
+            int validParam;
+            if (a == null || !int.TryParse(a, out validParam)) return BadRequest();
+            //var result = new Result<int?> { A = a, B = b, Sum = a + b };
+            return BadRequest();
         }
     }
 }
