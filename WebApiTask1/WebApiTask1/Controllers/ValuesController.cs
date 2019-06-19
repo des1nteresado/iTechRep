@@ -13,14 +13,14 @@ namespace WebApiTask1.Controllers
     {
         // GET /sum/5/6.json
         [HttpGet("{a:int:min(0)}/{b:int:max(0)}.{format?}"), FormatFilter]
-        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Get(string a, string b)//int int
+        public IActionResult Get(SumRequest res)//int int
         {
             int validParam;
-            if (a == null || !int.TryParse(a, out validParam)) return BadRequest();
+            if (res.a == null ) return BadRequest();
             //var result = new Result<int?> { A = a, B = b, Sum = a + b };
-            return BadRequest();
+            return Ok();
         }
     }
 }

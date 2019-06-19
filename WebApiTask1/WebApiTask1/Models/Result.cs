@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 
 namespace WebApiTask1.Models
 {
-    public class Result<T>
+    public class SumRequest
     {
-        public T A { get; set; }
-        public T B { get; set; }
-        public T Sum { get; set; }
+        public int? a { get; set; }
+
+        public int? b { get; set; }
+
+        public int? Sum => a + b;
     }
 }
