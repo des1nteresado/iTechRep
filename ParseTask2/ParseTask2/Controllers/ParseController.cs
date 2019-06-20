@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Internal;
+using ParseTask2.Models;
 
 namespace ParseTask2.Controllers
 {
@@ -13,26 +10,44 @@ namespace ParseTask2.Controllers
     [ApiController]
     public class ParseController : ControllerBase
     {
+        private StarWarsAPIClient _api = new StarWarsAPIClient();
         // GET api/values
         [HttpGet("starAsync")]
         [FormatFilter]
         public async Task<IActionResult> GetStarAsync()
         {
-            string result = "";
-            using (var client = new HttpClient())
+            var urls = new List<string>();
+
+            for (int i = 1; i < 5; i++)
             {
-                for (int i = 0; i < 8; i++)
-                {
-                    var response = await client.GetAsync($"https://swapi.co/api/starships/?page={i}");
-                    if (response.StatusCode != HttpStatusCode.OK)
-                    {
-                        return BadRequest("Sorry");
-                    }
-                    HttpContent responseContent = response.Content;
-                    result += await responseContent.ReadAsStringAsync();
-                }
-                return Ok(result);
+                urls.Add($"https://swapi.co/api/starships/?page={i}");
             }
+
+            var starShips = _api.GetListStarShips(urls);
+
+            //if (starShips == null)
+            //{
+            //    return NoContent();
+            //}
+
+            //foreach (var star in starShips.results)
+            //{
+            //    star.Index = starShips.results.IndexOf(star) + 1;
+            //}
+
+            //foreach (var starList in result)
+            //{
+            //    for (int i = 0; i < starList.count; i++)
+            //    {
+            //        starList.results.
+            //    }
+            //    foreach (var star in starList)
+            //    {
+            //        star.Index = starList.IndexOf(star);
+            //    }
+            //}
+
+            return Ok(starShips);
         }
 
 
@@ -40,18 +55,19 @@ namespace ParseTask2.Controllers
         [FormatFilter]
         public IActionResult GetStar()
         {
-            using (var client = new HttpClient())
+            var starShips = _api.GetAllStarship();
+
+            if (starShips == null)
             {
-                var response = client.GetAsync("https://swapi.co/api/starships/").Result;
-                if (response.IsSuccessStatusCode)
-                {
-                    HttpContent responseContent = response.Content;
-                    var result = responseContent.ReadAsStreamAsync().Result;
-                    return Ok(result);
-                }
+                return NoContent();
             }
 
-            return BadRequest("Sorry");
+            foreach (var star in starShips.results)
+            {
+                star.Index = starShips.results.IndexOf(star) + 1;
+            }
+
+            return Ok(starShips);
         }
     }
 }
