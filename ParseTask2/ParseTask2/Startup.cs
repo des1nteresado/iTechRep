@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Net.Http.Headers;
 
-namespace WebApiTask1
+namespace ParseTask2
 {
     public class Startup
     {
@@ -22,8 +22,7 @@ namespace WebApiTask1
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddMvc()
                 .AddXmlDataContractSerializerFormatters()
-                .AddMvcOptions(opts =>
-                {
+                .AddMvcOptions(opts => {
                     opts.FormatterMappings.SetMediaTypeMappingForFormat("xml", new MediaTypeHeaderValue("application/xml"));
                 });
         }
@@ -35,7 +34,7 @@ namespace WebApiTask1
             {
                 app.UseDeveloperExceptionPage();
             }
-
+          
             app.UseMvc();
         }
     }
