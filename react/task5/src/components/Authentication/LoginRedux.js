@@ -2,7 +2,8 @@ import React from 'react';
 import validateEmail from '../../validEmail';
 import TextField from '@material-ui/core/TextField';
 import AuthFormRedux from '../../views/Authentication/AuthFormRedux'
-import store from '../../store';
+import { connect } from 'react-redux';
+
 
 class LoginRedux extends React.Component {
   constructor(props) {
@@ -36,13 +37,28 @@ class LoginRedux extends React.Component {
     return isValid;
   }
 
+  setInputsError = (control, formControls, controlName) => {
+    control.error = !this.validateControl(control.value, control.validation);
+    if (control.error && control.type === 'email') {
+      control.helperText = 'Invalid email adress.';
+    } else if (control.error && control.type === 'password') {
+      control.helperText = 'Min. pass length 6 characters.';
+    }
+    else {
+      control.helperText = '';
+    }
+    formControls[controlName] = control;
+    // store.dispatch({ type: 'SET_INPUTS_ERROR', formControls: formControls });
+    this.props.setInputsError(formControls);
+  }
+
   validateForm = (e) => {
     let isValidForm = true;
-    const formControls = { ...store.getState().formControls };
+    const formControls = { ...this.props.formControls };
 
-    Object.keys(store.getState().formControls).forEach((controlName) => {
-      let control = { ...store.getState().formControls[controlName] };
-      store.dispatch({ type: 'SET_INPUTS_ERROR', control: control, formControls: formControls, controlName: controlName, validateControl: this.validateControl });
+    Object.keys(this.props.formControls).forEach((controlName) => {
+      let control = { ...this.props.formControls[controlName] };
+      this.setInputsError(control, formControls, controlName);
       isValidForm &= !control.error;
     });
 
@@ -53,10 +69,11 @@ class LoginRedux extends React.Component {
   }
 
   onChangeHandler = (e, controlName) => {
-    const formControls = { ...store.getState().formControls };
+    const formControls = { ...this.props.formControls };
     const control = { ...formControls[controlName] };
     control.value = e.target.value;
-    store.dispatch({ type: 'SET_INPUTS_ERROR', control: control, formControls: formControls, controlName: controlName, validateControl: this.validateControl });
+    this.setInputsError(control, formControls, controlName);
+
   }
 
   onClickButton = (e) => {
@@ -64,8 +81,8 @@ class LoginRedux extends React.Component {
   }
 
   renderInputs = () => {
-    return Object.keys(store.getState().formControls).map((controlName, index) => {
-      const control = store.getState().formControls[controlName];
+    return Object.keys(this.props.formControls).map((controlName, index) => {
+      const control = this.props.formControls[controlName];
       return (
         <TextField
           key={controlName + index}
@@ -86,7 +103,8 @@ class LoginRedux extends React.Component {
   }
 
   handleSubmit(event) {
-    store.dispatch({ type: 'SET_DATA', data: { email: store.getState().formControls['email'].value, password: store.getState().formControls['password'].value } });
+    // store.dispatch({ type: 'SET_DATA', data: { email: this.props.formControls['email'].value, password: this.props.formControls['password'].value } });
+    this.props.setData({ email: this.props.formControls['email'].value, password: this.props.formControls['password'].value });
     event.preventDefault();
   }
 
@@ -94,7 +112,7 @@ class LoginRedux extends React.Component {
     return (
       <React.Fragment>
         <AuthFormRedux
-          formState={store.getState()}
+          formState={this.props}
           handleSubmit={this.handleSubmit}
           handleFormReset={this.handleFormReset}
           onClickButton={this.onClickButton}
@@ -105,4 +123,16 @@ class LoginRedux extends React.Component {
   };
 };
 
-export default LoginRedux;
+const mapDispatchToProps = function (dispatch, ownProps) {
+  return {
+    setInputsError: (formControls) => {
+      dispatch({ type: 'SET_INPUTS_ERROR', formControls: formControls });
+    },
+    setData: (data) => {
+      dispatch({ type: 'SET_DATA', data: data });
+    },
+  }
+};
+
+const mapStateToProps = state => ({ data: state.data, formControls: state.formControls });
+export default connect(mapStateToProps, mapDispatchToProps)(LoginRedux);
