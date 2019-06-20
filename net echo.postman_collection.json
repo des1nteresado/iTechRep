@@ -1,0 +1,61 @@
+{
+	"id": "5264b588-272f-1648-9f7c-21a1eb0b72dd",
+	"name": "net echo",
+	"description": "",
+	"order": [
+		"7ac0a1cd-30ee-05c1-c9b8-c29d3a7f7640"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1561044119113,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "7ac0a1cd-30ee-05c1-c9b8-c29d3a7f7640",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:57783/sum/values?a=323&b=-312",
+			"queryParams": [
+				{
+					"key": "a",
+					"value": "323",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "b",
+					"value": "-312",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "5264b588-272f-1648-9f7c-21a1eb0b72dd",
+			"data": [],
+			"dataMode": "raw",
+			"name": "localhost:57783/sum/values?a=323&b=-312",
+			"description": "add &format=json if you need",
+			"descriptionFormat": "html",
+			"time": 1561044120972,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n\t\"name\": \"Mongoose\",\n\t\"author\": \"Top\"\n}"
+		}
+	]
+}
