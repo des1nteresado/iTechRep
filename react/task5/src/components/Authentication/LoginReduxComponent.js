@@ -1,37 +1,18 @@
 import React from 'react';
 import validateEmail from '../../validEmail';
 import TextField from '@material-ui/core/TextField';
-import AuthForm from '../../views/Authentication/AuthForm';
-import initialState from '../../initialStateForm';
+import AuthFormRedux from '../../views/Authentication/AuthFormRedux'
+import { connect } from 'react-redux';
+import { SET_INPUTS_ERROR, SET_DATA } from '../../actionTypes';
 
-export default class Login extends React.Component {
+class LoginReduxComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = initialState;
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleFormReset = this.handleFormReset.bind(this);
-    this.setInputsError = this.setInputsError.bind(this);
     this.validateControl = this.validateControl.bind(this);
     this.validateForm = this.validateForm.bind(this);
     this.onClickButton = this.onClickButton.bind(this);
     this.renderInputs = this.renderInputs.bind(this);
-    this.stringifyFormData = this.stringifyFormData.bind(this);
-  }
-
-  setInputsError = (control, formControls, controlName) => {
-    control.error = !this.validateControl(control.value, control.validation);
-    if (control.error && control.type === 'email') {
-      control.helperText = 'Invalid email adress.';
-    } else if (control.error && control.type === 'password') {
-      control.helperText = 'Min. pass length 6 characters.';
-    }
-    else {
-      control.helperText = '';
-    }
-    formControls[controlName] = control;
-    this.setState({
-      formControls
-    });
   }
 
   validateControl = (value, validation) => {
@@ -56,12 +37,26 @@ export default class Login extends React.Component {
     return isValid;
   }
 
+  setInputsError = (control, formControls, controlName) => {
+    control.error = !this.validateControl(control.value, control.validation);
+    if (control.error && control.type === 'email') {
+      control.helperText = 'Invalid email adress.';
+    } else if (control.error && control.type === 'password') {
+      control.helperText = 'Min. pass length 6 characters.';
+    }
+    else {
+      control.helperText = '';
+    }
+    formControls[controlName] = control;
+    this.props.setInputsError(formControls);
+  }
+
   validateForm = (e) => {
     let isValidForm = true;
-    const formControls = { ...this.state.formControls };
+    const formControls = { ...this.props.formControls };
 
-    Object.keys(this.state.formControls).forEach((controlName) => {
-      let control = { ...this.state.formControls[controlName] };
+    Object.keys(this.props.formControls).forEach((controlName) => {
+      let control = { ...this.props.formControls[controlName] };
       this.setInputsError(control, formControls, controlName);
       isValidForm &= !control.error;
     });
@@ -73,10 +68,11 @@ export default class Login extends React.Component {
   }
 
   onChangeHandler = (e, controlName) => {
-    const formControls = { ...this.state.formControls };
+    const formControls = { ...this.props.formControls };
     const control = { ...formControls[controlName] };
     control.value = e.target.value;
     this.setInputsError(control, formControls, controlName);
+
   }
 
   onClickButton = (e) => {
@@ -84,8 +80,8 @@ export default class Login extends React.Component {
   }
 
   renderInputs = () => {
-    return Object.keys(this.state.formControls).map((controlName, index) => {
-      const control = this.state.formControls[controlName];
+    return Object.keys(this.props.formControls).map((controlName, index) => {
+      const control = this.props.formControls[controlName];
       return (
         <TextField
           key={controlName + index}
@@ -105,33 +101,16 @@ export default class Login extends React.Component {
     });
   }
 
-  stringifyFormData = (sentData) => {
-    const data = {};
-    for (let key of sentData.keys()) {
-      data[key] = sentData.get(key);
-    }
-    return JSON.stringify(data);
-  }
-
   handleSubmit(event) {
-    const data = new FormData(event.target);
+    this.props.setData({ email: this.props.formControls['email'].value, password: this.props.formControls['password'].value });
     event.preventDefault();
-    event.target.reset();
-    this.setState({
-      data: this.stringifyFormData(data)
-    });
-    console.log('Email: ' + this.state.formControls['email'].value + ' Password: ' + this.state.formControls['password'].value);
-  }
-
-  handleFormReset = (e) => {
-    this.setState(() => initialState);
   }
 
   render() {
     return (
       <React.Fragment>
-        <AuthForm
-          formState={this.state}
+        <AuthFormRedux
+          formState={this.props}
           handleSubmit={this.handleSubmit}
           handleFormReset={this.handleFormReset}
           onClickButton={this.onClickButton}
@@ -141,3 +120,17 @@ export default class Login extends React.Component {
     );
   };
 };
+
+const mapDispatchToProps = function (dispatch, ownProps) {
+  return {
+    setInputsError: (formControls) => {
+      dispatch({ type: SET_INPUTS_ERROR, formControls: formControls });
+    },
+    setData: (data) => {
+      dispatch({ type: SET_DATA, data: data });
+    },
+  }
+};
+
+const mapStateToProps = state => ({ data: state.data, formControls: state.formControls });
+export default connect(mapStateToProps, mapDispatchToProps)(LoginReduxComponent);
