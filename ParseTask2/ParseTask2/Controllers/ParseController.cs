@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Internal;
-using ParseTask2.Models;
+using ParseTask2.BL;
 
 namespace ParseTask2.Controllers
 {
@@ -10,62 +8,28 @@ namespace ParseTask2.Controllers
     [ApiController]
     public class ParseController : ControllerBase
     {
-        private StarWarsAPIClient _api = new StarWarsAPIClient();
-        // GET api/values
+        private readonly StarWarsApi _api = new StarWarsApi();
+
         [HttpGet("starAsync")]
         [FormatFilter]
         public async Task<IActionResult> GetStarAsync()
         {
-            var urls = new List<string>();
+            var starShips = await _api.GetListStarShips();
 
-            for (int i = 1; i < 5; i++)
-            {
-                urls.Add($"https://swapi.co/api/starships/?page={i}");
-            }
-
-            var starShips = _api.GetListStarShips(urls);
-
-            //if (starShips == null)
-            //{
-            //    return NoContent();
-            //}
-
-            //foreach (var star in starShips.results)
-            //{
-            //    star.Index = starShips.results.IndexOf(star) + 1;
-            //}
-
-            //foreach (var starList in result)
-            //{
-            //    for (int i = 0; i < starList.count; i++)
-            //    {
-            //        starList.results.
-            //    }
-            //    foreach (var star in starList)
-            //    {
-            //        star.Index = starList.IndexOf(star);
-            //    }
-            //}
+            if (starShips == null)
+                return NoContent();
 
             return Ok(starShips);
         }
-
 
         [HttpGet("star")]
         [FormatFilter]
         public IActionResult GetStar()
         {
-            var starShips = _api.GetAllStarship();
+            var starShips = _api.GetStarshipByPage();
 
             if (starShips == null)
-            {
                 return NoContent();
-            }
-
-            foreach (var star in starShips.results)
-            {
-                star.Index = starShips.results.IndexOf(star) + 1;
-            }
 
             return Ok(starShips);
         }

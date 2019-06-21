@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\StarWarsAPI\StarWarsAPI.csproj" />
+    <ProjectReference Include="..\ParseTask2.BL\ParseTask2.BL.csproj" />
   </ItemGroup>
 
 </Project>
