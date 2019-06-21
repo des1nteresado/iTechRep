@@ -1,0 +1,62 @@
+{
+	"id": "3b15aec4-ee95-9879-3d7d-0c3c58871e40",
+	"name": "net tasks",
+	"description": "",
+	"order": [
+		"03852f2c-19e0-17ab-67a7-8f1a58019a6b",
+		"65d919b7-b7da-d273-1f1c-fc73abbe51a1"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1561016778496,
+	"owner": "7883055",
+	"public": false,
+	"requests": [
+		{
+			"id": "03852f2c-19e0-17ab-67a7-8f1a58019a6b",
+			"headers": "",
+			"headerData": [],
+			"url": "https://localhost:44337/parse/star",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "3b15aec4-ee95-9879-3d7d-0c3c58871e40",
+			"data": null,
+			"dataMode": "params",
+			"name": "https://localhost:44337/parse/star",
+			"description": "Request example for task2. Add format parameter, if you need.",
+			"descriptionFormat": "html",
+			"time": 1561110963458,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "65d919b7-b7da-d273-1f1c-fc73abbe51a1",
+			"headers": "",
+			"headerData": [],
+			"url": "https://localhost:44337/parse/starAsync",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "3b15aec4-ee95-9879-3d7d-0c3c58871e40",
+			"data": null,
+			"dataMode": "params",
+			"name": "https://localhost:44337/parse/starAsync",
+			"description": "Add format parameter, if you need.",
+			"descriptionFormat": "html",
+			"time": 1561111068205,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		}
+	]
+}
