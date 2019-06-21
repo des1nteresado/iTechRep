@@ -15,7 +15,6 @@ namespace WebApiTask1.Controllers
             if (result.A == null || result.B == null)
             {
                 ModelState.AddModelError("", "Required params not set");
-                return BadRequest(ModelState);
             }
 
             if (!ModelState.IsValid)
