@@ -1,5 +1,5 @@
 # iTechRep
-##JS tasks
+## JS tasks
 ### Task 1
 #### a) https://jsfiddle.net/adpjzwhu/
 #### б) https://jsfiddle.net/cL0obtfk/
