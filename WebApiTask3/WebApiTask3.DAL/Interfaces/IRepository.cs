@@ -10,7 +10,8 @@ namespace WebApiTask3.DAL.Interfaces
         T Get(int id);
         IEnumerable<T> Find(Func<T, bool> predicate);
         void Create(T item);
-        void Update(T item);
+        void Update(T item, T itemUpdated);
         void Delete(int id);
+        void Save();
     }
 }

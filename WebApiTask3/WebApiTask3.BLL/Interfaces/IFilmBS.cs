@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using WebApiTask3.BLL.Entities;
 
-namespace WebApiTask3.BLL.Interfaces
+namespace WebApiTask3.DAL.Interfaces
 {
     public interface IFilmBS
     {
-        IEnumerable<Film> GetAll();
-        Film Get(int id);
-        IEnumerable<Film> Find(Func<Film, bool> predicate);
-        void Create(Film item);
-        void Update(Film item);
+        IEnumerable<Entities.Film> GetAll();
+        Entities.Film Get(int id);
+        IEnumerable<Entities.Film> Find(Func<Entities.Film, bool> predicate);
+        void Create(Entities.Film item);
+        void Update(Entities.Film item, Entities.Film itemUpdated);
         void Delete(int id);
+        void Save();
     }
 }

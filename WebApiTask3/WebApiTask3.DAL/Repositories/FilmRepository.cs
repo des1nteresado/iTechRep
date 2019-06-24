@@ -27,14 +27,19 @@ namespace WebApiTask3.DAL.Repositories
             return filmContext.Films.Find(id);
         }
 
-        public void Create(Film book)
+        public void Create(Film film)
         {
-            filmContext.Films.Add(book);
+            filmContext.Films.Add(film);
+            Save();
         }
 
-        public void Update(Film book)
+        public void Update(Film film, Film filmUpdated)
         {
-            filmContext.Entry(book).State = EntityState.Modified;
+            film.Name = filmUpdated.Name;
+            film.Country = filmUpdated.Country;
+            film.Year = filmUpdated.Year;
+            film.Producer = filmUpdated.Producer;
+            Save();
         }
 
         public IEnumerable<Film> Find(Func<Film, Boolean> predicate)
@@ -44,9 +49,17 @@ namespace WebApiTask3.DAL.Repositories
 
         public void Delete(int id)
         {
-            Film book = filmContext.Films.Find(id);
-            if (book != null)
-                filmContext.Films.Remove(book);
+            Film film = filmContext.Films.Find(id);
+            if (film != null)
+            {
+                filmContext.Films.Remove(film);
+                Save();
+            }
+        }
+
+        public void Save()
+        {
+            filmContext.SaveChanges();
         }
     }
 }

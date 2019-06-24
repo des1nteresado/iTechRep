@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WebApiTask3.BLL\WebApiTask3.BLL.csproj" />
     <ProjectReference Include="..\WebApiTask3.DAL\WebApiTask3.DAL.csproj" />
   </ItemGroup>
 

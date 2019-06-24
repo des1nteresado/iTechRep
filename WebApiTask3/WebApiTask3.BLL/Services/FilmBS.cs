@@ -1,42 +1,58 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using WebApiTask3.BLL.Entities;
-using WebApiTask3.BLL.Interfaces;
+using WebApiTask3.DAL.Interfaces;
+using Entities = WebApiTask3.DAL.Entities;
 
 namespace WebApiTask3.BLL.Services
 {
     public class FilmBS : IFilmBS
     {
+        private IRepository<Entities.Film> _filmRepository;
 
-        public IEnumerable<Film> GetAll()
+        public FilmBS(IRepository<Entities.Film> filmRepository)
         {
-            throw new NotImplementedException();
+            if (filmRepository != null)
+                _filmRepository = filmRepository;
         }
 
-        public Film Get(int id)
+        public IEnumerable<Entities.Film> GetAll()
         {
-            throw new NotImplementedException();
+            return _filmRepository.GetAll();
         }
 
-        public IEnumerable<Film> Find(Func<Film, bool> predicate)
+        public Entities.Film Get(int id)
         {
-            throw new NotImplementedException();
+            return _filmRepository.Get(id);
+
         }
 
-        public void Create(Film item)
+        public IEnumerable<Entities.Film> Find(Func<Entities.Film, bool> predicate)
         {
-            throw new NotImplementedException();
+            return _filmRepository.Find(predicate);
+
         }
 
-        public void Update(Film item)
+        public void Create(Entities.Film item)
         {
-            throw new NotImplementedException();
+            _filmRepository.Create(item);
+            Save();
+        }
+
+        public void Update(Entities.Film item, Entities.Film itemUpdated)
+        {
+            _filmRepository.Update(item, itemUpdated);
+            Save();
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            _filmRepository.Delete(id);
+            Save();
+        }
+
+        public void Save()
+        {
+            _filmRepository.Save();
         }
     }
 }

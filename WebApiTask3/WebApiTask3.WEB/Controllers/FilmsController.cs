@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using WebApiTask3.DAL.Context;
-using WebApiTask3.DAL.Entities;
+using Models = WebApiTask3.BLL.Models;
+using Entities = WebApiTask3.DAL.Entities;
+using WebApiTask3.BLL.Interfaces;
+using WebApiTask3.DAL.Interfaces;
 
 namespace WebApiTask3.WEB.Controllers
 {
@@ -12,113 +12,96 @@ namespace WebApiTask3.WEB.Controllers
     [ApiController]
     public class FilmsController : ControllerBase
     {
-        private readonly FilmContext _context;
-
-        public FilmsController(FilmContext context)
+        private IFilmBS _service;
+        private IAutoMapConverter<Entities.Film, Models.Film> mapEntityToModel;
+        private IAutoMapConverter<Models.Film, Entities.Film> mapModelToEntity;
+        public FilmsController(IFilmBS filmBS,
+            IAutoMapConverter<Entities.Film, Models.Film> convertEntityToModel,
+            IAutoMapConverter<Models.Film, Entities.Film> convertModelToEntity)
         {
-            _context = context;
+            _service = filmBS;
+            mapEntityToModel = convertEntityToModel;
+            mapModelToEntity = convertModelToEntity;
         }
 
         // GET: api/Films
         [HttpGet]
-        public IEnumerable<Film> GetFilms()
+        public IEnumerable<Models.Film> GetFilms()
         {
-            return _context.Films;
+            var filmList = _service.GetAll();
+            var mFilmList = mapEntityToModel.ConvertObjectCollection(filmList);
+
+            return mFilmList;
         }
 
         // GET: api/Films/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetFilm([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var film = await _context.Films.FindAsync(id);
+            var film = _service.Get(id);
 
             if (film == null)
             {
-                return NotFound();
+                return NotFound("Film couldn't be found.");
             }
 
-            return Ok(film);
+            var mFilm = mapEntityToModel.ConvertObject(film);
+
+            return Ok(mFilm);
         }
 
         // PUT: api/Films/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFilm([FromRoute] int id, [FromBody] Film film)
+        public async Task<IActionResult> PutFilm([FromRoute] int id, [FromBody] Models.Film filmUpdated)
         {
-            if (!ModelState.IsValid)
+            if (filmUpdated == null)
             {
-                return BadRequest(ModelState);
+                return BadRequest("Film is null.");
             }
 
-            if (id != film.Id)
+            var film = _service.Get(id);
+
+            if (film == null)
             {
-                return BadRequest();
+                return NotFound("Film couldn't be found.");
             }
 
-            _context.Entry(film).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!FilmExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            var mFilm = mapModelToEntity.ConvertObject(filmUpdated);
+            _service.Update(film, mFilm);
 
             return NoContent();
         }
 
         // POST: api/Films
         [HttpPost]
-        public async Task<IActionResult> PostFilm([FromBody] Film film)
+        public async Task<IActionResult> PostFilm([FromBody] Models.Film film)
         {
-            if (!ModelState.IsValid)
+            if (film == null)
             {
-                return BadRequest(ModelState);
+                return BadRequest("Film is null.");
             }
 
-            _context.Films.Add(film);
-            await _context.SaveChangesAsync();
+            var eFilm = mapModelToEntity.ConvertObject(film);
+            _service.Create(eFilm);
 
-            return CreatedAtAction("GetFilm", new { id = film.Id }, film);
+            return Ok("Successfully added!");
         }
 
         // DELETE: api/Films/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFilm([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
+            var filmToDelete = _service.Get(id);
+
+            if (filmToDelete == null)
             {
-                return BadRequest(ModelState);
+                return NotFound("Film couldn't be found.");
             }
 
-            var film = await _context.Films.FindAsync(id);
-            if (film == null)
-            {
-                return NotFound();
-            }
+            _service.Delete(id);
 
-            _context.Films.Remove(film);
-            await _context.SaveChangesAsync();
-
-            return Ok(film);
+            return NoContent();
         }
 
-        private bool FilmExists(int id)
-        {
-            return _context.Films.Any(e => e.Id == id);
-        }
     }
 }

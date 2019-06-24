@@ -1,4 +1,4 @@
-﻿namespace WebApiTask3.BLL.Entities
+﻿namespace WebApiTask3.BLL.Models
 {
     public class Film
     {

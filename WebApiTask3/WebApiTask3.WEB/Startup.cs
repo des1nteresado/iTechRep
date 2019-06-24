@@ -4,7 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebApiTask3.BLL.Interfaces;
+using WebApiTask3.BLL.Services;
 using WebApiTask3.DAL.Context;
+using WebApiTask3.DAL.Entities;
 using WebApiTask3.DAL.Interfaces;
 using WebApiTask3.DAL.Repositories;
 
@@ -37,6 +40,10 @@ namespace WebApiTask3.WEB
 
             //Instance injection
             //services.AddScoped(typeof(IRepository<>), typeof(FilmRepository));
+            services.AddScoped(typeof(IAutoMapConverter<,>), typeof(AutoMapConverter<,>));
+            services.AddScoped<IRepository<Film>, FilmRepository>();
+            services.AddScoped<IFilmBS, FilmBS>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
