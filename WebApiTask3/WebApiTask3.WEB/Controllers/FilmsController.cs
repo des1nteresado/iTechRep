@@ -3,8 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebApiTask3.Context;
-using WebApiTask3.Entities;
+using WebApiTask3.DAL.Context;
+using WebApiTask3.DAL.Entities;
 
 namespace WebApiTask3.WEB.Controllers
 {

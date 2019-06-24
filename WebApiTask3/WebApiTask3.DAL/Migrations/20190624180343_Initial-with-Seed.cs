@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WebApiTask3.WEB.Migrations
+namespace WebApiTask3.DAL.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialwithSeed : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,16 +22,6 @@ namespace WebApiTask3.WEB.Migrations
                 {
                     table.PrimaryKey("PK_Films", x => x.Id);
                 });
-
-            migrationBuilder.InsertData(
-                table: "Films",
-                columns: new[] { "Id", "Country", "Name", "Producer", "Year" },
-                values: new object[] { 1, "USA", "Back to the Future", "Roberto", 1986 });
-
-            migrationBuilder.InsertData(
-                table: "Films",
-                columns: new[] { "Id", "Country", "Name", "Producer", "Year" },
-                values: new object[] { 2, "USA", "Back to the Future 2", "Roberto", 1989 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

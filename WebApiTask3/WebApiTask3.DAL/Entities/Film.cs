@@ -1,7 +1,10 @@
-﻿namespace WebApiTask3.DAL.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WebApiTask3.DAL.Entities
 {
-    class Film
+    public class Film
     {
+        [Key]
         public int Id { get; set; }
 
         public string Name { get; set; }
