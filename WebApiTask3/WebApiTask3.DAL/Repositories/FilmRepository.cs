@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using WebApiTask3.DAL.Context;
 using WebApiTask3.DAL.Entities;
 using WebApiTask3.DAL.Interfaces;

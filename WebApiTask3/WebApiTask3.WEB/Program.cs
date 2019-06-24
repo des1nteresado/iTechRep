@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using WebApiTask3.DAL.Context;
@@ -19,7 +13,6 @@ namespace WebApiTask3.WEB
             //CreateWebHostBuilder(args).Run();
             var host = CreateWebHostBuilder(args);
 
-            //Initialize data if not done.
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;

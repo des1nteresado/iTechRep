@@ -26,6 +26,7 @@ namespace WebApiTask3.WEB.Controllers
 
         // GET: api/Films
         [HttpGet]
+        [FormatFilter]
         public IEnumerable<Models.Film> GetFilms()
         {
             var filmList = _service.GetAll();
@@ -36,7 +37,8 @@ namespace WebApiTask3.WEB.Controllers
 
         // GET: api/Films/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetFilm([FromRoute] int id)
+        [FormatFilter]
+        public IActionResult GetFilm([FromRoute] int id)
         {
             var film = _service.Get(id);
 
@@ -46,13 +48,13 @@ namespace WebApiTask3.WEB.Controllers
             }
 
             var mFilm = mapEntityToModel.ConvertObject(film);
-
             return Ok(mFilm);
         }
 
         // PUT: api/Films/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFilm([FromRoute] int id, [FromBody] Models.Film filmUpdated)
+        [FormatFilter]
+        public IActionResult PutFilm([FromRoute] int id, [FromBody] Models.Film filmUpdated)
         {
             if (filmUpdated == null)
             {
@@ -74,7 +76,8 @@ namespace WebApiTask3.WEB.Controllers
 
         // POST: api/Films
         [HttpPost]
-        public async Task<IActionResult> PostFilm([FromBody] Models.Film film)
+        [FormatFilter]
+        public IActionResult PostFilm([FromBody] Models.Film film)
         {
             if (film == null)
             {
@@ -89,7 +92,8 @@ namespace WebApiTask3.WEB.Controllers
 
         // DELETE: api/Films/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteFilm([FromRoute] int id)
+        [FormatFilter]
+        public IActionResult DeleteFilm([FromRoute] int id)
         {
             var filmToDelete = _service.Get(id);
 

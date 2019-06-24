@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Entities = WebApiTask3.DAL.Entities;
 
-namespace WebApiTask3.DAL.Interfaces
+namespace WebApiTask3.BLL.Interfaces
 {
     public interface IFilmBS
     {

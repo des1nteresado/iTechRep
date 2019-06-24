@@ -23,7 +23,7 @@ namespace WebApiTask3.DAL.Context
                 },
                 new Film
                 {
-                    Name = "Back to the Future 3", Country = "USA", Year = 1989, Producer = "Roberto"
+                    Name = "Back to the Future 3", Country = "USA", Year = 1999, Producer = "Roberto"
                 },
             };
 
