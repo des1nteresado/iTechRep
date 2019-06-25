@@ -19,7 +19,7 @@ namespace ParseTask2.Controllers
             if (starShips == null)
                 return NoContent();
 
-            return Ok(new { starShips.Results.Count, starShips.Results });
+            return Ok(new { starShips.Count, starShips });
         }
 
         [HttpGet("star")]
@@ -31,7 +31,7 @@ namespace ParseTask2.Controllers
             if (starShips == null)
                 return NoContent();
 
-            return Ok(new { starShips.Results.Count, starShips.Results });
+            return Ok(new { starShips.Count, starShips });
         }
     }
 }

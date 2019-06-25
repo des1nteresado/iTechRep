@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.705
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParseTask2", "ParseTask2\ParseTask2.csproj", "{1AF69083-61FF-4A65-BA48-81E8C6F715C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParseTask2.BL", "ParseTask2.BL\ParseTask2.BL.csproj", "{A22552D6-8B5A-485E-8781-9D07D75DB99F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParseTask2.BL", "ParseTask2.BL\ParseTask2.BL.csproj", "{A22552D6-8B5A-485E-8781-9D07D75DB99F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
