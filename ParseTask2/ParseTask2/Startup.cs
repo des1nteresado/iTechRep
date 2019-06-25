@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Net.Http.Headers;
+using ParseTask2.BL.Helpers;
 
 namespace ParseTask2
 {
@@ -19,6 +20,7 @@ namespace ParseTask2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton(Configuration.GetSection("ConfigHelper").Get<ConfigHelper>());
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddMvc()
                 .AddXmlDataContractSerializerFormatters()

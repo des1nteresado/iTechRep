@@ -2,9 +2,10 @@
 
 namespace ParseTask2.BL.Helpers
 {
-    public static class ConfigHelper
+    public class ConfigHelper
     {
-        public static HttpClient GetClient()
+        public string Url { get; set; }
+        public HttpClient GetClient()
         {
             var client = new HttpClient();
             return client;

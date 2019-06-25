@@ -8,11 +8,18 @@ namespace ParseTask2.BL
 {
     public class StarWarsApi
     {
+        private readonly ConfigHelper _configHelper;
+
+        public StarWarsApi(ConfigHelper configHelper)
+        {
+            _configHelper = configHelper;
+        }
+
         public async Task<T> GetAsync<T>(string url)
         {
             T result;
 
-            using (var client = ConfigHelper.GetClient())
+            using (var client = _configHelper.GetClient())
             {
                 var response = await client.GetAsync(url);
                 response.EnsureSuccessStatusCode();
@@ -28,7 +35,7 @@ namespace ParseTask2.BL
 
             do
             {
-                var url = !starList.IsNext ? "https://swapi.co/api/starships/" : starList.Next;
+                var url = !starList.IsNext ? _configHelper.Url : starList.Next;
                 var pageStarShips = await GetAsync<StarWarsEntityListLim<StarshipLim>>(url);
                 starList.Next = pageStarShips.Next;
                 starList.Results.AddRange(pageStarShips.Results);

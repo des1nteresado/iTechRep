@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ParseTask2.BL;
+using ParseTask2.BL.Helpers;
 
 namespace ParseTask2.Controllers
 {
@@ -8,7 +9,12 @@ namespace ParseTask2.Controllers
     [ApiController]
     public class ParseController : ControllerBase
     {
-        private readonly StarWarsApi _api = new StarWarsApi();
+        private readonly StarWarsApi _api;
+
+        public ParseController(ConfigHelper configHelper)
+        {
+            _api = new StarWarsApi(configHelper);
+        }
 
         [HttpGet("starAsync")]
         [FormatFilter]
