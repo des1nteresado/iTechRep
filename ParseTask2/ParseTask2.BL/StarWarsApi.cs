@@ -21,28 +21,18 @@ namespace ParseTask2.BL
             return result;
         }
 
-        public int GetPages(StarWarsEntityListLim<StarshipLim> starList)
-        {
-            var page = 1;
-            do
-            {
-                var url = $"starships?page={page}";
-                starList = GetAsync<StarWarsEntityListLim<StarshipLim>>(url).Result;
-                page++;
-            } while (starList.IsNext);
-
-            return page;
-        }
-
         public async Task<StarWarsEntityListLim<StarshipLim>> GetListStarShips()
         {
             var starList = new StarWarsEntityListLim<StarshipLim>();
 
-            for (var i = 1; i < GetPages(starList); i++)
+            var page = 1;
+            do
             {
-                var pageStarShips = await GetStarshipByPageAsync(i.ToString());
+                var pageStarShips = await GetStarshipByPageAsync(page.ToString());
+                starList.Next = pageStarShips.Next;
                 starList.Results.AddRange(pageStarShips.Results);
-            }
+                page++;
+            } while (starList.IsNext);
 
             return GetHelper.GetEnumeration(starList);
         }
