@@ -1,37 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
+using ParseTask2.BL.Helpers;
 using ParseTask2.BL.Models;
 
 namespace ParseTask2.BL
 {
     public class StarWarsApi
     {
-        protected readonly string BaseAddress = @"http://swapi.co/api/";
-        protected readonly string AcceptHeader = "application/json";
-
-        HttpClient GetClient()
-        {
-            var client = new HttpClient();
-
-            client.BaseAddress = new Uri(BaseAddress);
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(AcceptHeader));
-
-            return client;
-        }
-
         public async Task<T> GetAsync<T>(string url)
         {
+            T result;
 
-            T result = default(T);
-
-            using (HttpClient client = GetClient())
+            using (var client = ConfigHelper.GetClient())
             {
-                HttpResponseMessage response = await client.GetAsync(url);
-                //throw if error
+                var response = await client.GetAsync(url);
                 response.EnsureSuccessStatusCode();
                 result = await response.Content.ReadAsAsync<T>();
             }
@@ -39,54 +21,45 @@ namespace ParseTask2.BL
             return result;
         }
 
+        public int GetPages(StarWarsEntityListLim<StarshipLim> starList)
+        {
+            var page = 1;
+            do
+            {
+                var url = $"starships?page={page}";
+                starList = GetAsync<StarWarsEntityListLim<StarshipLim>>(url).Result;
+                page++;
+            } while (starList.IsNext);
+
+            return page;
+        }
 
         public async Task<StarWarsEntityListLim<StarshipLim>> GetListStarShips()
         {
-            var pages = new List<string>();
+            var starList = new StarWarsEntityListLim<StarshipLim>();
 
-            for (int i = 1; i < 5; i++)
+            for (var i = 1; i < GetPages(starList); i++)
             {
-                pages.Add(i.ToString());
-            }
-
-            var starList = new StarWarsEntityListLim<StarshipLim> { Results = new List<StarshipLim>() };
-
-            foreach (var page in pages)
-            {
-                var pageStarShips = await GetStarshipByPageAsync(page);
+                var pageStarShips = await GetStarshipByPageAsync(i.ToString());
                 starList.Results.AddRange(pageStarShips.Results);
             }
 
-            foreach (var starShip in starList.Results)
-            {
-                starShip.Index = starList.Results.IndexOf(starShip) + 1;
-            }
-
-            return starList;
+            return GetHelper.GetEnumeration(starList);
         }
 
         public async Task<StarWarsEntityListLim<StarshipLim>> GetStarshipByPageAsync(string page = "1")
         {
             var url = $"starships?page={page}";
             var starList = await GetAsync<StarWarsEntityListLim<StarshipLim>>(url);
-            foreach (var starShip in starList.Results)
-            {
-                starShip.Index = starList.Results.IndexOf(starShip) + 1;
-            }
-            return starList;
+            return GetHelper.GetEnumeration(starList);
         }
 
         public StarWarsEntityListLim<StarshipLim> GetStarshipByPage(string page = "1")
         {
             var url = $"starships?page={page}";
             var starList = GetAsync<StarWarsEntityListLim<StarshipLim>>(url).Result;
-            foreach (var starShip in starList.Results)
-            {
-                starShip.Index = starList.Results.IndexOf(starShip) + 1;
-            }
-            return starList;
+
+            return GetHelper.GetEnumeration(starList);
         }
-
-
     }
 }
