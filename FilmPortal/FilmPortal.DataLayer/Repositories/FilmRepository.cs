@@ -12,18 +12,22 @@ namespace FilmPortal.DataLayer.Repositories
         public FilmRepository(string connectionString, IRepositoryContextFactory contextFactory) : base(connectionString, contextFactory)
         { }
 
-        public async Task<Page<Film>> GetFilms(int index, int pageSize)
+        public async Task<Page<Film>> GetFilms(int index, int pageSize, string genre = null)
         {
             var result = new Page<Film>() { CurrentPage = index, PageSize = pageSize };
 
-            using (var context = ContextFactory.CreateDbContext(ConnectionString)) 
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
             {
                 var query = context.Films.AsQueryable();
+
+                if (!string.IsNullOrWhiteSpace(genre))
+                {
+                    query = query.Where(p => p.Genres.Any(t => t.Name == genre));
+                }
 
                 result.TotalPages = await query.CountAsync();
                 result.Records = await query.Include(p => p.Marks).Include(p => p.Comments).OrderByDescending(p => p.Name).Skip(index * pageSize).Take(pageSize).ToListAsync();
             }
-
             return result;
         }
 
@@ -36,29 +40,79 @@ namespace FilmPortal.DataLayer.Repositories
             }
         }
 
-        public Task AddComment(Comment comment)
+        public async Task AddComment(Comment comment)
         {
-            throw new NotImplementedException();
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+                context.Comments.Add(comment);
+                await context.SaveChangesAsync();
+            }
         }
 
-        public Task AddRating(Rating rating)
+        public async Task AddGenre(Genre comment)
         {
-            throw new NotImplementedException();
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+                context.Genres.Add(comment);
+                await context.SaveChangesAsync();
+            }
         }
 
-        public Task AddFilm(Film film)
+        public async Task AddRating(Rating rating)
         {
-            throw new NotImplementedException();
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+                context.Marks.Add(rating);
+                await context.SaveChangesAsync();
+            }
         }
 
-        public Task DeleteFilm(int filmId)
+        public async Task AddFilm(Film film)
         {
-            throw new NotImplementedException();
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+                context.Films.Add(film);
+                await context.SaveChangesAsync();
+            }
         }
 
-        public Task DeleteComment(int commentId)
+        public async Task DeleteFilm(int filmId)
         {
-            throw new NotImplementedException();
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+                var film = context.Films.Find(filmId);
+                if (film != null)
+                {
+                    context.Films.Remove(film);
+                }
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public async Task DeleteComment(int commentId)
+        {
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+                var comment = context.Comments.Find(commentId);
+                if (comment != null)
+                {
+                    context.Comments.Remove(comment);
+                }
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public async Task DeleteGenre(int genreId)
+        {
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+                var genre = context.Genres.Find(genreId);
+                if (genre != null)
+                {
+                    context.Genres.Remove(genre);
+                }
+                await context.SaveChangesAsync();
+            }
         }
     }
 }

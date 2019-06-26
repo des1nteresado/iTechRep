@@ -18,5 +18,6 @@ namespace FilmPortal.DataLayer.Entities
 
         public List<Comment> Comments { get; set; }
 
+        public List<Genre> Genres { get; set; }
     }
 }
