@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FilmPortal.DataLayer.Repositories
 {
-    class FilmRepository : BaseRepository, IFilmRepository
+    public class FilmRepository : BaseRepository, IFilmRepository
     {
         public FilmRepository(string connectionString, IRepositoryContextFactory contextFactory) : base(connectionString, contextFactory)
         { }
@@ -110,6 +110,19 @@ namespace FilmPortal.DataLayer.Repositories
                 if (genre != null)
                 {
                     context.Genres.Remove(genre);
+                }
+                await context.SaveChangesAsync();
+            }
+        }
+
+        public async Task DeleteRating(int ratingId)
+        {
+            using (var context = ContextFactory.CreateDbContext(ConnectionString))
+            {
+                var mark = context.Marks.Find(ratingId);
+                if (mark != null)
+                {
+                    context.Marks.Remove(mark);
                 }
                 await context.SaveChangesAsync();
             }

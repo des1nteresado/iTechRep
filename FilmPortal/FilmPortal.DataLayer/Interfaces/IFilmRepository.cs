@@ -14,5 +14,6 @@ namespace FilmPortal.DataLayer.Interfaces
         Task DeleteFilm(int filmId);
         Task DeleteComment(int commentId);
         Task DeleteGenre(int genreId);
+        Task DeleteRating(int ratingId);
     }
 }
