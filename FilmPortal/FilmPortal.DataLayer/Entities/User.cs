@@ -1,4 +1,6 @@
-﻿namespace FilmPortal.DataLayer.Entities
+﻿using System.Collections.Generic;
+
+namespace FilmPortal.DataLayer.Entities
 {
     public class User
     {
@@ -9,5 +11,9 @@
         public string Password { get; set; }
 
         public bool isAdmin { get; set; }
+
+        public virtual ICollection<Rating> Marks { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

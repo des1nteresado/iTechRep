@@ -14,10 +14,10 @@ namespace FilmPortal.DataLayer.Entities
 
         public string Producer { get; set; }
 
-        public List<Rating> Marks { get; set; }
+        public virtual ICollection<Rating> Marks { get; set; }
 
-        public List<Comment> Comments { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
 
-        public List<Genre> Genres { get; set; }
+        public virtual ICollection<Genre> Genres { get; set; }
     }
 }

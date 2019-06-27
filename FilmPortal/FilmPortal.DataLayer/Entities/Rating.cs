@@ -11,6 +11,5 @@ namespace FilmPortal.DataLayer.Entities
         public int FilmId { get; set; }
 
         public int UserId { get; set; }
-
     }
 }
