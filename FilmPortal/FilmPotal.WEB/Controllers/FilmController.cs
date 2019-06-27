@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using FilmPortal.DataLayer.Entities;
 using FilmPortal.DataLayer.Interfaces;
-using Microsoft.AspNetCore.Http;
+using FilmPortal.DataLayer.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace FilmPotal.WEB.Controllers
 {
@@ -14,18 +10,18 @@ namespace FilmPotal.WEB.Controllers
     [ApiController]
     public class FilmController : ControllerBase
     {
-        protected readonly IFilmRepository _filmRepository;
+        protected readonly IRepository<Film> FilmRepository;
 
-        public FilmController(IFilmRepository filmRepository)
+        public FilmController(IRepository<Film> filmRepository)
         {
-            _filmRepository = filmRepository;
+            FilmRepository = filmRepository;
         }
 
         [Route("page")]
         [HttpGet]
-        public async Task<Page<Film>> GetFilms(int pageIndex, string genre)
+        public IEnumerable<Film> GetFilms()
         {
-            return await _filmRepository.GetFilms(pageIndex, 10, genre);
+            return FilmRepository.List();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FilmPortal.DataLayer.Context;
+using FilmPortal.DataLayer.Entities;
 using FilmPortal.DataLayer.Interfaces;
 using FilmPortal.DataLayer.Repositories;
 using Microsoft.AspNetCore.Builder;
@@ -21,10 +22,7 @@ namespace FilmPotal.WEB
         {
             services.AddMvc();
 
-            services.AddScoped<IRepositoryContextFactory, RepositoryContextFactory>();
-            services.AddScoped<IFilmRepository>(provider =>
-                new FilmRepository(Configuration.GetConnectionString("FilmPortalDB"),
-                provider.GetService<IRepositoryContextFactory>()));
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddDbContext<RepositoryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("FilmPortalDB")));
         }
 

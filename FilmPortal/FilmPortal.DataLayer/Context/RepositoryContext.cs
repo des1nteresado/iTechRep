@@ -8,7 +8,7 @@ namespace FilmPortal.DataLayer.Context
     {
         public RepositoryContext(DbContextOptions<RepositoryContext> options) : base(options)
         {
-
+            Database.EnsureCreated();
         }
 
         public DbSet<Film> Films { get; set; }

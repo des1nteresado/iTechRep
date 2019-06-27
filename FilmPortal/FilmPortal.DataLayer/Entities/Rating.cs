@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FilmPortal.DataLayer.Entities
+﻿namespace FilmPortal.DataLayer.Entities
 {
     public class Rating
     {
