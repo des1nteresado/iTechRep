@@ -4,8 +4,7 @@ using System.Text;
 
 namespace FilmPortal.DataLayer.Interfaces
 {
-    interface IRepository<T> : IDisposable
-        where T : class
+    interface IRepository<T>
     {
         IEnumerable<T> GetList(); 
         T Get(int id); 
