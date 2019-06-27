@@ -15,7 +15,5 @@ namespace FilmPortal.DataLayer.Context
         public DbSet<Rating> Marks { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Genre> Genres { get; set; }
-
-
     }
 }

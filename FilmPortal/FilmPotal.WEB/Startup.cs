@@ -3,6 +3,7 @@ using FilmPortal.DataLayer.Interfaces;
 using FilmPortal.DataLayer.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -24,6 +25,7 @@ namespace FilmPotal.WEB
             services.AddScoped<IFilmRepository>(provider =>
                 new FilmRepository(Configuration.GetConnectionString("FilmPortalDB"),
                 provider.GetService<IRepositoryContextFactory>()));
+            services.AddDbContext<RepositoryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("FilmPortalDB")));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
