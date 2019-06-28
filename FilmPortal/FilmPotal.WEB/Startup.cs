@@ -1,9 +1,11 @@
-﻿using FilmPortal.DataLayer.Context;
-using FilmPortal.DataLayer.Entities;
+﻿using FilmPortal.BusinessLayer.Interfaces;
+using FilmPortal.BusinessLayer.Services;
+using FilmPortal.DataLayer.Context;
 using FilmPortal.DataLayer.Interfaces;
 using FilmPortal.DataLayer.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,9 +23,12 @@ namespace FilmPotal.WEB
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-
+            services.Configure<FilmService>(Configuration.GetSection("pageSize"));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            services.AddDbContext<RepositoryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("FilmPortalDB")));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton(Configuration);
+            services.AddScoped<IFilmService, FilmService>();
+            services.AddDbContext<RepositoryContext>(options => options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("FilmPortalDB")));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
