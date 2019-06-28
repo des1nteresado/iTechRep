@@ -1,4 +1,6 @@
-﻿using FilmPortal.BusinessLayer.Interfaces;
+﻿using System;
+using AutoMapper;
+using FilmPortal.BusinessLayer.Interfaces;
 using FilmPortal.BusinessLayer.Services;
 using FilmPortal.DataLayer.Context;
 using FilmPortal.DataLayer.Interfaces;
@@ -23,6 +25,7 @@ namespace FilmPotal.WEB
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddAutoMapper();
             services.Configure<FilmService>(Configuration.GetSection("pageSize"));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

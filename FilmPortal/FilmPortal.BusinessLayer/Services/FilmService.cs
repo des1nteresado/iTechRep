@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using FilmPortal.BusinessLayer.Helpers;
 using FilmPortal.BusinessLayer.Interfaces;

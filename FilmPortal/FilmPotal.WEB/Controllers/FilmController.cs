@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using FilmPortal.DataLayer.Entities;
-using FilmPortal.DataLayer.Interfaces;
-using FilmPortal.DataLayer.Repositories;
+﻿using FilmPortal.BusinessLayer.Interfaces;
+using FilmPortal.BusinessLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FilmPotal.WEB.Controllers
@@ -10,18 +8,18 @@ namespace FilmPotal.WEB.Controllers
     [ApiController]
     public class FilmController : ControllerBase
     {
-        protected readonly IRepository<Film> FilmRepository;
+        protected readonly IFilmService _filmService;
 
-        public FilmController(IRepository<Film> filmRepository)
+        public FilmController(IFilmService filmService)
         {
-            FilmRepository = filmRepository;
+            _filmService = filmService;
         }
 
         [Route("page")]
         [HttpGet]
-        public IEnumerable<Film> GetFilms()
+        public Page<FilmLiteModel> GetFilms(int pageIndex, string genre)
         {
-            return FilmRepository.List();
+            return _filmService.GetFilms(pageIndex, genre);
         }
     }
 }
