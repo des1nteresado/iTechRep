@@ -15,7 +15,7 @@ namespace FilmPortal.BusinessLayer.Models
 
         public string Producer { get; set; }
 
-        public float AverageMark { get; set; }
+        public decimal AverageMark { get; set; }
 
         public int MarkCount { get; set; }
 
