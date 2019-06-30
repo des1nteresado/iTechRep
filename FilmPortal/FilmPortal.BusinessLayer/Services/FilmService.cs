@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using AutoMapper;
 using FilmPortal.BusinessLayer.Helpers;
 using FilmPortal.BusinessLayer.Interfaces;
@@ -61,78 +59,5 @@ namespace FilmPortal.BusinessLayer.Services
         {
             _repository.Delete(filmId);
         }
-
-
-        //public async Task<List<string>> GetGenresAsync();
-        //{
-
-        //}
-        //public async Task AddCommentAsync(Comment comment)
-        //{
-        //    using (var context = ContextFactory.CreateDbContext(ConnectionString))
-        //    {
-        //        context.Comments.Add(comment);
-        //        await context.SaveChangesAsync();
-        //    }
-        //}
-
-        //public async Task AddGenreAsync(Genre comment)
-        //{
-        //    using (var context = ContextFactory.CreateDbContext(ConnectionString))
-        //    {
-        //        context.Genres.Add(comment);
-        //        await context.SaveChangesAsync();
-        //    }
-        //}
-
-        //public async Task AddRatingAsync(Rating rating)
-        //{
-        //    using (var context = ContextFactory.CreateDbContext(ConnectionString))
-        //    {
-        //        context.Marks.Add(rating);
-        //        await context.SaveChangesAsync();
-        //    }
-        //}
-
-
-
-        //public async Task DeleteCommentAsync(int commentId)
-        //{
-        //    using (var context = ContextFactory.CreateDbContext(ConnectionString))
-        //    {
-        //        var comment = context.Comments.Find(commentId);
-        //        if (comment != null)
-        //        {
-        //            context.Comments.Remove(comment);
-        //        }
-        //        await context.SaveChangesAsync();
-        //    }
-        //}
-
-        //public async Task DeleteGenreAsync(int genreId)
-        //{
-        //    using (var context = ContextFactory.CreateDbContext(ConnectionString))
-        //    {
-        //        var genre = context.Genres.Find(genreId);
-        //        if (genre != null)
-        //        {
-        //            context.Genres.Remove(genre);
-        //        }
-        //        await context.SaveChangesAsync();
-        //    }
-        //}
-
-        //public async Task DeleteRatingAsync(int ratingId)
-        //{
-        //    using (var context = ContextFactory.CreateDbContext(ConnectionString))
-        //    {
-        //        var mark = context.Marks.Find(ratingId);
-        //        if (mark != null)
-        //        {
-        //            context.Marks.Remove(mark);
-        //        }
-        //        await context.SaveChangesAsync();
-        //    }
-        //}
     }
 }

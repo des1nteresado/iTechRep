@@ -3,6 +3,7 @@ using AutoMapper;
 using FilmPortal.BusinessLayer.Interfaces;
 using FilmPortal.BusinessLayer.Services;
 using FilmPortal.DataLayer.Context;
+using FilmPortal.DataLayer.Entities;
 using FilmPortal.DataLayer.Interfaces;
 using FilmPortal.DataLayer.Repositories;
 using Microsoft.AspNetCore.Builder;
@@ -31,6 +32,10 @@ namespace FilmPotal.WEB
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton(Configuration);
             services.AddScoped<IFilmService, FilmService>();
+            services.AddScoped<ICommentService, CommentService>();
+            services.AddScoped<IGenreService, GenreService>();
+            services.AddScoped<IRatingService, RatingService>();
+
             services.AddDbContext<RepositoryContext>(options => options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("FilmPortalDB")));
         }
 
