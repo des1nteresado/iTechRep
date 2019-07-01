@@ -34,15 +34,12 @@ namespace FilmPotal.WEB.Controllers
             return _filmService.GetFilm(filmId);
         }
 
-
         [Route("comment")]
         [HttpPost]
         public void AddComment([FromBody] AddCommentRequest request)
         {
             _commentService.AddComment(request);
         }
-
-
 
         [Authorize]
         [Route("getlogin")]

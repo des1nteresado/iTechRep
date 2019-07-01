@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -28,17 +28,16 @@ namespace FilmPortal.BusinessLayer.Services
         public async Task<Page<FilmLiteModel>> GetFilms(int pageIndex, string genre = null)
         {
             var pageSize = _config.GetValue<int>("pageSize");
-            var page = new Page<Film>() { CurrentPage = pageIndex, PageSize = pageSize };
-            var query = _repository.List().AsQueryable();
+            var page = new Page<Film>() { CurrentPage = pageIndex + 1, PageSize = pageSize };
+            var query = _repository.GetAllQueryable();
 
             if (!string.IsNullOrWhiteSpace(genre))
             {
                 query = query.Where(p => p.Genres.Any(t => t.Name == genre));
             }
 
-            page.TotalPages = query.Count();
-            page.Records = query.OrderBy(p => p.Name).Skip(pageIndex * pageSize).Take(pageSize).ToList();
-
+            page.Records = await query.OrderBy(p => p.Name).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
+            page.TotalPages = (int)Math.Ceiling(page.Records.Count / (double)pageSize);
             var result = _mapper.ToMappedPage<Film, FilmLiteModel>(page);
 
             return result;
@@ -47,10 +46,6 @@ namespace FilmPortal.BusinessLayer.Services
         public FilmLiteModel GetFilm(int filmId)
         {
             var film = _repository.GetById(filmId);
-            foreach (var comm in film.Comments)
-            {
-                Debug.Write(comm.Body);
-            }
             return _mapper.Map<Film, FilmLiteModel>(film);
         }
 

@@ -7,6 +7,5 @@
         public int FilmId { get; set; }
 
         public string Comment { get; set; }
-
     }
 }
