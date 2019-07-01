@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using FilmPortal.BusinessLayer.Helpers;
 using FilmPortal.BusinessLayer.Models;
 using FilmPortal.DataLayer.Entities;
 
@@ -6,7 +7,7 @@ namespace FilmPortal.BusinessLayer.Interfaces
 {
     public interface IFilmService
     {
-        Task<Page<FilmLiteModel>> GetFilms(int pageIndex, string genre = null);
+        Task<Page<FilmLiteModel>> GetFilms(int pageIndex, SortState sortOrder);
 
         FilmLiteModel GetFilm(int filmId);
 

@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using FilmPortal.BusinessLayer.Helpers;
 using FilmPortal.BusinessLayer.Interfaces;
 using FilmPortal.BusinessLayer.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -22,9 +23,9 @@ namespace FilmPotal.WEB.Controllers
 
         [Route("page")]
         [HttpGet]
-        public Task<Page<FilmLiteModel>> GetFilms(int pageIndex, string genre)
+        public Task<Page<FilmLiteModel>> GetFilms(int pageIndex, SortState sortOrder)
         {
-            return _filmService.GetFilms(pageIndex, genre);
+            return _filmService.GetFilms(pageIndex, sortOrder);
         }
 
         [Route("film")]

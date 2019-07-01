@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -25,19 +26,60 @@ namespace FilmPortal.BusinessLayer.Services
             _mapper = mapper;
         }
 
-        public async Task<Page<FilmLiteModel>> GetFilms(int pageIndex, string genre = null)
+        public async Task<Page<FilmLiteModel>> GetFilms(int pageIndex, SortState stateOrder = SortState.NameAsc)
         {
             var pageSize = _config.GetValue<int>("pageSize");
             var page = new Page<Film>() { CurrentPage = pageIndex + 1, PageSize = pageSize };
             var query = _repository.GetAllQueryable();
 
-            if (!string.IsNullOrWhiteSpace(genre))
+
+            switch (stateOrder)
             {
-                query = query.Where(p => p.Genres.Any(t => t.Name == genre));
+                case SortState.NameAsc:
+                    {
+                        query = query.OrderBy(p => p.Name);
+                        break;
+                    }
+                case SortState.NameDesc:
+                    {
+                        query = query.OrderByDescending(p => p.Name);
+                        break;
+                    }
+                case SortState.YearAsc:
+                    {
+                        query = query.OrderBy(p => p.Year);
+                        break;
+                    }
+                case SortState.YearDesc:
+                    {
+                        query = query.OrderByDescending(p => p.Year);
+                        break;
+                    }
+                case SortState.MarkAsc:
+                    {
+                        query = query.Where(p => p.Marks != null && p.Marks.Any()).OrderBy(item => item.Marks.Average(p => p.Mark));
+                        foreach (var t in query)
+                        {
+                            Debug.Write(t.Marks.Select(p => p.Mark));
+                        }
+                        break;
+                    }
+                case SortState.MarkDesc:
+                    {
+                        query = query.Where(p => p.Marks != null && p.Marks.Any()).OrderByDescending(item => item.Marks.Average(p => p.Mark));
+                        break;
+                    }
+                default:
+                    {
+                        query = query.OrderBy(p => p.Name);
+                        break;
+                    }
+
             }
 
-            page.Records = await query.OrderBy(p => p.Name).Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
+            page.Records = await query.Skip(pageIndex * pageSize).Take(pageSize).ToListAsync();
             page.TotalPages = (int)Math.Ceiling(page.Records.Count / (double)pageSize);
+
             var result = _mapper.ToMappedPage<Film, FilmLiteModel>(page);
 
             return result;
