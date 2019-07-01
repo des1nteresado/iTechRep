@@ -8,7 +8,7 @@ namespace FilmPortal.BusinessLayer.Interfaces
     {
         Page<FilmLiteModel> GetFilms(int pageIndex, string genre = null);
 
-        Film GetFilm(int filmId);
+        FilmLiteModel GetFilm(int filmId);
 
         void AddFilm(Film film);
 

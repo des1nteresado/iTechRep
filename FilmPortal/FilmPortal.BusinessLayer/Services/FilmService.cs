@@ -40,9 +40,11 @@ namespace FilmPortal.BusinessLayer.Services
             return result;
         }
 
-        public Film GetFilm(int filmId)
+        public FilmLiteModel GetFilm(int filmId)
         {
-            return _repository.GetById(filmId);
+            var film = _repository.GetById(filmId);
+
+            return _mapper.Map<Film, FilmLiteModel>(film);
         }
 
         public void AddFilm(Film film)
