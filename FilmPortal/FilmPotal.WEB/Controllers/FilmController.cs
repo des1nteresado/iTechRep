@@ -1,5 +1,6 @@
 ﻿using FilmPortal.BusinessLayer.Interfaces;
 using FilmPortal.BusinessLayer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FilmPotal.WEB.Controllers
@@ -29,42 +30,11 @@ namespace FilmPotal.WEB.Controllers
             return _filmService.GetFilm(filmId);
         }
 
-        //[Route("comment")]
-        //[HttpPost]
-        //public async Task AddComment([FromBody] AddCommentRequest request)
-        //{
-        //    await _blogService.AddComment(request);
-        //}
-
-        //[Authorize]
-        //[Route("comment")]
-        //[HttpDelete]
-        //public async Task DeleteComment(int commentId)
-        //{
-        //    await _blogService.DeleteComment(commentId);
-        //}
-
-        //[Authorize]
-        //[Route("post")]
-        //[HttpPost]
-        //public async Task AddPost([FromBody] AddPostRequest request)
-        //{
-        //    await _blogService.AddPost(request);
-        //}
-
-        //[Authorize]
-        //[Route("post")]
-        //[HttpDelete]
-        //public async Task DeletePost(int postId)
-        //{
-        //    await _blogService.DeletePost(postId);
-        //}
-
-        //[Route("genres")]
-        //[HttpGet]
-        //public async Task<List<string>> GetTags()
-        //{
-        //    return await _blogService.GetTags();
-        //}
+        [Authorize]
+        [Route("getlogin")]
+        public IActionResult GetLogin()
+        {
+            return Ok($"Ваш логин: {User.Identity.Name}");
+        }
     }
 }

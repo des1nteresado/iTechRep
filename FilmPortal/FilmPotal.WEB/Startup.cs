@@ -1,17 +1,18 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
+using FilmPortal.BusinessLayer.Helpers;
 using FilmPortal.BusinessLayer.Interfaces;
 using FilmPortal.BusinessLayer.Services;
 using FilmPortal.DataLayer.Context;
-using FilmPortal.DataLayer.Entities;
 using FilmPortal.DataLayer.Interfaces;
 using FilmPortal.DataLayer.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 
 namespace FilmPotal.WEB
 {
@@ -26,6 +27,21 @@ namespace FilmPotal.WEB
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidIssuer = AuthOptions.ISSUER,
+                        ValidateAudience = true,
+                        ValidAudience = AuthOptions.AUDIENCE,
+                        ValidateLifetime = true,
+                        IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+                        ValidateIssuerSigningKey = true,
+                    };
+                });
             services.AddAutoMapper();
             services.Configure<FilmService>(Configuration.GetSection("pageSize"));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
@@ -47,6 +63,7 @@ namespace FilmPotal.WEB
             }
 
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
