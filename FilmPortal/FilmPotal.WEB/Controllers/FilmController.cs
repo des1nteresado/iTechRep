@@ -1,4 +1,5 @@
-﻿using FilmPortal.BusinessLayer.Interfaces;
+﻿using System.Threading.Tasks;
+using FilmPortal.BusinessLayer.Interfaces;
 using FilmPortal.BusinessLayer.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,15 +11,18 @@ namespace FilmPotal.WEB.Controllers
     public class FilmController : ControllerBase
     {
         private readonly IFilmService _filmService;
+        private readonly ICommentService _commentService;
 
-        public FilmController(IFilmService filmService)
+
+        public FilmController(IFilmService filmService, ICommentService commentService)
         {
             _filmService = filmService;
+            _commentService = commentService;
         }
 
         [Route("page")]
         [HttpGet]
-        public Page<FilmLiteModel> GetFilms(int pageIndex, string genre)
+        public Task<Page<FilmLiteModel>> GetFilms(int pageIndex, string genre)
         {
             return _filmService.GetFilms(pageIndex, genre);
         }
@@ -29,6 +33,16 @@ namespace FilmPotal.WEB.Controllers
         {
             return _filmService.GetFilm(filmId);
         }
+
+
+        [Route("comment")]
+        [HttpPost]
+        public void AddComment([FromBody] AddCommentRequest request)
+        {
+            _commentService.AddComment(request);
+        }
+
+
 
         [Authorize]
         [Route("getlogin")]

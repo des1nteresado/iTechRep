@@ -6,7 +6,7 @@ namespace FilmPortal.BusinessLayer.Interfaces
 {
     public interface IFilmService
     {
-        Page<FilmLiteModel> GetFilms(int pageIndex, string genre = null);
+        Task<Page<FilmLiteModel>> GetFilms(int pageIndex, string genre = null);
 
         FilmLiteModel GetFilm(int filmId);
 

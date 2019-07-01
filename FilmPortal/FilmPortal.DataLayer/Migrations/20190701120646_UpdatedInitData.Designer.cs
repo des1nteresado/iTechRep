@@ -4,14 +4,16 @@ using FilmPortal.DataLayer.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FilmPortal.DataLayer.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20190701120646_UpdatedInitData")]
+    partial class UpdatedInitData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -132,22 +134,6 @@ namespace FilmPortal.DataLayer.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = 1,
-                            Login = "admin",
-                            Password = "jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=",
-                            isAdmin = true
-                        },
-                        new
-                        {
-                            UserId = 2,
-                            Login = "user",
-                            Password = "jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIq1g=",
-                            isAdmin = false
-                        });
                 });
 
             modelBuilder.Entity("FilmPortal.DataLayer.Entities.Comment", b =>

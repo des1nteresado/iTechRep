@@ -19,8 +19,7 @@ namespace FilmPortal.DataLayer.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Film>().HasData(new Film
-            {
+            modelBuilder.Entity<Film>().HasData(new Film {
                 FilmId = 1,
                 Name = "I am Legend",
                 Description = "Desription",
@@ -29,6 +28,33 @@ namespace FilmPortal.DataLayer.Context
                 Marks = new List<Rating>(),
                 Comments = new List<Comment>(),
                 Genres = new List<Genre>()
+            }, new Film {
+                FilmId = 2,
+                Name = "I, Robot",
+                Description = "Desription",
+                Year = 2004,
+                Producer = "Alex Proyas",
+                Marks = new List<Rating>(),
+                Comments = new List<Comment>(),
+                Genres = new List<Genre>()
+            });
+
+            modelBuilder.Entity<User>().HasData(new User
+            {
+                UserId = 1,
+                Login = "admin",
+                Password = "jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=",
+                isAdmin = true,
+                Marks = new List<Rating>(),
+                Comments = new List<Comment>()
+            }, new User
+            {
+                UserId = 2,
+                Login = "user",
+                Password = "jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIq1g=",
+                isAdmin = false,
+                Marks = new List<Rating>(),
+                Comments = new List<Comment>()
             });
             base.OnModelCreating(modelBuilder);
         }
