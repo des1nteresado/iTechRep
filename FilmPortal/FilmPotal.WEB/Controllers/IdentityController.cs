@@ -21,13 +21,13 @@ namespace FilmPotal.WEB.Controllers
 
         [Route("login")]
         [HttpPost]
-        public IActionResult Token([FromBody]IdentityModel model)
+        public IActionResult Login([FromBody]IdentityModel model)
         {
-            var identity = _service.GetIdentity(model.Username, model.Password);
+            var identity = _service.GetIdentity(model);
 
             if (identity == null)
             {
-                return Unauthorized();
+                return Unauthorized("Wrong login or password.");
             }
 
             var now = DateTime.UtcNow;
@@ -49,6 +49,17 @@ namespace FilmPotal.WEB.Controllers
             return Ok(response);
         }
 
+        [Route("registration")]
+        [HttpPost]
+        public IActionResult Registration([FromBody]IdentityModel model)
+        {
 
+            if (!_service.AddUser(model))
+            {
+                return Conflict("User with this name is already registered.");
+            }
+
+            return Ok("User registred successfully.");
+        }
     }
 }

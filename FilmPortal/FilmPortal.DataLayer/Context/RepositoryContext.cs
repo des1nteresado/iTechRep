@@ -12,13 +12,20 @@ namespace FilmPortal.DataLayer.Context
         }
 
         public DbSet<Film> Films { get; set; }
+
         public DbSet<Comment> Comments { get; set; }
+
         public DbSet<Rating> Marks { get; set; }
+
         public DbSet<User> Users { get; set; }
+
         public DbSet<Genre> Genres { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>().Property(u => u.Login).IsRequired();
+            modelBuilder.Entity<User>().Property(u => u.Password).IsRequired();
+
             modelBuilder.Entity<Film>().HasData(new Film
             {
                 FilmId = 1,

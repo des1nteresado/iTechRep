@@ -1,12 +1,11 @@
 ﻿using System.Security.Claims;
-using FilmPortal.DataLayer.Entities;
+using FilmPortal.BusinessLayer.Models;
 
 namespace FilmPortal.BusinessLayer.Interfaces
 {
     public interface IIdentityService
     {
-        User GetUser(string userName);
-        ClaimsIdentity GetIdentity(string userName, string password);
-
+        ClaimsIdentity GetIdentity(IdentityModel model);
+        bool AddUser(IdentityModel model);
     }
 }
