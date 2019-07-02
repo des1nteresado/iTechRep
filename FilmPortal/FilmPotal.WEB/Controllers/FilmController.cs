@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FilmPotal.WEB.Controllers
 {
-    [Route("films")]
+    [Route("catalog")]
     [ApiController]
     public class FilmController : ControllerBase
     {
@@ -23,32 +23,104 @@ namespace FilmPotal.WEB.Controllers
             _ratingService = ratingService;
         }
 
-        [Route("page")]
+        [Route("films")]
         [HttpGet]
-        public Task<Page<FilmLiteModel>> GetFilms(int pageIndex, SortState sortOrder)
+        public async Task<IActionResult> GetFilms(int pageIndex, SortState sortOrder)
         {
-            return _filmService.GetFilms(pageIndex, sortOrder);
+            var page = await _filmService.GetFilms(pageIndex, sortOrder);
+
+            if (page == null)
+            {
+                return NoContent();
+            }
+
+            return Ok(page);
         }
 
         [Route("film")]
         [HttpGet]
-        public FilmLiteModel GetFilm(int filmId)
+        public IActionResult GetFilm(int filmId)
         {
-            return _filmService.GetFilm(filmId);
+            var film = _filmService.GetFilm(filmId);
+
+            if (film == null)
+            {
+                return NoContent();
+            }
+
+            return Ok(film);
         }
 
         [Route("comment")]
         [HttpPost]
-        public void AddComment([FromBody] AddCommentRequest request)
+        public IActionResult AddComment([FromBody] AddCommentRequest request)
         {
-            _commentService.AddComment(request);
+            if (_commentService.AddComment(request))
+            {
+                return Ok("Comment added successfully!");
+            }
+
+            return BadRequest();
         }
 
         [Route("rating")]
         [HttpPost]
-        public void AddRating([FromBody] AddRatingRequest request)
+        public IActionResult AddRating([FromBody] AddRatingRequest request)
         {
-            _ratingService.AddRating(request);
+            if (_ratingService.AddRating(request))
+            {
+                return Ok("Rating added successfully!");
+            }
+
+            return BadRequest();
+        }
+
+        //[Route("comment")]
+        //[HttpPut]
+        //public IActionResult UpdateComment([FromBody] Comment request)
+        //{
+        //    if (_commentService.UpdateComment(request))
+        //    {
+        //        return Ok("Comment updated successfully!");
+        //    }
+
+        //    return BadRequest();
+        //}
+
+        //[Route("rating")]
+        //[HttpPut]
+        //public IActionResult UpdateRating([FromBody] Rating request)
+        //{
+        //    if (_ratingService.AddRating(request))
+        //    {
+        //        return Ok("Rating updated successfully!");
+        //    }
+
+        //    return BadRequest();
+        //}
+
+        [Route("comment")]
+        [HttpDelete]
+        public IActionResult DeleteComment(int commentId)
+        {
+            if (_commentService.DeleteComment(commentId))
+            {
+                return Ok("Comment deleted successfully!");
+            }
+
+            return BadRequest();
+        }
+
+        [Route("rating")]
+        [HttpDelete]
+        public IActionResult DeleteRating(int ratingId)
+        {
+            if (_ratingService.DeleteRating(ratingId))
+            {
+                return Ok("Rating deleted successfully!");
+            }
+
+            return BadRequest();
         }
 
         [Authorize]

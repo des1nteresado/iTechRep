@@ -8,7 +8,6 @@ using FilmPortal.BusinessLayer.Models;
 using FilmPortal.DataLayer.Entities;
 using FilmPortal.DataLayer.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Configuration;
 
 namespace FilmPortal.BusinessLayer.Services

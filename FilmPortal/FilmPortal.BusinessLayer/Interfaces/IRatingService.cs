@@ -5,10 +5,10 @@ namespace FilmPortal.BusinessLayer.Interfaces
 {
     public interface IRatingService
     {
-        void AddRating(AddRatingRequest rating);
+        bool AddRating(AddRatingRequest rating);
 
-        void DeleteRating(int ratingId);
+        bool DeleteRating(int ratingId);
 
-        void UpdateRating(Rating rating);
+        bool UpdateRating(Rating rating);
     }
 }
