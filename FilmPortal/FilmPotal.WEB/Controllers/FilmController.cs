@@ -13,12 +13,14 @@ namespace FilmPotal.WEB.Controllers
     {
         private readonly IFilmService _filmService;
         private readonly ICommentService _commentService;
+        private readonly IRatingService _ratingService;
 
 
-        public FilmController(IFilmService filmService, ICommentService commentService)
+        public FilmController(IFilmService filmService, ICommentService commentService, IRatingService ratingService)
         {
             _filmService = filmService;
             _commentService = commentService;
+            _ratingService = ratingService;
         }
 
         [Route("page")]
@@ -40,6 +42,13 @@ namespace FilmPotal.WEB.Controllers
         public void AddComment([FromBody] AddCommentRequest request)
         {
             _commentService.AddComment(request);
+        }
+
+        [Route("rating")]
+        [HttpPost]
+        public void AddRating([FromBody] AddRatingRequest request)
+        {
+            _ratingService.AddRating(request);
         }
 
         [Authorize]

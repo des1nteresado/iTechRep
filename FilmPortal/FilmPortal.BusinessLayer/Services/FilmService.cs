@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -9,6 +8,7 @@ using FilmPortal.BusinessLayer.Models;
 using FilmPortal.DataLayer.Entities;
 using FilmPortal.DataLayer.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Configuration;
 
 namespace FilmPortal.BusinessLayer.Services
@@ -57,16 +57,16 @@ namespace FilmPortal.BusinessLayer.Services
                     }
                 case SortState.MarkAsc:
                     {
-                        query = query.Where(p => p.Marks != null && p.Marks.Any()).OrderBy(item => item.Marks.Average(p => p.Mark));
-                        foreach (var t in query)
-                        {
-                            Debug.Write(t.Marks.Select(p => p.Mark));
-                        }
+                        query = query.Where(p => p.Marks != null && p.Marks.Any())
+                            .OrderBy(item => item.Marks.Average(p => p.Mark))
+                            .Union(query.Where(p => p.Marks == null || !p.Marks.Any()).OrderBy(p => p.Name));
                         break;
                     }
                 case SortState.MarkDesc:
                     {
-                        query = query.Where(p => p.Marks != null && p.Marks.Any()).OrderByDescending(item => item.Marks.Average(p => p.Mark));
+                        query = query.Where(p => p.Marks == null || !p.Marks.Any()).OrderBy(p => p.Name)
+                            .Union(query.Where(p => p.Marks != null && p.Marks.Any())
+                            .OrderByDescending(item => item.Marks.Average(p => p.Mark)));
                         break;
                     }
                 default:

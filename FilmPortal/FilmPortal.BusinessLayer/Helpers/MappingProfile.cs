@@ -21,6 +21,7 @@ namespace FilmPortal.BusinessLayer.Helpers
             CreateMap<string, Genre>()
                 .ForMember(m => m.Name, opt => opt.MapFrom(m => m));
             CreateMap<AddFilmRequest, Film>();
+            CreateMap<AddRatingRequest, Rating>();
         }
     }
 }
