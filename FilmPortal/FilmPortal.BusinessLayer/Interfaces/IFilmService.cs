@@ -11,9 +11,9 @@ namespace FilmPortal.BusinessLayer.Interfaces
 
         FilmLiteModel GetFilm(int filmId);
 
-        void AddFilm(Film film);
+        void AddFilm(AddFilmRequest film);
 
-        void DeleteFilm(int filmId);
+        bool DeleteFilm(int filmId);
 
         void UpdateFilm(Film film);
     }

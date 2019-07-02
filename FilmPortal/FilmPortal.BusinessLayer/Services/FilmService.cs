@@ -90,8 +90,9 @@ namespace FilmPortal.BusinessLayer.Services
             return _mapper.Map<Film, FilmLiteModel>(film);
         }
 
-        public void AddFilm(Film film)
+        public void AddFilm(AddFilmRequest request)
         {
+            var film = _mapper.Map<AddFilmRequest, Film>(request);
             _repository.Insert(film);
         }
 
@@ -100,9 +101,18 @@ namespace FilmPortal.BusinessLayer.Services
             _repository.Update(film);
         }
 
-        public void DeleteFilm(int filmId)
+        public bool DeleteFilm(int filmId)
         {
+            var film = _repository.GetById(filmId);
+
+            if (film == null)
+            {
+                return false;
+            }
+
             _repository.Delete(filmId);
+
+            return true;
         }
     }
 }

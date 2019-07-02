@@ -23,6 +23,11 @@ namespace FilmPotal.WEB.Controllers
         [HttpPost]
         public IActionResult Login([FromBody]IdentityModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var identity = _service.GetIdentity(model);
 
             if (identity == null)
@@ -53,6 +58,10 @@ namespace FilmPotal.WEB.Controllers
         [HttpPost]
         public IActionResult Registration([FromBody]IdentityModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
             if (!_service.AddUser(model))
             {

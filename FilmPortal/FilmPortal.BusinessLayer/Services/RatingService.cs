@@ -26,7 +26,7 @@ namespace FilmPortal.BusinessLayer.Services
             var user = _userRepository.GetById(request.UserId);
             var film = _filmRepository.GetById(request.FilmId);
 
-            if (user == null || film == null || request.Mark > 10 || request.Mark < 1)
+            if (user == null || film == null)
             {
                 return false;
             }

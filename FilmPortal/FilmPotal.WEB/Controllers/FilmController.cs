@@ -51,10 +51,29 @@ namespace FilmPotal.WEB.Controllers
             return Ok(film);
         }
 
+        [Route("film")]
+        [HttpPost]
+        public IActionResult AddFilm([FromBody] AddFilmRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _filmService.AddFilm(request);
+
+            return BadRequest();
+        }
+
         [Route("comment")]
         [HttpPost]
         public IActionResult AddComment([FromBody] AddCommentRequest request)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             if (_commentService.AddComment(request))
             {
                 return Ok("Comment added successfully!");
@@ -67,6 +86,11 @@ namespace FilmPotal.WEB.Controllers
         [HttpPost]
         public IActionResult AddRating([FromBody] AddRatingRequest request)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             if (_ratingService.AddRating(request))
             {
                 return Ok("Rating added successfully!");
@@ -106,6 +130,18 @@ namespace FilmPotal.WEB.Controllers
             if (_commentService.DeleteComment(commentId))
             {
                 return Ok("Comment deleted successfully!");
+            }
+
+            return BadRequest();
+        }
+
+        [Route("film")]
+        [HttpDelete]
+        public IActionResult DeleteFilm(int filmId)
+        {
+            if (_filmService.DeleteFilm(filmId))
+            {
+                return Ok("Film deleted successfully!");
             }
 
             return BadRequest();
