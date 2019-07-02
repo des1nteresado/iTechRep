@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore;
+﻿using System.IO;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FilmPotal.WEB
 {
@@ -8,6 +11,7 @@ namespace FilmPotal.WEB
         public static void Main(string[] args)
         {
             var host = BuildWebHost(args);
+
             host.Run();
         }
 

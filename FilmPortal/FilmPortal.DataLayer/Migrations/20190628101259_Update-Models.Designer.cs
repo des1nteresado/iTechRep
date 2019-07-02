@@ -4,14 +4,16 @@ using FilmPortal.DataLayer.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FilmPortal.DataLayer.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20190628101259_Update-Models")]
+    partial class UpdateModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,14 +70,6 @@ namespace FilmPortal.DataLayer.Migrations
                             Name = "I am Legend",
                             Producer = "Frensis Lourens",
                             Year = 2007
-                        },
-                        new
-                        {
-                            FilmId = 2,
-                            Description = "Desription",
-                            Name = "I, Robot",
-                            Producer = "Alex Proyas",
-                            Year = 2004
                         });
                 });
 
@@ -132,22 +126,6 @@ namespace FilmPortal.DataLayer.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = 1,
-                            Login = "admin",
-                            Password = "jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=",
-                            isAdmin = true
-                        },
-                        new
-                        {
-                            UserId = 2,
-                            Login = "user",
-                            Password = "BPiZbadjt6lpsQKO4wB1aerzpjVIbdqyEdUSyFud+Ps=",
-                            isAdmin = false
-                        });
                 });
 
             modelBuilder.Entity("FilmPortal.DataLayer.Entities.Comment", b =>

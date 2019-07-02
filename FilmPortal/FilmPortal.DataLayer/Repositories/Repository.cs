@@ -20,6 +20,11 @@ namespace FilmPortal.DataLayer.Repositories
             return _context.Set<T>().AsEnumerable();
         }
 
+        public IQueryable<T> GetAllQueryable()
+        {
+            return _context.Set<T>().AsQueryable();
+        }
+
         public T GetById(int id)
         {
             return _context.Set<T>().Find(id);
