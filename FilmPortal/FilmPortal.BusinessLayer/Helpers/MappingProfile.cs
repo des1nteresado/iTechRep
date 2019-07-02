@@ -14,7 +14,8 @@ namespace FilmPortal.BusinessLayer.Helpers
                 .ForMember(m => m.CommentCount, opt => opt.MapFrom(m => m.Comments != null ? m.Comments.Count : 0))
             .ForMember(m => m.MarkCount, opt => opt.MapFrom(m => m.Marks != null ? m.Marks.Count : 0))
             .ForMember(m => m.AverageMark,
-                opt => opt.MapFrom(m => m.Marks != null || m.Marks.Count != 0 ? m.Marks.DefaultIfEmpty().Average(p => p.Mark) : 0));
+                opt => opt.MapFrom(m => m.Marks != null || m.Marks.Count != 0 ? 
+                    Math.Round(m.Marks.DefaultIfEmpty().Average(p => p.Mark), 2, MidpointRounding.AwayFromZero) : 0));
             CreateMap<AddCommentRequest, Comment>()
                 .ForMember(m => m.Body, opt => opt.MapFrom(m => m.Comment))
                 .ForMember(m => m.CreateDate, opt => opt.MapFrom(m => DateTime.Now));

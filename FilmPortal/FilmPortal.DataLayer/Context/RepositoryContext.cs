@@ -53,7 +53,7 @@ namespace FilmPortal.DataLayer.Context
             {
                 UserId = 2,
                 Login = "user",
-                Password = "jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIq1g=",
+                Password = "BPiZbadjt6lpsQKO4wB1aerzpjVIbdqyEdUSyFud+Ps=",
                 isAdmin = false,
                 Marks = new List<Rating>(),
                 Comments = new List<Comment>()

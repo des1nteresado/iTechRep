@@ -54,6 +54,7 @@ namespace FilmPotal.WEB
             services.AddScoped<ICommentService, CommentService>();
             services.AddScoped<IGenreService, GenreService>();
             services.AddScoped<IRatingService, RatingService>();
+            services.AddScoped<IIdentityService, IdentityService>();
 
             services.AddDbContext<RepositoryContext>(options => options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("FilmPortalDB")));
         }
