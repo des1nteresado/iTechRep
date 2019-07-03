@@ -44,4 +44,4 @@ let mapDispatch = (dispatch) => {
     }
 }
 
-export default connect(mapProps, mapDispatch)(Catalog) 
+export default connect(mapProps, mapDispatch)(Catalog);
