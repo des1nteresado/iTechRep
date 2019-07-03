@@ -76,7 +76,7 @@ namespace FilmPotal.WEB
                     template: "{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute(
                     name: "DefaultApi",
-                    template: "api/{controller}/{action}/{id?}");
+                    template: "catalog/{action}/{id?}");
                 routes.MapSpaFallbackRoute("spa-fallback", new { controller = "Home", action = "Index" });
             });
         }

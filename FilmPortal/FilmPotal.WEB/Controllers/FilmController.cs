@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FilmPotal.WEB.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("catalog")]
     [ApiController]
     public class FilmController : ControllerBase
     {
