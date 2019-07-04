@@ -1,9 +1,11 @@
 ﻿import React from 'react';
-import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './header/Header.jsx';
-import About from './about/About.jsx';
+import About from '../views/About.jsx';
+import Account from './account/Account.jsx';
 import Catalog from './catalog/Catalog.jsx';
+import NotFound from '../views/NotFound.jsx';
+
 
 export default class App extends React.Component {
     render() {
@@ -13,8 +15,10 @@ export default class App extends React.Component {
                     <Header />
                     <main>
                         <Switch>
+                            <Route exact path="/" component={Catalog} />
                             <Route path="/about" component={About} />
-                            <Route path="/" component={Catalog} />
+                            <Route path="/login" component={Account} />
+                            <Route path="/404" component={NotFound} />
                         </Switch>
                     </main>
                 </div>

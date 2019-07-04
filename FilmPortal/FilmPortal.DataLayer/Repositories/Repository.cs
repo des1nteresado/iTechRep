@@ -22,7 +22,7 @@ namespace FilmPortal.DataLayer.Repositories
 
         public IQueryable<T> GetAllQueryable()
         {
-            return _context.Set<T>().AsQueryable();
+            return _context.Set<T>();
         }
 
         public T GetById(int id)

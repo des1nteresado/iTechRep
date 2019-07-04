@@ -14,10 +14,11 @@ class Catalog extends React.Component {
             return (
                 <div key={item.filmId} className="film">
                     <div className="name">{item.name}</div>
-                    <div className="description">{item.description}</div>
-                    <div className="year">{item.year}</div>
-                    <div className="producer">{item.producer}</div>
-
+                    <div className="description">Описание: {item.description}</div>
+                    <div className="year">Год выпуска:{item.year}</div>
+                    <div className="producer">Режисёр: {item.producer}</div>
+                    <div className="averageMark">Рейтинг: {item.averageMark} ({item.markCount})</div>
+                    <div className="commentCount">Комментарии: {item.commentCount}</div>
                     <hr />
                 </div>
             );
