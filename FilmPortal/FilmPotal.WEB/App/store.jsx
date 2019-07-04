@@ -8,4 +8,5 @@ const reducer = combineReducers({
     form: reduxFormReducer
 });
 
-export default createStore(reducer, initialState, applyMiddleware(thunk));
+
+export default createStore(catalogReducer, initialState, applyMiddleware(thunk));
