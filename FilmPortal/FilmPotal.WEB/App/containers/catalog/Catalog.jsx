@@ -34,8 +34,8 @@ class Catalog extends React.Component {
 
 let mapProps = (state) => {
     return {
-        films: state.data,
-        error: state.error
+        films: state.catalog.data,
+        error: state.catalog.error
     }
 }
 

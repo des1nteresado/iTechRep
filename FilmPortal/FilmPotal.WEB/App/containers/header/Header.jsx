@@ -22,7 +22,7 @@ const Header = () => {
         <div style={{ display: hidden ? 'none' : 'visible' }}>
             <Paper square>
                 <Tabs value={value} centered style={TabStyle} onChange={handleChange}>
-                    <Tab label="catalog" component={Link} to="/" />
+                    <Tab label="catalog" component={Link} to="/catalog" />
                     <Tab label="about" component={Link} to="/about" />
                     <Tab label="sign in" component={Link} to="/login" />
                 </Tabs>

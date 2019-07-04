@@ -21,7 +21,7 @@ export function getFilms(pageIndex = 0, sortOrder) {
         if (sortOrder) {
             queryTrailer += '&sortOrder=' + sortOrder;
         }
-        fetch(constants.getPage + queryTrailer)
+        fetch(constants.catalog + queryTrailer)
             .then((response) => {
                 return response.json()
             }).then((data) => {

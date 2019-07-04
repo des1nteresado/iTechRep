@@ -1,13 +1,18 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <base href="/" />
+    <meta name="viewport" content="width=device-width"/>
     <script type="text/javascript">
         constants = {
-            getPage: '@Url.RouteUrl("DefaultApi", new {controller = "Film", action = "films" })'
+            catalog: '@Url.RouteUrl("DefaultApi", new {controller = "Film", action = "films" })',
+            film: '@Url.RouteUrl("DefaultApi", new {controller = "Film", action = "film" })',
+            comment: '@Url.RouteUrl("DefaultApi", new {controller = "Film", action = "comment" })',
+            token: '@Url.RouteUrl("DefaultApi", new {controller = "Identity", action = "login" })',
+            tokenKey: 'tokenKey'
         }
     </script>
-    <title>Index</title>
+    <title>Film portal</title>
 </head>
 <body>
     <div id="content">

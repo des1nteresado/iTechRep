@@ -1,5 +1,6 @@
 ﻿export default [
-    '/',
+    '/catalog',
     '/about',
-    '/login'
+    '/login',
+    '/'
 ];

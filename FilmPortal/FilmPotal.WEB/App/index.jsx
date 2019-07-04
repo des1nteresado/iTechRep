@@ -2,15 +2,8 @@
 import { render } from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import thunk from 'redux-thunk'
 import App from './containers/App.jsx'
-import catalogReducer from './containers/catalog/catalogReducer.jsx'
-
-function configureStore(initialState) {
-    return createStore(catalogReducer, initialState, applyMiddleware(thunk))
-}
-
-const store = configureStore()
+import store from './store.jsx';
 
 render(
     <Provider store={store}>

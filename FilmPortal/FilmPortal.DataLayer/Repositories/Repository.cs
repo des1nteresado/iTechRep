@@ -15,7 +15,7 @@ namespace FilmPortal.DataLayer.Repositories
             _context = context;
         }
 
-        public virtual IEnumerable<T> List()
+        public virtual IEnumerable<T> GetAll()
         {
             return _context.Set<T>().AsEnumerable();
         }

@@ -17,7 +17,7 @@ namespace FilmPortal.BusinessLayer.Services
 
         public List<string> GetGenres()
         {
-            var result = _repository.List().Select(p => p.Name).Distinct().ToList();
+            var result = _repository.GetAll().Select(p => p.Name).Distinct().ToList();
             return result;
         }
     }
