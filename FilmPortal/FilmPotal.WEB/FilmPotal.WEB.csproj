@@ -36,8 +36,4 @@
     <None Include="Views\Home\Index.cshtml" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="App\actions\" />
-  </ItemGroup>
-
 </Project>

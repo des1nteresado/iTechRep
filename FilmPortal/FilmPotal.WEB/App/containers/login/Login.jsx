@@ -9,7 +9,7 @@ import AuthForm from '../../views/login/AuthForm.jsx';
 const validate = values => {
     const errors = {}
     const requiredFields = [
-        'email',
+        'username',
         'password'
     ]
     requiredFields.forEach(field => {
@@ -17,12 +17,10 @@ const validate = values => {
             errors[field] = 'Required'
         }
     })
-    if (!validateEmail(values.email)) {
-        errors.email = 'Invalid email address'
-    }
-    if (values.password && !(values.password.length >= 6)) {
+    if ((values.password && !(values.password.length >= 4)) || (values.username && !(values.username.length >= 3))) {
 
         errors.password = 'Too short'
+        errors.username = 'Too short'
     }
     return errors
 }
@@ -33,23 +31,22 @@ const renderTextField = ({
     meta: { touched, invalid, error },
     ...custom
 }) => (
-    <TextField
-        label={label}
-        placeholder={label}
-        error={touched && invalid}
-        helperText={touched && error}
-        {...input}
-        {...custom}
-    />
-)
+        <TextField
+            label={label}
+            placeholder={label}
+            error={touched && invalid}
+            helperText={touched && error}
+            {...input}
+            {...custom}
+        />
+    )
 
 let Login = props => {
-    const { handleSubmit, pristine, submitting, emailValue, passwordValue, invalid } = props;
+    const { pristine, submitting, userNameValue, passwordValue, invalid } = props;
     return (
         <AuthForm
             renderTextField={renderTextField}
-            handleSubmit={handleSubmit}
-            emailValue={emailValue}
+            userNameValue={userNameValue}
             passwordValue={passwordValue}
             pristine={pristine}
             submitting={submitting}
@@ -58,7 +55,7 @@ let Login = props => {
     )
 }
 
-Login= reduxForm({
+Login = reduxForm({
     form: 'loginReduxForm',
     validate,
 })(Login);

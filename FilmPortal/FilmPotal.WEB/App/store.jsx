@@ -2,16 +2,22 @@
 import { reducer as reduxFormReducer } from 'redux-form'
 import thunk from 'redux-thunk'
 import catalogReducer from './containers/catalog/catalogReducer.jsx'
+import userReducer from './reducers/userReducer.jsx'
+
 
 const reducer = combineReducers({
     catalog: catalogReducer,
-    form: reduxFormReducer
+    form: reduxFormReducer,
+    user: userReducer
 });
 
 const initialState = {
     catalog: {
         data: { currentPage: 0, totalPages: 0, pageSize: 0, records: [] },
         error: ''
+    },
+    currentUser: {
+
     }
 }
 
