@@ -63,14 +63,4 @@ Login= reduxForm({
     validate,
 })(Login);
 
-const selector = formValueSelector('loginReduxForm')
-LoginReduxForm = connect(state => {
-    const emailValue = selector(state, 'email')
-    const passwordValue = selector(state, 'password')
-    return {
-        emailValue,
-        passwordValue
-    }
-})(Login)
-
 export default Login;

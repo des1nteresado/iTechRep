@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './header/Header.jsx';
 import About from '../views/About.jsx';
 import StartPage from '../views/StartPage.jsx';
+import Login from './login/Login.jsx';
 import Catalog from './catalog/Catalog.jsx';
 
 
@@ -17,6 +18,7 @@ export default class App extends React.Component {
                             <Route exact path="/" component={StartPage} />
                             <Route path="/catalog" component={Catalog} />
                             <Route path="/about" component={About} />
+                            <Route path="/login" component={Login} />
                         </Switch>
                     </main>
                 </div>
