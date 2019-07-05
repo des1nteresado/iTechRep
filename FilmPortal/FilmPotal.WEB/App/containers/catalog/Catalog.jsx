@@ -76,17 +76,17 @@ class Catalog extends React.Component {
     }
 };
 
-let mapProps = (state) => {
+let mapStateToProps = (state) => {
     return {
         films: state.catalog.data,
         error: state.catalog.error,
     }
 }
 
-let mapDispatch = (dispatch) => {
+let mapDispatchToProps = (dispatch) => {
     return {
         getFilms: bindActionCreators(getFilms, dispatch)
     }
 }
 
-export default connect(mapProps, mapDispatch)(Catalog) 
+export default connect(mapStateToProps, mapDispatchToProps)(Catalog) 

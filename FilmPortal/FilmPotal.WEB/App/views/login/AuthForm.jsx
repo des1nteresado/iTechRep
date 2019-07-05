@@ -1,14 +1,15 @@
 ﻿import React from 'react';
-import { Link } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 import { Field } from 'redux-form';
 import { FormStyleRedux, FormStyle, ButtonStyle } from '../../style.js';
 import authSubmit from '../../services/authenticationService.js'
+import { connect } from 'react-redux';
 
 const AuthForm = props => {
     const { pristine, submitting, userNameValue, passwordValue, invalid, renderTextField } = props;
     return (
         <React.Fragment>
-            <form style={FormStyleRedux} onSubmit={() => authSubmit({ username: userNameValue, password: passwordValue })}>
+            <form style={FormStyleRedux} data-method="post" onSubmit={() => props.dispatch.authSubmit({ username: userNameValue, password: passwordValue })}>
                 <Field name="username" variant='outlined' component={renderTextField} label="Username" />
                 <Field name="password" type="password" variant='outlined' component={renderTextField} label="Password" />
 
@@ -20,4 +21,10 @@ const AuthForm = props => {
     );
 };
 
-export default AuthForm;
+let mapDispatchToProps = (dispatch) => {
+    return {
+        authSubmit: bindActionCreators(authSubmit, dispatch)
+    }
+}
+
+export default connect(mapDispatchToProps)(AuthForm) 
