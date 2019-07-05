@@ -90782,8 +90782,10 @@ var AuthForm = function AuthForm(props) {
         null,
         _react2.default.createElement(
             'form',
-            { style: _style.FormStyleRedux, 'data-method': 'post', onSubmit: function onSubmit() {
-                    return props.dispatch.authSubmit({ username: userNameValue, password: passwordValue });
+            { style: _style.FormStyleRedux, 'data-method': 'post', onSubmit: function onSubmit(e) {
+                    console.log({ username: userNameValue, password: passwordValue });
+                    props.dispatch((0, _authenticationService2.default)({ username: userNameValue, password: passwordValue }));
+                    e.preventDefault();
                 } },
             _react2.default.createElement(_reduxForm.Field, { name: 'username', variant: 'outlined', component: renderTextField, label: 'Username' }),
             _react2.default.createElement(_reduxForm.Field, { name: 'password', type: 'password', variant: 'outlined', component: renderTextField, label: 'Password' }),

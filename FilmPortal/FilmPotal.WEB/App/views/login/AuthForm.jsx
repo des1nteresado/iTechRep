@@ -9,7 +9,11 @@ const AuthForm = props => {
     const { pristine, submitting, userNameValue, passwordValue, invalid, renderTextField } = props;
     return (
         <React.Fragment>
-            <form style={FormStyleRedux} data-method="post" onSubmit={() => props.dispatch.authSubmit({ username: userNameValue, password: passwordValue })}>
+            <form style={FormStyleRedux} data-method="post" onSubmit={(e) => {
+                console.log({ username: userNameValue, password: passwordValue });
+                props.dispatch(authSubmit({ username: userNameValue, password: passwordValue }));
+                e.preventDefault();
+            }}>
                 <Field name="username" variant='outlined' component={renderTextField} label="Username" />
                 <Field name="password" type="password" variant='outlined' component={renderTextField} label="Password" />
 
