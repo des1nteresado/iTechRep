@@ -1,8 +1,6 @@
 ﻿import React from 'react';
-import { connect } from 'react-redux'
 import { reduxForm, formValueSelector } from 'redux-form'
 import TextField from '@material-ui/core/TextField';
-import validateEmail from '../../validEmail.js';
 import AuthForm from '../../views/login/AuthForm.jsx';
 
 
@@ -17,9 +15,11 @@ const validate = values => {
             errors[field] = 'Required'
         }
     })
-    if ((values.password && !(values.password.length >= 4)) || (values.username && !(values.username.length >= 3))) {
+    if ((values.password && !(values.password.length >= 4)) ) {
 
         errors.password = 'Too short'
+    }
+    if (values.username && !(values.username.length >= 3)) {
         errors.username = 'Too short'
     }
     return errors

@@ -1,4 +1,4 @@
-﻿import { GET_FILMS_SUCCESS, GET_FILMS_ERROR } from './catalogConstants.jsx'
+﻿import { GET_FILMS_SUCCESS, GET_FILMS_ERROR } from '../actions/catalogActions.jsx'
 
 const initialState = {
     data: { currentPage: 0, totalPages: 0, pageSize: 0, records: [] },

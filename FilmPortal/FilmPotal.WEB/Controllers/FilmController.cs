@@ -7,14 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FilmPotal.WEB.Controllers
 {
-    [Route("catalog")]
-    [ApiController]
+    [Route("api/[controller]")]
     public class FilmController : ControllerBase
     {
         private readonly IFilmService _filmService;
         private readonly ICommentService _commentService;
         private readonly IRatingService _ratingService;
-
 
         public FilmController(IFilmService filmService, ICommentService commentService, IRatingService ratingService)
         {

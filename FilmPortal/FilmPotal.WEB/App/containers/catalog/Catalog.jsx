@@ -1,32 +1,76 @@
 ﻿import React from 'react';
-import ReactDOM from 'react-dom';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { getFilms } from './catalogActions.jsx'
+import queryString from 'query-string';
+import { Link } from 'react-router-dom';
+import Film from '../../components/Film.jsx';
+import getFilms from '../../services/catalogService.js'
 
 class Catalog extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { query: location.search };
+    }
 
     componentDidMount() {
-        this.props.getFilms(0);
+        this.getFilms();
+    }
+
+    getFilms() {
+        let pageIndex;
+        let sortOrder;
+        const parsed = queryString.parse(location.search);
+        if (parsed) {
+            pageIndex = parsed['pageIndex'];
+            sortOrder = parsed['sortOrder'];
+        }
+        this.props.getFilms(pageIndex, sortOrder);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.state.query != location.search) {
+            this.setState({ query: location.search });
+            this.getFilms();
+        }
     }
 
     render() {
+        const total = this.props.films.totalPages;
+        const pageSize = this.props.films.pageSize;
+        const pageNumbers = [];
+        let params = queryString.parse(location.search);
+        let queryTrailer = '';
+        if (params.sortOrder) {
+            queryTrailer = "&sortOrder=" + params.sortOrder;
+        }
+        for (let i = 1; i <= Math.ceil(total / pageSize); i++) {
+            pageNumbers.push(i);
+        }
+
+        const renderPageNumbers = pageNumbers.map(number => {
+            return (
+                <li key={number}>
+                    <Link className="link" to={"/catalog?pageIndex=" + (number - 1) + queryTrailer}>{number}</Link>
+                </li>
+            );
+        });
+
         let films = this.props.films.records.map(item => {
             return (
-                <div key={item.filmId} className="film">
-                    <div className="name">{item.name}</div>
-                    <div className="description">Описание: {item.description}</div>
-                    <div className="year">Год выпуска:{item.year}</div>
-                    <div className="producer">Режисёр: {item.producer}</div>
-                    <div className="averageMark">Рейтинг: {item.averageMark} ({item.markCount})</div>
-                    <div className="commentCount">Комментарии: {item.commentCount}</div>
-                    <hr />
-                </div>
+                <Film key={item.filmId} data={item} isFull={false} />
             );
         });
 
         return (
             <div id="catalog">
-                {films}
+                <div id="lenta">
+                    {films}
+                    <div>
+                        <ul className="pagingNumber">
+                            {renderPageNumbers}
+                        </ul>
+                    </div>
+                </div>
             </div>
         );
     }
@@ -35,14 +79,14 @@ class Catalog extends React.Component {
 let mapProps = (state) => {
     return {
         films: state.catalog.data,
-        error: state.catalog.error
+        error: state.catalog.error,
     }
 }
 
 let mapDispatch = (dispatch) => {
     return {
-        getFilms: (index, sortOrder) => dispatch(getFilms(index, sortOrder))
+        getFilms: bindActionCreators(getFilms, dispatch)
     }
 }
 
-export default connect(mapProps, mapDispatch)(Catalog);
+export default connect(mapProps, mapDispatch)(Catalog) 

@@ -1,7 +1,7 @@
 ﻿import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { reducer as reduxFormReducer } from 'redux-form'
 import thunk from 'redux-thunk'
-import catalogReducer from './containers/catalog/catalogReducer.jsx'
+import catalogReducer from './reducers/catalogReducer.jsx'
 import userReducer from './reducers/userReducer.jsx'
 
 

@@ -16,7 +16,7 @@ export default (userData) => {
         .then((data) => {
             if (data.access_token) {
                 setUserSession(data.username);
-                setCookie('auth_token', data.token);
+                setCookie('auth_token', data.access_token);
                 store.dispatch({ type: LOGIN_SUCCESS, currentUser: data.username });
             }
             else {

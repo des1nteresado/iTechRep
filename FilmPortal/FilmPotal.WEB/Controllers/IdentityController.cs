@@ -8,8 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace FilmPotal.WEB.Controllers
 {
-    [Route("identity")]
-    [ApiController]
+    [Route("api/[controller]")]
     public class IdentityController : ControllerBase
     {
         private readonly IIdentityService _service;

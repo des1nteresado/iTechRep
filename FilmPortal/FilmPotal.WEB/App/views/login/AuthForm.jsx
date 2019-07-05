@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import { Field } from 'redux-form';
-import PropTypes from 'prop-types';
 import { FormStyleRedux, FormStyle, ButtonStyle } from '../../style.js';
 import authSubmit from '../../services/authenticationService.js'
 
@@ -20,9 +19,5 @@ const AuthForm = props => {
         </React.Fragment>
     );
 };
-
-AuthForm.propTypes = {
-    renderTextField: PropTypes.func.isRequired
-}
 
 export default AuthForm;
