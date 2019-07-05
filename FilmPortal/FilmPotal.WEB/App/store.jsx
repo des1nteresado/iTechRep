@@ -8,7 +8,7 @@ import userReducer from './reducers/userReducer.jsx'
 const reducer = combineReducers({
     catalog: catalogReducer,
     form: reduxFormReducer,
-    user: userReducer
+    currentUser: userReducer
 });
 
 const initialState = {

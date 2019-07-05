@@ -15600,7 +15600,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var reducer = (0, _redux.combineReducers)({
     catalog: _catalogReducer2.default,
     form: _reduxForm.reducer,
-    user: _userReducer2.default
+    currentUser: _userReducer2.default
 });
 
 var initialState = {
@@ -90856,8 +90856,6 @@ var AuthForm = function AuthForm(props) {
 };
 
 AuthForm.propTypes = {
-    handleSubmit: _propTypes2.default.func.isRequired,
-    renderInputs: _propTypes2.default.func.isRequired,
     renderTextField: _propTypes2.default.func.isRequired
 };
 

@@ -11,6 +11,9 @@ const Header = () => {
             hidden = true;
             return false;
         }
+        if (urls.indexOf(window.location.pathname) === 3) {
+            return false;
+        }
         return urls.indexOf(window.location.pathname);
     });
 

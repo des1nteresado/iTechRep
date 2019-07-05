@@ -22,8 +22,6 @@ const AuthForm = props => {
 };
 
 AuthForm.propTypes = {
-    handleSubmit: PropTypes.func.isRequired,
-    renderInputs: PropTypes.func.isRequired,
     renderTextField: PropTypes.func.isRequired
 }
 
