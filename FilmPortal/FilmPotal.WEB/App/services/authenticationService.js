@@ -29,14 +29,9 @@ export const logout = () => {
     }
 }
 
-export const login = (userName, password) => {
+export const login = (data) => {
     return (dispatch) => {
-        var data = {
-            username: userName,
-            password: password
-        };
-
-        fetch(constants.token, {
+        fetch(constants.login, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'

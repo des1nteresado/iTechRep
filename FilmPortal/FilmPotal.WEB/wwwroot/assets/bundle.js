@@ -15642,14 +15642,9 @@ const logout = () => {
 /* harmony export (immutable) */ __webpack_exports__["logout"] = logout;
 
 
-const login = (userName, password) => {
+const login = (data) => {
     return (dispatch) => {
-        var data = {
-            username: userName,
-            password: password
-        };
-
-        fetch(constants.token, {
+        fetch(constants.login, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
@@ -90981,7 +90976,7 @@ var AuthForm = function AuthForm(props) {
             { style: _style.FormStyleRedux, 'data-method': 'post', onSubmit: function onSubmit(e) {
                     console.log({ username: userNameValue, password: passwordValue });
                     e.preventDefault();
-                    props.dispatch((0, _authenticationService.login)(userNameValue, passwordValue));
+                    props.dispatch((0, _authenticationService.login)({ username: userNameValue, password: passwordValue }));
                 } },
             _react2.default.createElement(_reduxForm.Field, { name: 'username', variant: 'outlined', component: renderTextField, label: 'Username' }),
             _react2.default.createElement(_reduxForm.Field, { name: 'password', type: 'password', variant: 'outlined', component: renderTextField, label: 'Password' }),

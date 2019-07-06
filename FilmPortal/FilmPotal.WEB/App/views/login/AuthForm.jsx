@@ -12,7 +12,7 @@ const AuthForm = props => {
             <form style={FormStyleRedux} data-method="post" onSubmit={(e) => {
                 console.log({ username: userNameValue, password: passwordValue });
                 e.preventDefault();
-                props.dispatch(login(userNameValue, passwordValue));
+                props.dispatch(login({ username: userNameValue, password: passwordValue}));
             }}>
                 <Field name="username" variant='outlined' component={renderTextField} label="Username" />
                 <Field name="password" type="password" variant='outlined' component={renderTextField} label="Password" />
