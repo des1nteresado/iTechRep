@@ -11,14 +11,14 @@ const AuthForm = props => {
         <React.Fragment>
             <form style={FormStyleRedux} data-method="post" onSubmit={(e) => {
                 console.log({ username: userNameValue, password: passwordValue });
-                props.dispatch(authSubmit({ username: userNameValue, password: passwordValue }));
                 e.preventDefault();
+                props.dispatch(authSubmit(userNameValue, passwordValue));
             }}>
                 <Field name="username" variant='outlined' component={renderTextField} label="Username" />
                 <Field name="password" type="password" variant='outlined' component={renderTextField} label="Password" />
 
                 <button type="submit" style={ButtonStyle} disabled={invalid || submitting || pristine}  >
-                    SEND
+                    LOGIN
       </button>
             </form>
         </React.Fragment>

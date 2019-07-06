@@ -1,8 +1,10 @@
 ﻿import React from 'react';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 import { reduxForm, formValueSelector } from 'redux-form'
 import TextField from '@material-ui/core/TextField';
 import AuthForm from '../../views/login/AuthForm.jsx';
-
+import { login, logout, showLoginForm, inputLogin, inputPassword } from '../../services/authenticationService.js'
 
 const validate = values => {
     const errors = {}
@@ -15,7 +17,7 @@ const validate = values => {
             errors[field] = 'Required'
         }
     })
-    if ((values.password && !(values.password.length >= 4)) ) {
+    if ((values.password && !(values.password.length >= 4))) {
 
         errors.password = 'Too short'
     }
@@ -51,6 +53,8 @@ let Login = props => {
             pristine={pristine}
             submitting={submitting}
             invalid={invalid}
+            onBottomTextClick={() => to('register')}
+            bottomText="Don't have an account? Register"
         />
     )
 }
@@ -59,5 +63,15 @@ Login = reduxForm({
     form: 'loginReduxForm',
     validate,
 })(Login);
+
+const selector = formValueSelector('loginReduxForm')
+Login = connect(state => {
+    const userNameValue = selector(state, 'username')
+    const passwordValue = selector(state, 'password')
+    return {
+        userNameValue,
+        passwordValue
+    }
+})(Login)
 
 export default Login;

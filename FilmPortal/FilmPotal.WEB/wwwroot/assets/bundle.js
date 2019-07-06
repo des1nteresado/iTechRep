@@ -77165,6 +77165,8 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(28);
+
 var _reduxForm = __webpack_require__(125);
 
 var _TextField = __webpack_require__(223);
@@ -77227,13 +77229,27 @@ var Login = function Login(props) {
         passwordValue: passwordValue,
         pristine: pristine,
         submitting: submitting,
-        invalid: invalid
+        invalid: invalid,
+        onBottomTextClick: function onBottomTextClick() {
+            return to('register');
+        },
+        bottomText: 'Don\'t have an account? Register'
     });
 };
 
 Login = (0, _reduxForm.reduxForm)({
     form: 'loginReduxForm',
     validate: validate
+})(Login);
+
+var selector = (0, _reduxForm.formValueSelector)('loginReduxForm');
+Login = (0, _reactRedux.connect)(function (state) {
+    var userNameValue = selector(state, 'username');
+    var passwordValue = selector(state, 'password');
+    return {
+        userNameValue: userNameValue,
+        passwordValue: passwordValue
+    };
 })(Login);
 
 exports.default = Login;
@@ -90784,15 +90800,15 @@ var AuthForm = function AuthForm(props) {
             'form',
             { style: _style.FormStyleRedux, 'data-method': 'post', onSubmit: function onSubmit(e) {
                     console.log({ username: userNameValue, password: passwordValue });
-                    props.dispatch((0, _authenticationService2.default)({ username: userNameValue, password: passwordValue }));
                     e.preventDefault();
+                    props.dispatch((0, _authenticationService2.default)({ username: userNameValue, password: passwordValue }));
                 } },
             _react2.default.createElement(_reduxForm.Field, { name: 'username', variant: 'outlined', component: renderTextField, label: 'Username' }),
             _react2.default.createElement(_reduxForm.Field, { name: 'password', type: 'password', variant: 'outlined', component: renderTextField, label: 'Password' }),
             _react2.default.createElement(
                 'button',
                 { type: 'submit', style: _style.ButtonStyle, disabled: invalid || submitting || pristine },
-                'SEND'
+                'LOGIN'
             )
         )
     );
@@ -90830,7 +90846,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             body: JSON.stringify(userData)
         };
         fetch(window.constants.login, requestOpts)
-            .then((response) => { return response.json() })
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    dispatch({ type: __WEBPACK_IMPORTED_MODULE_2__actions_userActions_jsx__["LOGIN_ERROR"], currentUser: 'Ошибка авторизации' });
+                    throw 'Ошибка авторизации';
+                }
+            })
             .then((data) => {
                 if (data.access_token) {
                     Object(__WEBPACK_IMPORTED_MODULE_1__localStorageServices_js__["a" /* setUserSession */])(data.username);
@@ -90838,6 +90861,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     dispatch({ type: __WEBPACK_IMPORTED_MODULE_2__actions_userActions_jsx__["LOGIN_SUCCESS"], currentUser: data.username });
                 }
             }).catch((ex) => {
+                alert(ex)
                 dispatch({ type: __WEBPACK_IMPORTED_MODULE_2__actions_userActions_jsx__["LOGIN_ERROR"], currentUser: ex });
             });
     }
