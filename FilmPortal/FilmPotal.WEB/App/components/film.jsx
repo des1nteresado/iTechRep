@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 
 export default class Film extends React.Component {
-
     render() {
         let commentBlock;
         if (!this.props.isFull) {

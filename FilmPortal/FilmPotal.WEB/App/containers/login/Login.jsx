@@ -5,6 +5,48 @@ import { reduxForm, formValueSelector } from 'redux-form'
 import TextField from '@material-ui/core/TextField';
 import AuthForm from '../../views/login/AuthForm.jsx';
 import { login, logout, showLoginForm, inputLogin, inputPassword } from '../../services/authenticationService.js'
+import Account from '../../components/Account.jsx'
+
+class Login extends React.Component {
+
+    renderTextField = ({
+        label,
+        input,
+        meta: { touched, invalid, error },
+        ...custom
+    }) => (
+            <TextField
+                label={label}
+                placeholder={label}
+                error={touched && invalid}
+                helperText={touched && error}
+                {...input}
+                {...custom}
+            />
+        )
+
+    render() {
+        const { pristine, submitting, userNameValue, passwordValue, invalid } = this.props;
+        let isLogged = this.props.user.isLogged;
+        return (
+            <React.Fragment>
+                {isLogged ?
+                    <Account
+                        user={this.props.user}
+                        logout={this.props.logout} /> :
+                    < AuthForm
+                        renderTextField={this.renderTextField}
+                        userNameValue={userNameValue}
+                        passwordValue={passwordValue}
+                        pristine={pristine}
+                        submitting={submitting}
+                        invalid={invalid}
+                    />
+                }
+            </React.Fragment>
+        )
+    }
+}
 
 const validate = values => {
     const errors = {}
@@ -27,38 +69,6 @@ const validate = values => {
     return errors
 }
 
-const renderTextField = ({
-    label,
-    input,
-    meta: { touched, invalid, error },
-    ...custom
-}) => (
-        <TextField
-            label={label}
-            placeholder={label}
-            error={touched && invalid}
-            helperText={touched && error}
-            {...input}
-            {...custom}
-        />
-    )
-
-let Login = props => {
-    const { pristine, submitting, userNameValue, passwordValue, invalid } = props;
-    return (
-        <AuthForm
-            renderTextField={renderTextField}
-            userNameValue={userNameValue}
-            passwordValue={passwordValue}
-            pristine={pristine}
-            submitting={submitting}
-            invalid={invalid}
-            onBottomTextClick={() => to('register')}
-            bottomText="Don't have an account? Register"
-        />
-    )
-}
-
 Login = reduxForm({
     form: 'loginReduxForm',
     validate,
@@ -74,4 +84,20 @@ Login = connect(state => {
     }
 })(Login)
 
-export default Login;
+let mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        login: bindActionCreators(login, dispatch),
+        logout: bindActionCreators(logout, dispatch),
+        showLoginForm: bindActionCreators(showLoginForm, dispatch),
+        inputLogin: bindActionCreators(inputLogin, dispatch),
+        inputPassword: bindActionCreators(inputPassword, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

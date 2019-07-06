@@ -2,7 +2,7 @@
 import { bindActionCreators } from 'redux';
 import { Field } from 'redux-form';
 import { FormStyleRedux, FormStyle, ButtonStyle } from '../../style.js';
-import authSubmit from '../../services/authenticationService.js'
+import { login } from '../../services/authenticationService.js'
 import { connect } from 'react-redux';
 
 const AuthForm = props => {
@@ -12,7 +12,7 @@ const AuthForm = props => {
             <form style={FormStyleRedux} data-method="post" onSubmit={(e) => {
                 console.log({ username: userNameValue, password: passwordValue });
                 e.preventDefault();
-                props.dispatch(authSubmit(userNameValue, passwordValue));
+                props.dispatch(login(userNameValue, passwordValue));
             }}>
                 <Field name="username" variant='outlined' component={renderTextField} label="Username" />
                 <Field name="password" type="password" variant='outlined' component={renderTextField} label="Password" />
@@ -27,7 +27,7 @@ const AuthForm = props => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        authSubmit: bindActionCreators(authSubmit, dispatch)
+        login: bindActionCreators(login, dispatch)
     }
 }
 

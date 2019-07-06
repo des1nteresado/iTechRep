@@ -5,7 +5,7 @@ const initialState = {
     error: ''
 }
 
-export default function catalog(state = initialState, action) {
+export default (state = initialState, action) => {
     switch (action.type) {
         case GET_FILMS_SUCCESS:
             return { ...state, data: action.posts, error: '' }
