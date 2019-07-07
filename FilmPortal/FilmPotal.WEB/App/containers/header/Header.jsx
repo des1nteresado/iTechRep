@@ -1,11 +1,13 @@
 ﻿import React from 'react';
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { Paper, Tabs, Tab } from '@material-ui/core';
 import { TabStyle } from '../../style.js';
 import urls from '../../routes.jsx';
 
-const Header = () => {
+const Header = (props) => {
     let hidden = false;
+    let isLogged = props.user.isLogged;
     const [value, setValue] = React.useState(() => {
         if (urls.indexOf(window.location.pathname) === -1) {
             hidden = true;
@@ -27,11 +29,17 @@ const Header = () => {
                 <Tabs value={value} centered style={TabStyle} onChange={handleChange}>
                     <Tab label="catalog" component={Link} to="/catalog" />
                     <Tab label="about" component={Link} to="/about" />
-                    <Tab label="sign in" component={Link} to="/login" />
+                    <Tab label={isLogged ? "account" : "sign in"} component={Link} to="/login" />
                 </Tabs>
             </Paper>
         </div>
     );
 }
 
-export default Header;
+let mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(Header)

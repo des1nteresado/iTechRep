@@ -4,8 +4,9 @@ import { bindActionCreators } from 'redux';
 import { reduxForm, formValueSelector } from 'redux-form'
 import TextField from '@material-ui/core/TextField';
 import AuthForm from '../../views/login/AuthForm.jsx';
-import { login, logout, showLoginForm, inputLogin, inputPassword } from '../../services/authenticationService.js'
+import { login, logout } from '../../services/authenticationService.js'
 import Account from '../../components/Account.jsx'
+import {validate} from './validLogin.js'
 
 class Login extends React.Component {
 
@@ -41,32 +42,12 @@ class Login extends React.Component {
                         pristine={pristine}
                         submitting={submitting}
                         invalid={invalid}
+                        bottomText="Don't have an account? Register"
                     />
                 }
             </React.Fragment>
         )
     }
-}
-
-const validate = values => {
-    const errors = {}
-    const requiredFields = [
-        'username',
-        'password'
-    ]
-    requiredFields.forEach(field => {
-        if (!values[field]) {
-            errors[field] = 'Required'
-        }
-    })
-    if ((values.password && !(values.password.length >= 4))) {
-
-        errors.password = 'Too short'
-    }
-    if (values.username && !(values.username.length >= 3)) {
-        errors.username = 'Too short'
-    }
-    return errors
 }
 
 Login = reduxForm({
@@ -94,9 +75,6 @@ let mapDispatchToProps = (dispatch) => {
     return {
         login: bindActionCreators(login, dispatch),
         logout: bindActionCreators(logout, dispatch),
-        showLoginForm: bindActionCreators(showLoginForm, dispatch),
-        inputLogin: bindActionCreators(inputLogin, dispatch),
-        inputPassword: bindActionCreators(inputPassword, dispatch)
     }
 }
 
