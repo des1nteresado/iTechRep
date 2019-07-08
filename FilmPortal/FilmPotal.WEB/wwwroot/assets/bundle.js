@@ -43264,8 +43264,8 @@ var App = function (_React$Component) {
                             _reactRouterDom.Switch,
                             null,
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _StartPage2.default }),
-                            _react2.default.createElement(_reactRouterDom.Route, { path: '/catalog', component: _Catalog2.default }),
-                            _react2.default.createElement(_reactRouterDom.Route, { path: '/catalog/film', component: _FilmPage2.default }),
+                            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/catalog', component: _Catalog2.default }),
+                            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/catalog/film', component: _FilmPage2.default }),
                             _react2.default.createElement(_reactRouterDom.Route, { path: '/about', component: _About2.default }),
                             _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _Login2.default }),
                             _react2.default.createElement(_reactRouterDom.Route, { path: '/registration', component: _Registrar2.default })
@@ -95090,6 +95090,8 @@ var _queryString = __webpack_require__(264);
 
 var _queryString2 = _interopRequireDefault(_queryString);
 
+var _reactRouterDom = __webpack_require__(57);
+
 var _Film = __webpack_require__(265);
 
 var _Film2 = _interopRequireDefault(_Film);
@@ -95146,6 +95148,8 @@ var FilmPage = function (_React$Component) {
                 return _react2.default.createElement(_Comment2.default, { key: item.commentId, data: item, user: _this2.props.user, deleteComment: _this2.deleteComment });
             });
 
+            var isLogged = this.props.user.isLogged;
+
             return _react2.default.createElement(
                 'div',
                 { id: 'post' },
@@ -95170,12 +95174,21 @@ var FilmPage = function (_React$Component) {
                     null,
                     '\u041D\u0430\u043F\u0438\u0441\u0430\u0442\u044C \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439'
                 ),
-                _react2.default.createElement(_NewCommentForm2.default, {
+                isLogged ? _react2.default.createElement(_NewCommentForm2.default, {
                     user: this.props.user,
                     comment: this.props.data.comment,
                     changeComment: this.props.changeComment,
                     filmId: this.props.data.film.filmId,
-                    addComment: this.props.addComment })
+                    addComment: this.props.addComment }) : _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        { to: '/login', style: { textDecoration: 'none' } },
+                        '\u0412\u043E\u0439\u0434\u0438\u0442\u0435'
+                    ),
+                    ' \u0447\u0442\u043E\u0431\u044B \u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439.'
+                )
             );
         }
     }]);
@@ -95220,10 +95233,6 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(13);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -95242,58 +95251,58 @@ var Comment = function (_React$Component) {
 	}
 
 	_createClass(Comment, [{
-		key: 'render',
+		key: "render",
 		value: function render() {
 			var _this2 = this;
 
 			var deleteBlock = void 0;
 			if (this.props.isLogged) {
 				deleteBlock = _react2.default.createElement(
-					'div',
-					{ className: 'action rightFloat' },
-					'\xA0\xA0\xA0',
+					"div",
+					{ className: "action rightFloat" },
+					"\xA0\xA0\xA0",
 					_react2.default.createElement(
-						'a',
-						{ className: 'link', onClick: function onClick() {
+						"a",
+						{ className: "link", onClick: function onClick() {
 								if (confirm('Вы уверены что хотите удалить запись?')) {
 									_this2.props.deleteComment(_this2.props.data.commentId);
 								}
 							} },
-						'x'
+						"x"
 					)
 				);
 			}
 
 			return _react2.default.createElement(
-				'div',
-				{ className: 'commentLayout' },
+				"div",
+				{ className: "commentLayout" },
 				_react2.default.createElement(
-					'div',
-					{ className: 'header' },
+					"div",
+					{ className: "header" },
 					_react2.default.createElement(
-						'div',
-						{ className: 'inline-block' },
+						"div",
+						{ className: "inline-block" },
 						_react2.default.createElement(
-							'span',
-							{ className: 'bold' },
-							this.props.data.userId
+							"span",
+							{ className: "bold" },
+							this.props.data.user.login
 						)
 					),
-					deleteBlock,
-					_react2.default.createElement(
-						'div',
-						{ className: 'rightFloat' },
-						this.props.data.createDate
-					)
+					deleteBlock
 				),
 				_react2.default.createElement(
-					'div',
-					{ className: 'content' },
+					"div",
+					{ className: "content" },
 					_react2.default.createElement(
-						'div',
+						"div",
 						null,
 						this.props.data.body
 					)
+				),
+				_react2.default.createElement(
+					"div",
+					{ className: "rightFloat" },
+					this.props.data.createDate
 				)
 			);
 		}
@@ -95353,14 +95362,6 @@ var NewCommentForm = function (_React$Component) {
                 { className: 'writeCommentBlock' },
                 _react2.default.createElement(
                     'div',
-                    { className: 'row' },
-                    '\u0418\u043C\u044F: ',
-                    _react2.default.createElement('input', { type: 'input', value: this.props.author, onChange: function onChange(e) {
-                            return _this2.props.changeAuthor(e.target.value);
-                        } })
-                ),
-                _react2.default.createElement(
-                    'div',
                     { className: 'commentInput' },
                     _react2.default.createElement('textarea', { className: 'commentArea', rows: '7', value: this.props.comment, onChange: function onChange(e) {
                             return _this2.props.changeComment(e.target.value);
@@ -95369,7 +95370,7 @@ var NewCommentForm = function (_React$Component) {
                         'div',
                         { className: 'actionBlock' },
                         _react2.default.createElement('input', { type: 'button', value: '\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C', onClick: function onClick() {
-                                return _this2.props.addComment(_this2.props.author, _this2.props.comment, _this2.props.postId);
+                                return _this2.props.addComment(_this2.props.user.userId, _this2.props.comment, _this2.props.filmId);
                             } })
                     )
                 )

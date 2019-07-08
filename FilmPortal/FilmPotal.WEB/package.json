@@ -19,7 +19,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^3.0.0",
     "file-loader": "^1.1.6",
-    "material-ui": "^0.20.2",
+    "material-ui": "^1.0.0-beta.47",
     "react": "^16.8.6",
     "redux-form": "^8.2.4",
     "style-loader": "^0.19.1",
@@ -29,6 +29,8 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "isomorphic-fetch": "^2.2.1",
+    "material-ui-icons": "^1.0.0-beta.36",
+    "material-ui-rating": "^4.0.0-beta.2",
     "query-string": "^5.0.1",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",

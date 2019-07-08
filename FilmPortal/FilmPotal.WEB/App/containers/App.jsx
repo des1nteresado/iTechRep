@@ -17,8 +17,8 @@ export default class App extends React.Component {
                     <main>
                         <Switch>
                             <Route exact path="/" component={StartPage} />
-                            <Route path="/catalog" component={Catalog} />
-                            <Route path="/catalog/film" component={FilmPage} />
+                            <Route exact path="/catalog" component={Catalog} />
+                            <Route exact path="/catalog/film" component={FilmPage} />
                             <Route path="/about" component={About} />
                             <Route path="/login" component={Login} />
                             <Route path="/registration" component={Registrar} />

@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 export default class Comment extends React.Component {
 
@@ -12,22 +11,23 @@ export default class Comment extends React.Component {
 					if (confirm('Вы уверены что хотите удалить запись?')) {
 						this.props.deleteComment(this.props.data.commentId);
 					}
-			}}>x</a></div>;
+				}}>x</a></div>;
 		}
 
-        return (
-            <div className="commentLayout">
-                <div className="header">
-					<div className="inline-block"><span className="bold">{this.props.data.userId}</span></div>
+		return (
+			<div className="commentLayout">
+				<div className="header">
+					<div className="inline-block"><span className="bold">{this.props.data.user.login}</span></div>
 					{deleteBlock}
-					<div className="rightFloat">{this.props.data.createDate}</div>
-                </div>
-                <div className="content">
-                    <div>
+				</div>
+			
+				<div className="content">
+					<div>
 						{this.props.data.body}
-                    </div>
-                </div>
-            </div>
-        );
-    }
+					</div>
+				</div>
+				<div className="rightFloat">{this.props.data.createDate}</div>
+			</div>
+		);
+	}
 };
