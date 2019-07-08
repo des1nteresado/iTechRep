@@ -1,4 +1,4 @@
-import { GET_FILM_SUCCESS, GET_FILM_ERROR, ADD_COMMENT_SUCCESS, ADD_COMMENT_ERROR, CHANGE_COMMENT_TEXT } from '../actions/filmActions.jsx'
+import { GET_FILM_SUCCESS, GET_FILM_ERROR, ADD_COMMENT_SUCCESS, ADD_COMMENT_ERROR, DELETE_COMMENT_SUCCESS, DELETE_COMMENT_ERROR, CHANGE_COMMENT_TEXT } from '../actions/filmActions.jsx'
 import AuthHelper from '../helpers/authHelper.js'
 
 export function changeComment(comment) {
@@ -64,12 +64,15 @@ export function deleteComment(commentId, filmId) {
 			}
 		}).then((response) => {
 			if (response.ok) {
+				dispatch({ type: DELETE_COMMENT_SUCCESS });
 				getFilm(filmId)(dispatch);
 			} else {
 				alert('Ошибка удаления комментария');
+				dispatch({ type: DELETE_COMMENT_ERROR, payload: ex });
 			}
 		}).catch((ex) => {
 			alert(ex);
+			dispatch({ type: DELETE_COMMENT_ERROR, payload: ex });
 		});
 	}
 }
