@@ -18,7 +18,7 @@ export default class Comment extends React.Component {
         return (
             <div className="commentLayout">
                 <div className="header">
-					<div className="inline-block"><span className="bold">{this.props.data.author}</span></div>
+					<div className="inline-block"><span className="bold">{this.props.data.userId}</span></div>
 					{deleteBlock}
 					<div className="rightFloat">{this.props.data.createDate}</div>
                 </div>

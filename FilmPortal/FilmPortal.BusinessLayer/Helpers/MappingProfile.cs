@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using AutoMapper;
+using FilmPortal.BusinessLayer.Entities;
 using FilmPortal.BusinessLayer.Models;
 using FilmPortal.DataLayer.Entities;
 

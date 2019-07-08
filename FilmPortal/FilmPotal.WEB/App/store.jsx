@@ -3,12 +3,14 @@ import { reducer as reduxFormReducer } from 'redux-form'
 import thunk from 'redux-thunk'
 import catalogReducer from './reducers/catalogReducer.jsx'
 import userReducer from './reducers/userReducer.jsx'
+import filmReducer from './reducers/filmReducer.jsx'
 import AuthHelper from './helpers/authHelper.js'
 
 const reducer = combineReducers({
     catalog: catalogReducer,
     form: reduxFormReducer,
-    user: userReducer
+    user: userReducer,
+    film: filmReducer
 });
 
 const initialState = {
@@ -22,6 +24,12 @@ const initialState = {
         password: '',
         error: '',
         isLoginFormShowed: false
+    },
+    film: {
+        film: { comments: [] },
+        userId: '',
+        comment: '',
+        error: ''
     }
 }
 

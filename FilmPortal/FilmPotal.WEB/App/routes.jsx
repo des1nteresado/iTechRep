@@ -2,5 +2,6 @@
     '/catalog',
     '/about',
     '/login',
-    '/'
+    '/',
+    '/catalog/film'
 ];

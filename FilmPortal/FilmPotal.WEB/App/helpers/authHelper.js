@@ -16,6 +16,15 @@
         return login;
     },
 
+    getUserId: () => {
+        let item = sessionStorage.getItem(constants.tokenKey);
+        let userId = '';
+        if (item) {
+            userId = JSON.parse(item).userId;
+        }
+        return userId;
+    },
+
     isLogged: () => {
         let item = sessionStorage.getItem(constants.tokenKey);
         if (item) {

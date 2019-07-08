@@ -52,6 +52,7 @@ namespace FilmPotal.WEB
             services.AddSingleton(Configuration);
             services.AddScoped<IFilmService, FilmService>();
             services.AddScoped<ICommentService, CommentService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IGenreService, GenreService>();
             services.AddScoped<IRatingService, RatingService>();
             services.AddScoped<IIdentityService, IdentityService>();

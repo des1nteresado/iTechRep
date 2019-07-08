@@ -25,7 +25,7 @@ export const login = (data) => {
             }
         }).then((data) => {
             AuthHelper.saveAuth(data.username, data.access_token);
-            dispatch({ type: LOGIN_SUCCESS, payload: data.username });
+            dispatch({ type: LOGIN_SUCCESS, payload: data });
         }).catch((ex) => {
             alert(ex);
             dispatch({ type: LOGIN_ERROR, payload: ex });

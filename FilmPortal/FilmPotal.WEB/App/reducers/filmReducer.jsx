@@ -1,4 +1,4 @@
-import { GET_FILM_SUCCESS, GET_FILM_ERROR, ADD_COMMENT_SUCCESS, ADD_COMMENT_ERROR, CHANGE_COMMENT_AUTHOR, CHANGE_COMMENT_TEXT } from '../actions/filmActions.jsx/index.js'
+import { GET_FILM_SUCCESS, GET_FILM_ERROR, ADD_COMMENT_SUCCESS, ADD_COMMENT_ERROR, CHANGE_COMMENT_TEXT } from '../actions/filmActions.jsx'
 
 const initialState = {
     film: { comments: [] },
@@ -7,10 +7,10 @@ const initialState = {
     error: ''
 }
 
-export default function comments(state = initialState, action) {
+export default function film(state = initialState, action) {
     switch (action.type) {
         case GET_FILM_SUCCESS:
-            return { ...state, post: action.payload, error: '' }
+            return { ...state, film: action.payload, error: '' }
 
         case GET_FILM_ERROR:
             return { ...state, error: action.payload }

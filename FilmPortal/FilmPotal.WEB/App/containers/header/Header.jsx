@@ -16,6 +16,9 @@ const Header = (props) => {
         if (urls.indexOf(window.location.pathname) === 3) {
             return false;
         }
+        if (urls.indexOf(window.location.pathname) === 4) {
+            return 0;
+        }
         return urls.indexOf(window.location.pathname);
     });
 
