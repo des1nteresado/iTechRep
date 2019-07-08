@@ -24,7 +24,7 @@ export const login = (data) => {
                 throw 'Ошибка авторизации';
             }
         }).then((data) => {
-            AuthHelper.saveAuth(data.username, data.access_token);
+            AuthHelper.saveAuth(data.username, data.userId, data.access_token);
             dispatch({ type: LOGIN_SUCCESS, payload: data });
         }).catch((ex) => {
             alert(ex);

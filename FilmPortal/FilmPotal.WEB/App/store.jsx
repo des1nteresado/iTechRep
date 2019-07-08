@@ -21,6 +21,7 @@ const initialState = {
     user: {
         isLogged: AuthHelper.isLogged(),
         name: AuthHelper.getLogin(),
+        userId: AuthHelper.getUserId(),
         password: '',
         error: '',
         isLoginFormShowed: false

@@ -3,6 +3,8 @@ import React from 'react';
 export default class Comment extends React.Component {
 
 	render() {
+        console.log(this.props.user.userId + " data.userId" + this.props.data.userId);
+        console.log(this.props.user);
 		return (
 			<div className="commentLayout">
 				<div className="header">

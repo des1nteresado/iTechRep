@@ -1,6 +1,10 @@
 ﻿export default {
-    saveAuth: (userName, token) => {
-        sessionStorage.setItem(constants.tokenKey, JSON.stringify({ userName: userName, access_token: token }));
+    saveAuth: (userName, userId, token) => {
+        sessionStorage.setItem(constants.tokenKey, JSON.stringify({
+            userName: userName,
+            userId: userId,
+            access_token: token
+        }));
     },
 
     clearAuth: () => {
