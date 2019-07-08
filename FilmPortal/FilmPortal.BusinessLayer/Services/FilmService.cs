@@ -92,27 +92,35 @@ namespace FilmPortal.BusinessLayer.Services
 
         public void AddFilm(AddFilmRequest request)
         {
+            if (request == null)
+            {
+                throw new Exception("Film is empty or null.");
+            }
+
             var film = _mapper.Map<AddFilmRequest, Film>(request);
             _repository.Insert(film);
         }
 
         public void UpdateFilm(Film film)
         {
+            if (film == null)
+            {
+                throw new Exception("Film is empty or null.");
+            }
+
             _repository.Update(film);
         }
 
-        public bool DeleteFilm(int filmId)
+        public void DeleteFilm(int filmId)
         {
             var film = _repository.GetById(filmId);
 
             if (film == null)
             {
-                return false;
+                throw new Exception("Film does not exist");
             }
 
             _repository.Delete(filmId);
-
-            return true;
         }
     }
 }

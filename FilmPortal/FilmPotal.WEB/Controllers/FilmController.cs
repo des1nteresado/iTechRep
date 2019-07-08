@@ -60,9 +60,16 @@ namespace FilmPotal.WEB.Controllers
                 return BadRequest(ModelState);
             }
 
-            _filmService.AddFilm(request);
+            try
+            {
+                _filmService.AddFilm(request);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
-            return BadRequest();
+            return Ok("Film added successfully!");
         }
 
         [Authorize]
@@ -75,12 +82,17 @@ namespace FilmPotal.WEB.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (_commentService.AddComment(request))
+            try
             {
-                return Ok("Comment added successfully!");
+                _commentService.AddComment(request);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
 
-            return BadRequest();
+
+            return Ok("Comment added successfully!");
         }
 
         [Route("rating")]
@@ -109,12 +121,17 @@ namespace FilmPotal.WEB.Controllers
         [HttpDelete]
         public IActionResult DeleteComment(int commentId)
         {
-            if (_commentService.DeleteComment(commentId))
+            try
             {
-                return Ok("Comment deleted successfully!");
+                _commentService.DeleteComment(commentId);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
 
-            return BadRequest();
+            return Ok("Comment deleted successfully!");
         }
 
         [Authorize]
@@ -122,12 +139,17 @@ namespace FilmPotal.WEB.Controllers
         [HttpDelete]
         public IActionResult DeleteFilm(int filmId)
         {
-            if (_filmService.DeleteFilm(filmId))
+            try
             {
-                return Ok("Film deleted successfully!");
+                _filmService.DeleteFilm(filmId);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
 
-            return BadRequest();
+            return Ok("Film deleted successfully!");
         }
     }
 }
