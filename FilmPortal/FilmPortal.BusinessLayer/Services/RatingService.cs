@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Linq;
+using AutoMapper;
 using FilmPortal.BusinessLayer.Interfaces;
 using FilmPortal.BusinessLayer.Models;
 using FilmPortal.DataLayer.Entities;
@@ -21,46 +23,51 @@ namespace FilmPortal.BusinessLayer.Services
             _filmRepository = filmRepository;
         }
 
-        public bool AddRating(AddRatingRequest request)
+        public void AddRating(AddRatingRequest request)
         {
             var user = _userRepository.GetById(request.UserId);
+
+            if (user == null)
+            {
+                throw new Exception("User does not exist.");
+            }
             var film = _filmRepository.GetById(request.FilmId);
 
-            if (user == null || film == null)
+            if (film == null)
             {
-                return false;
+                throw new Exception("Film does not exist.");
             }
 
             var rating = _mapper.Map<AddRatingRequest, Rating>(request);
-            _repository.Insert(rating);
-
-            return true;
+            if (_repository.GetAll().Any(p => p.UserId == rating.UserId && p.Mark == rating.Mark && p.FilmId == rating.FilmId))
+            {
+                var mark = _repository.GetAll().FirstOrDefault(p => p.UserId == rating.UserId && p.Mark == rating.Mark && p.FilmId == rating.FilmId);
+                if (mark != null) DeleteRating(mark.RatingId);
+            }
+            else if (_repository.GetAll().Any(p => p.UserId == rating.UserId && p.FilmId == rating.FilmId))
+            {
+                var mark = _repository.GetAll().FirstOrDefault(p => p.UserId == rating.UserId && p.FilmId == rating.FilmId);
+                if (mark == null) return;
+                mark.Mark = rating.Mark;
+                _repository.Update(mark);
+            }
+            else
+            {
+                _repository.Insert(rating);
+            }
         }
 
-        public bool DeleteRating(int ratingId)
+        public void DeleteRating(int ratingId)
         {
             var rating = _repository.GetById(ratingId);
 
             if (rating == null)
             {
-                return false;
+                throw new Exception("Rating does not exist.");
             }
 
             _repository.Delete(ratingId);
 
-            return true;
-        }
-
-        public bool UpdateRating(Rating rating) //????
-        {
-            if (rating == null)
-            {
-                return false;
-            }
-
-            _repository.Update(rating);
-
-            return true;
         }
     }
 }

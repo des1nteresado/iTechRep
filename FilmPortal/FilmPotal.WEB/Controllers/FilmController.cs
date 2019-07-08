@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using FilmPortal.BusinessLayer.Helpers;
 using FilmPortal.BusinessLayer.Interfaces;
 using FilmPortal.BusinessLayer.Models;
@@ -82,47 +83,27 @@ namespace FilmPotal.WEB.Controllers
             return BadRequest();
         }
 
-        [Authorize]
         [Route("rating")]
         [HttpPost]
-        public IActionResult AddRating([FromBody] AddRatingRequest request)
+        public IActionResult ModifyRating([FromBody] AddRatingRequest request)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (_ratingService.AddRating(request))
+            try
             {
-                return Ok("Rating added successfully!");
+                _ratingService.AddRating(request);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
 
-            return BadRequest();
+            return Ok("Rating modified successfully!");
+
         }
-
-        //[Route("comment")]
-        //[HttpPut]
-        //public IActionResult UpdateComment([FromBody] Comment request)
-        //{
-        //    if (_commentService.UpdateComment(request))
-        //    {
-        //        return Ok("Comment updated successfully!");
-        //    }
-
-        //    return BadRequest();
-        //}
-
-        //[Route("rating")]
-        //[HttpPut]
-        //public IActionResult UpdateRating([FromBody] Rating request)
-        //{
-        //    if (_ratingService.AddRating(request))
-        //    {
-        //        return Ok("Rating updated successfully!");
-        //    }
-
-        //    return BadRequest();
-        //}
 
         [Route("comment")]
         [HttpDelete]
@@ -144,19 +125,6 @@ namespace FilmPotal.WEB.Controllers
             if (_filmService.DeleteFilm(filmId))
             {
                 return Ok("Film deleted successfully!");
-            }
-
-            return BadRequest();
-        }
-
-        [Authorize]
-        [Route("rating")]
-        [HttpDelete]
-        public IActionResult DeleteRating(int ratingId)
-        {
-            if (_ratingService.DeleteRating(ratingId))
-            {
-                return Ok("Rating deleted successfully!");
             }
 
             return BadRequest();

@@ -22,6 +22,7 @@ export default class Film extends React.Component {
                         <div className="producer">Режисёр: {this.props.data.producer}</div>
                         <div className="averageMark">Рейтинг: {this.props.data.averageMark} ({this.props.data.markCount})</div>
                     </div>
+                 
                     <div className="footer">
                         <div className="actionBlock">
                             <div className="commentsBlock">

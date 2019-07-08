@@ -36,7 +36,7 @@ namespace FilmPortal.BusinessLayer.Services
             return true;
         }
 
-        public bool DeleteComment(int commentId) 
+        public bool DeleteComment(int commentId)
         {
             var comment = _repository.GetById(commentId);
 
@@ -50,7 +50,7 @@ namespace FilmPortal.BusinessLayer.Services
             return true;
         }
 
-        public bool UpdateComment(Comment comment) //как передевать коммент?
+        public bool UpdateComment(Comment comment)
         {
             if (comment == null)
             {

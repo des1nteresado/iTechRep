@@ -7,6 +7,8 @@ import Film from '../../components/Film.jsx';
 import Comment from '../../components/Comment.jsx';
 import NewCommentForm from '../../components/NewCommentForm.jsx';
 import { changeComment, getFilm, addComment, deleteComment } from '../../services/filmService.js'
+import Rating from 'material-ui-rating'
+
 
 class FilmPage extends React.Component {
     constructor(props) {
@@ -37,6 +39,11 @@ class FilmPage extends React.Component {
         return (
             <div id="post">
                 <Film data={this.props.data.film} isLogged={this.props.user.isLogged} isFull={true} />
+                <Rating
+                        value={this.props.data.film.averageMark}
+                        max={10}
+                        onChange={(value) => console.log(`Rated with value ${value}`)}
+                    />
                 <h3>Комментарии <span className="itemCount">{this.props.data.film.comments.length}</span></h3>
                 <div className="commentsList">
                     {comments}
