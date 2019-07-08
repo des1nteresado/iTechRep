@@ -4,7 +4,8 @@ export default class Comment extends React.Component {
 
 	render() {
         console.log(this.props.user.userId + " data.userId" + this.props.data.userId);
-        console.log(this.props.user);
+		console.log(this.props.user);
+		console.log(this.props.data.filmId)
 		return (
 			<div className="commentLayout">
 				<div className="header">

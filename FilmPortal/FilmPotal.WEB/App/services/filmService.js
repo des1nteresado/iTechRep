@@ -59,7 +59,6 @@ export function deleteComment(commentId, filmId) {
 		fetch(window.constants.comment + '?commentId=' + commentId, {
 			method: 'DELETE',
 			headers: {
-				'Content-Type': 'application/json',
 				'Authorization': 'Bearer ' + token
 			}
 		}).then((response) => {
