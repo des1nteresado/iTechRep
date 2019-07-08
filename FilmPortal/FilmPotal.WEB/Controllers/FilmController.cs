@@ -49,6 +49,7 @@ namespace FilmPotal.WEB.Controllers
             return Ok(film);
         }
 
+        [Authorize]
         [Route("film")]
         [HttpPost]
         public IActionResult AddFilm([FromBody] AddFilmRequest request)
@@ -63,6 +64,7 @@ namespace FilmPotal.WEB.Controllers
             return BadRequest();
         }
 
+        [Authorize]
         [Route("comment")]
         [HttpPost]
         public IActionResult AddComment([FromBody] AddCommentRequest request)
@@ -80,6 +82,7 @@ namespace FilmPotal.WEB.Controllers
             return BadRequest();
         }
 
+        [Authorize]
         [Route("rating")]
         [HttpPost]
         public IActionResult AddRating([FromBody] AddRatingRequest request)
@@ -121,6 +124,7 @@ namespace FilmPotal.WEB.Controllers
         //    return BadRequest();
         //}
 
+        [Authorize]
         [Route("comment")]
         [HttpDelete]
         public IActionResult DeleteComment(int commentId)
@@ -133,6 +137,7 @@ namespace FilmPotal.WEB.Controllers
             return BadRequest();
         }
 
+        [Authorize]
         [Route("film")]
         [HttpDelete]
         public IActionResult DeleteFilm(int filmId)
@@ -145,6 +150,7 @@ namespace FilmPotal.WEB.Controllers
             return BadRequest();
         }
 
+        [Authorize]
         [Route("rating")]
         [HttpDelete]
         public IActionResult DeleteRating(int ratingId)
@@ -155,13 +161,6 @@ namespace FilmPotal.WEB.Controllers
             }
 
             return BadRequest();
-        }
-
-        [Authorize]
-        [Route("getlogin")]
-        public IActionResult GetLogin()
-        {
-            return Ok($"Ваш логин: {User.Identity.Name}");
         }
     }
 }

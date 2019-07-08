@@ -25,7 +25,7 @@ namespace FilmPortal.BusinessLayer.Helpers
             CreateMap<AddRatingRequest, Rating>();
             CreateMap<IdentityModel, User>()
                 .ForMember(m => m.Login, opt => opt.MapFrom(m => m.Username));
-
+            CreateMap<User, UserModel>();
         }
     }
 }

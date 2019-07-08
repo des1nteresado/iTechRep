@@ -21,9 +21,9 @@ namespace FilmPortal.BusinessLayer.Models
 
         public int CommentCount { get; set; }
 
-        public ICollection<Comment> Comments { get; set; }
+        public List<Comment> Comments { get; set; }
 
-        public ICollection<Genre> Genres { get; set; }
+        public List<Genre> Genres { get; set; }
 
     }
 }
