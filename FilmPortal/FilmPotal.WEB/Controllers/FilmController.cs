@@ -124,7 +124,6 @@ namespace FilmPotal.WEB.Controllers
         //    return BadRequest();
         //}
 
-        [Authorize]
         [Route("comment")]
         [HttpDelete]
         public IActionResult DeleteComment(int commentId)

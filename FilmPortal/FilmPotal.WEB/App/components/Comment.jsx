@@ -3,19 +3,16 @@ import React from 'react';
 export default class Comment extends React.Component {
 
 	render() {
-        console.log(this.props.user.userId + " data.userId" + this.props.data.userId);
-		console.log(this.props.user);
-		console.log(this.props.data.filmId)
 		return (
 			<div className="commentLayout">
 				<div className="header">
 					<div className="inline-block"><span className="bold">{this.props.data.user.login}</span></div>
 					{
-						this.props.user.userId == this.props.data.userId ? <div className="action rightFloat">&nbsp;&nbsp;&nbsp;<a className="link" onClick={() => {
+						this.props.user.userId == this.props.data.userId ? <div className="action rightFloat"><a className="link" onClick={() => {
 							if (confirm('Вы уверены что хотите удалить запись?')) {
-								this.props.deleteComment(this.props.data.commentId, this.props.data.filmId);
-							}
-						}}>x</a></div> : null
+                                this.props.deleteComment(this.props.data.commentId, this.props.data.filmId);
+                            }
+						}}>x</a></div> : <div/>
 					}
 				</div>
 

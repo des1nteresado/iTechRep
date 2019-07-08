@@ -22,13 +22,13 @@ class FilmPage extends React.Component {
     }
 
     deleteComment(commentId) {
-        this.props.deleteComment(commentId, this.props.data.film.filmid);
+        this.props.deleteComment(commentId, this.props.data.film.filmId);
     }
 
     render() {
         let comments = this.props.data.film.comments.map(item => {
             return (
-                <Comment key={item.commentId} data={item} user={this.props.user} deleteComment={this.deleteComment} />
+                <Comment key={item.commentId} data={item} user={this.props.user} deleteComment={this.deleteComment} getFilm={this.getFilm} />
             );
         });
 
@@ -51,7 +51,7 @@ class FilmPage extends React.Component {
                         addComment={this.props.addComment} />
                         : <div>
                             <Link to='/login' style={{ textDecoration: 'none' }}>
-                                Войдите 
+                                Войдите
                             </Link> чтобы оставить комментарий.</div>
                 }
 

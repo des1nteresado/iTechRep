@@ -91350,7 +91350,6 @@ var AuthForm = function AuthForm(props) {
         _react2.default.createElement(
             'form',
             { style: _style.FormStyleRedux, 'data-method': 'post', onSubmit: function onSubmit(e) {
-                    console.log({ username: userNameValue, password: passwordValue });
                     e.preventDefault();
                     props.dispatch((0, _authenticationService.login)({ username: userNameValue, password: passwordValue }));
                 } },
@@ -95143,7 +95142,7 @@ var FilmPage = function (_React$Component) {
     }, {
         key: 'deleteComment',
         value: function deleteComment(commentId) {
-            this.props.deleteComment(commentId, this.props.data.film.filmid);
+            this.props.deleteComment(commentId, this.props.data.film.filmId);
         }
     }, {
         key: 'render',
@@ -95151,7 +95150,7 @@ var FilmPage = function (_React$Component) {
             var _this2 = this;
 
             var comments = this.props.data.film.comments.map(function (item) {
-                return _react2.default.createElement(_Comment2.default, { key: item.commentId, data: item, user: _this2.props.user, deleteComment: _this2.deleteComment });
+                return _react2.default.createElement(_Comment2.default, { key: item.commentId, data: item, user: _this2.props.user, deleteComment: _this2.deleteComment, getFilm: _this2.getFilm });
             });
 
             var isLogged = this.props.user.isLogged;
@@ -95261,9 +95260,6 @@ var Comment = function (_React$Component) {
 		value: function render() {
 			var _this2 = this;
 
-			console.log(this.props.user.userId + " data.userId" + this.props.data.userId);
-			console.log(this.props.user);
-			console.log(this.props.data.filmId);
 			return _react2.default.createElement(
 				"div",
 				{ className: "commentLayout" },
@@ -95282,7 +95278,6 @@ var Comment = function (_React$Component) {
 					this.props.user.userId == this.props.data.userId ? _react2.default.createElement(
 						"div",
 						{ className: "action rightFloat" },
-						"\xA0\xA0\xA0",
 						_react2.default.createElement(
 							"a",
 							{ className: "link", onClick: function onClick() {
@@ -95292,7 +95287,7 @@ var Comment = function (_React$Component) {
 								} },
 							"x"
 						)
-					) : null
+					) : _react2.default.createElement("div", null)
 				),
 				_react2.default.createElement(
 					"div",
@@ -95405,78 +95400,81 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 function changeComment(comment) {
-	return {
-		type: __WEBPACK_IMPORTED_MODULE_0__actions_filmActions_jsx__["CHANGE_COMMENT_TEXT"],
-		payload: comment
-	}
+    return {
+        type: __WEBPACK_IMPORTED_MODULE_0__actions_filmActions_jsx__["CHANGE_COMMENT_TEXT"],
+        payload: comment
+    }
 }
 
 function getFilm(filmId) {
-	return (dispatch) => {
-		fetch(window.constants.film + '?filmId=' + filmId)
-			.then((response) => {
-				return response.json();
-			}).then((data) => {
-				dispatch({ type: __WEBPACK_IMPORTED_MODULE_0__actions_filmActions_jsx__["GET_FILM_SUCCESS"], payload: data });
-			}).catch((ex) => {
-				alert(ex);
-				dispatch({ type: __WEBPACK_IMPORTED_MODULE_0__actions_filmActions_jsx__["GET_FILM_ERROR"], payload: ex });
-			});
-	}
+    return (dispatch) => {
+        fetch(window.constants.film + '?filmId=' + filmId)
+            .then((response) => {
+                let data = response;
+                data = response != '' ? response.json() : {};
+                return data;
+            }).then((data) => {
+                dispatch({ type: __WEBPACK_IMPORTED_MODULE_0__actions_filmActions_jsx__["GET_FILM_SUCCESS"], payload: data });
+            }).catch((ex) => {
+                alert(ex);
+                dispatch({ type: __WEBPACK_IMPORTED_MODULE_0__actions_filmActions_jsx__["GET_FILM_ERROR"], payload: ex });
+            });
+    }
 }
 
 function addComment(userId, comment, filmId) {
-	return (dispatch) => {
-		if (userId && comment) {
-			let token = __WEBPACK_IMPORTED_MODULE_1__helpers_authHelper_js__["default"].getToken();
-			fetch(window.constants.comment,
-				{
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-						'Authorization': 'Bearer ' + token
-					},
-					body: JSON.stringify({ userId: userId, comment: comment, filmId: filmId })
-				}).then((response) => {
-					if (response.ok) {
-						dispatch({ type: __WEBPACK_IMPORTED_MODULE_0__actions_filmActions_jsx__["ADD_COMMENT_SUCCESS"] });
-						getFilm(filmId)(dispatch);
-					} else {
-						alert('Ошибка добавления комментария');
-						dispatch({ type: __WEBPACK_IMPORTED_MODULE_0__actions_filmActions_jsx__["ADD_COMMENT_ERROR"], payload: 'Ошибка добавления комментария' });
-					}
-				}).catch((ex) => {
-					alert(ex);
-					dispatch({ type: __WEBPACK_IMPORTED_MODULE_0__actions_filmActions_jsx__["ADD_COMMENT_ERROR"], payload: ex });
-				});
-		} else {
-			alert('Необходимо заполнить имя автора и тело комментария');
-			dispatch({ type: __WEBPACK_IMPORTED_MODULE_0__actions_filmActions_jsx__["ADD_COMMENT_ERROR"], payload: 'Ошибка добавления комментария' });
-		}
-	}
+    return (dispatch) => {
+        if (userId && comment) {
+            let token = __WEBPACK_IMPORTED_MODULE_1__helpers_authHelper_js__["default"].getToken();
+            fetch(window.constants.comment,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token
+                    },
+                    body: JSON.stringify({ userId: userId, comment: comment, filmId: filmId })
+                }).then((response) => {
+                    if (response.ok) {
+                        dispatch({ type: __WEBPACK_IMPORTED_MODULE_0__actions_filmActions_jsx__["ADD_COMMENT_SUCCESS"] });
+                        getFilm(filmId)(dispatch);
+                    } else {
+                        alert('Ошибка добавления комментария');
+                        dispatch({ type: __WEBPACK_IMPORTED_MODULE_0__actions_filmActions_jsx__["ADD_COMMENT_ERROR"], payload: 'Ошибка добавления комментария' });
+                    }
+                }).catch((ex) => {
+                    alert(ex);
+                    dispatch({ type: __WEBPACK_IMPORTED_MODULE_0__actions_filmActions_jsx__["ADD_COMMENT_ERROR"], payload: ex });
+                });
+        } else {
+            alert('Комментарий не может быть пустым!');
+            dispatch({ type: __WEBPACK_IMPORTED_MODULE_0__actions_filmActions_jsx__["ADD_COMMENT_ERROR"], payload: 'Ошибка добавления комментария' });
+        }
+    }
 }
 
 function deleteComment(commentId, filmId) {
-	return (dispatch) => {
-		let token = __WEBPACK_IMPORTED_MODULE_1__helpers_authHelper_js__["default"].getToken();
-		fetch(window.constants.comment + '?commentId=' + commentId, {
-			method: 'DELETE',
-			headers: {
-				'Authorization': 'Bearer ' + token
-			}
-		}).then((response) => {
-			if (response.ok) {
-				dispatch({ type: __WEBPACK_IMPORTED_MODULE_0__actions_filmActions_jsx__["DELETE_COMMENT_SUCCESS"] });
-				getFilm(filmId)(dispatch);
-			} else {
-				alert('Ошибка удаления комментария');
-				dispatch({ type: __WEBPACK_IMPORTED_MODULE_0__actions_filmActions_jsx__["DELETE_COMMENT_ERROR"], payload: ex });
-			}
-		}).catch((ex) => {
-			alert(ex);
-			dispatch({ type: __WEBPACK_IMPORTED_MODULE_0__actions_filmActions_jsx__["DELETE_COMMENT_ERROR"], payload: ex });
-		});
-	}
+    return (dispatch) => {
+        let token = __WEBPACK_IMPORTED_MODULE_1__helpers_authHelper_js__["default"].getToken();
+        fetch(window.constants.comment + '?commentId=' + commentId, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+        }).then((response) => {
+            if (response.ok) {
+                dispatch({ type: __WEBPACK_IMPORTED_MODULE_0__actions_filmActions_jsx__["DELETE_COMMENT_SUCCESS"] });
+                getFilm(filmId)(dispatch);
+            } else {
+                alert('Ошибка удаления комментария');
+                dispatch({ type: __WEBPACK_IMPORTED_MODULE_0__actions_filmActions_jsx__["DELETE_COMMENT_ERROR"], payload: ex });
+            }
+        }).catch((ex) => {
+            alert(ex);
+            dispatch({ type: __WEBPACK_IMPORTED_MODULE_0__actions_filmActions_jsx__["DELETE_COMMENT_ERROR"], payload: ex });
+        });
+    }
 }
 
 /***/ }),

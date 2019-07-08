@@ -18,7 +18,6 @@ const AuthForm = props => {
     return (
         <React.Fragment>
             <form style={FormStyleRedux} data-method="post" onSubmit={(e) => {
-                console.log({ username: userNameValue, password: passwordValue });
                 e.preventDefault();
                 props.dispatch(login({ username: userNameValue, password: passwordValue }));
             }}>
