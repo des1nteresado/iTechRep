@@ -8,8 +8,8 @@ import Comment from '../../components/Comment.jsx';
 import NewCommentForm from '../../components/NewCommentForm.jsx';
 import { changeComment, getFilm, addComment, deleteComment, modifyRating, getMark } from '../../services/filmService.js'
 import Rating from 'material-ui-rating'
+import ImageGallery from 'react-image-gallery';
 import Carousel from 'react-images';
-import AliceCarousel from 'react-alice-carousel';
 
 class FilmPage extends React.Component {
     constructor(props) {
@@ -36,17 +36,13 @@ class FilmPage extends React.Component {
             );
         });
 
-        const handleOnDragStart = e => e.preventDefault();
         let images = this.props.data.film.images.map(image => {
             return (
-                <img src={image.path} onDragStart={handleOnDragStart} className="yours-custom-class" />
+                { src: image.path }
             );
         });
 
-        let gallery = images.length ? <AliceCarousel
-            items={images}
-            mouseDragEnabled={true}
-        /> : null
+        let gallery = images.length ? <Carousel views={images} /> : null
         let isLogged = this.props.user.isLogged;
 
         return (
@@ -58,7 +54,9 @@ class FilmPage extends React.Component {
                     onChange={(value) => this.props.modifyRating(this.props.user.userId, value, this.props.data.film.filmId)}
                 />
                 <h3>Изображения</h3>
-                {gallery}
+                <div className='terminate'>
+                    {gallery}
+                </div>
                 <h3>Комментарии <span className="itemCount">{this.props.data.film.comments.length}</span></h3>
                 <div className="commentsList">
                     {comments}

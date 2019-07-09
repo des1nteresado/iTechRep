@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import Film from '../../components/Film.jsx';
 import getFilms from '../../services/catalogService.js'
 import Sorter from '../../components/Sorter.jsx'
+import Paper from '@material-ui/core/Paper';
+
 
 class Catalog extends React.Component {
     constructor(props) {
@@ -50,9 +52,7 @@ class Catalog extends React.Component {
 
         const renderPageNumbers = pageNumbers.map(number => {
             return (
-                <li key={number}>
-                    <Link className="link" to={"/catalog?pageIndex=" + (number - 1) + queryTrailer}>{number}</Link>
-                </li>
+                <Link key={number} className="link" to={"/catalog?pageIndex=" + (number - 1) + queryTrailer}>{number}</Link>
             );
         });
 
@@ -64,14 +64,10 @@ class Catalog extends React.Component {
 
         return (
             <div id="catalog">
-                <Sorter getFilms={this.props.getFilms} />
-                <div id="lenta">
-                    {films}
-                    <div>
-                        <ul className="pagingNumber">
-                            {renderPageNumbers}
-                        </ul>
-                    </div>
+                <Sorter className='sorter' getFilms={this.props.getFilms} />
+                <div> {films} </div>
+                <div className="pagination">
+                    {renderPageNumbers}
                 </div>
             </div>
         );
