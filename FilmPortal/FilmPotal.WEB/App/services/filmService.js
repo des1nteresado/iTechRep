@@ -94,7 +94,6 @@ export function modifyRating(userId, mark, filmId) {
                 }).then((response) => {
                     if (response.ok) {
                         dispatch({ type: CHANGE_RATING_SUCCESS });
-                        getMark(userId, filmId)(dispatch);
                         getFilm(filmId)(dispatch);
                     } else {
                         alert('Ошибка изменения рейтинга');

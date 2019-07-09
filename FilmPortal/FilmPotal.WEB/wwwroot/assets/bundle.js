@@ -17549,7 +17549,6 @@ function modifyRating(userId, mark, filmId) {
                 }).then((response) => {
                     if (response.ok) {
                         dispatch({ type: __WEBPACK_IMPORTED_MODULE_0__actions_filmActions_jsx__["CHANGE_RATING_SUCCESS"] });
-                        getMark(userId, filmId)(dispatch);
                         getFilm(filmId)(dispatch);
                     } else {
                         alert('Ошибка изменения рейтинга');
