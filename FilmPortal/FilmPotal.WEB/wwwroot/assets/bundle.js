@@ -17352,8 +17352,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
@@ -17364,103 +17362,81 @@ var _filmService = __webpack_require__(281);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Film = function (_React$Component) {
-    _inherits(Film, _React$Component);
-
-    function Film() {
-        _classCallCheck(this, Film);
-
-        return _possibleConstructorReturn(this, (Film.__proto__ || Object.getPrototypeOf(Film)).apply(this, arguments));
+var Film = function Film(props) {
+    var commentBlock = void 0;
+    if (!props.isFull) {
+        commentBlock = _react2.default.createElement(
+            _reactRouterDom.Link,
+            { className: 'link', to: "/catalog/film?filmId=" + props.data.filmId },
+            '\u041A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0438:',
+            props.data.commentCount
+        );
     }
 
-    _createClass(Film, [{
-        key: 'render',
-        value: function render() {
-            var commentBlock = void 0;
-            if (!this.props.isFull) {
-                commentBlock = _react2.default.createElement(
-                    _reactRouterDom.Link,
-                    { className: 'link', to: "/catalog/film?filmId=" + this.props.data.filmId },
-                    '\u041A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0438:',
-                    this.props.data.commentCount
-                );
-            }
-
-            return _react2.default.createElement(
+    return _react2.default.createElement(
+        'div',
+        { className: 'film' },
+        _react2.default.createElement(
+            'div',
+            { className: 'header' },
+            _react2.default.createElement(
+                _reactRouterDom.Link,
+                { className: 'link', to: "/catalog/film?filmId=" + props.data.filmId },
+                props.data.name
+            )
+        ),
+        _react2.default.createElement(
+            'div',
+            { className: 'content' },
+            _react2.default.createElement(
                 'div',
-                { className: 'film' },
+                null,
                 _react2.default.createElement(
                     'div',
-                    { className: 'header' },
-                    _react2.default.createElement(
-                        _reactRouterDom.Link,
-                        { className: 'link', to: "/catalog/film?filmId=" + this.props.data.filmId },
-                        this.props.data.name
-                    )
+                    { className: 'description' },
+                    '\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435: ',
+                    props.data.description
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'content' },
+                    { className: 'year' },
+                    '\u0413\u043E\u0434 \u0432\u044B\u043F\u0443\u0441\u043A\u0430:',
+                    props.data.year
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'producer' },
+                    '\u0420\u0435\u0436\u0438\u0441\u0451\u0440: ',
+                    props.data.producer
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'averageMark' },
+                    '\u0420\u0435\u0439\u0442\u0438\u043D\u0433: ',
+                    props.data.averageMark,
+                    ' (',
+                    props.data.markCount,
+                    ')'
+                )
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'footer' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'actionBlock' },
                     _react2.default.createElement(
                         'div',
-                        null,
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'description' },
-                            '\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435: ',
-                            this.props.data.description
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'year' },
-                            '\u0413\u043E\u0434 \u0432\u044B\u043F\u0443\u0441\u043A\u0430:',
-                            this.props.data.year
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'producer' },
-                            '\u0420\u0435\u0436\u0438\u0441\u0451\u0440: ',
-                            this.props.data.producer
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'averageMark' },
-                            '\u0420\u0435\u0439\u0442\u0438\u043D\u0433: ',
-                            this.props.data.averageMark,
-                            ' (',
-                            this.props.data.markCount,
-                            ')'
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'footer' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'actionBlock' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'commentsBlock' },
-                                commentBlock
-                            )
-                        )
+                        { className: 'commentsBlock' },
+                        commentBlock
                     )
                 )
-            );
-        }
-    }]);
-
-    return Film;
-}(_react2.default.Component);
+            )
+        )
+    );
+};
 
 exports.default = Film;
-;
 
 /***/ }),
 /* 281 */
@@ -97857,59 +97833,33 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Account = function (_React$Component) {
-    _inherits(Account, _React$Component);
-
-    function Account() {
-        _classCallCheck(this, Account);
-
-        return _possibleConstructorReturn(this, (Account.__proto__ || Object.getPrototypeOf(Account)).apply(this, arguments));
-    }
-
-    _createClass(Account, [{
-        key: 'render',
-        value: function render() {
-            var _this2 = this;
-
-            return _react2.default.createElement(
-                _react2.default.Fragment,
-                null,
-                _react2.default.createElement(
-                    'button',
-                    { onClick: function onClick() {
-                            if (confirm('Вы уверены что хотите выйти?')) _this2.props.logout();
-                        } },
-                    '\u0412\u044B\u0445\u043E\u0434'
-                ),
-                _react2.default.createElement(
-                    'span',
-                    null,
-                    '\u041F\u0440\u0438\u0432\u0435\u0442, ',
-                    this.props.user.name
-                )
-            );
-        }
-    }]);
-
-    return Account;
-}(_react2.default.Component);
+var Account = function Account(props) {
+    return _react2.default.createElement(
+        _react2.default.Fragment,
+        null,
+        _react2.default.createElement(
+            'button',
+            { onClick: function onClick() {
+                    if (confirm('Вы уверены что хотите выйти?')) props.logout();
+                } },
+            '\u0412\u044B\u0445\u043E\u0434'
+        ),
+        _react2.default.createElement(
+            'span',
+            null,
+            '\u041F\u0440\u0438\u0432\u0435\u0442, ',
+            props.user.name
+        )
+    );
+};
 
 exports.default = Account;
-;
 
 /***/ }),
 /* 846 */
@@ -98693,8 +98643,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var images = [{ src: '/images/legend1.jpg' }, { src: '/images/legend2.jpg' }];
-
 var FilmPage = function (_React$Component) {
     _inherits(FilmPage, _React$Component);
 
@@ -98711,6 +98659,7 @@ var FilmPage = function (_React$Component) {
         key: 'componentDidMount',
         value: function componentDidMount() {
             var parsed = _queryString2.default.parse(location.search);
+
             if (parsed) {
                 this.props.getFilm(parsed['filmId']);
             }
@@ -98729,8 +98678,11 @@ var FilmPage = function (_React$Component) {
                 return _react2.default.createElement(_Comment2.default, { key: item.commentId, data: item, user: _this2.props.user, deleteComment: _this2.deleteComment });
             });
 
-            console.log(this.props.data.film);
+            var images = this.props.data.film.images.map(function (image) {
+                return { src: image.path };
+            });
 
+            var gallery = images.length ? _react2.default.createElement(_reactImages2.default, { views: images }) : null;
             var isLogged = this.props.user.isLogged;
 
             return _react2.default.createElement(
@@ -98749,7 +98701,7 @@ var FilmPage = function (_React$Component) {
                     null,
                     '\u0418\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u044F'
                 ),
-                _react2.default.createElement(_reactImages2.default, { views: images }),
+                gallery,
                 _react2.default.createElement(
                     'h3',
                     null,
@@ -98825,86 +98777,60 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Comment = function (_React$Component) {
-	_inherits(Comment, _React$Component);
-
-	function Comment() {
-		_classCallCheck(this, Comment);
-
-		return _possibleConstructorReturn(this, (Comment.__proto__ || Object.getPrototypeOf(Comment)).apply(this, arguments));
-	}
-
-	_createClass(Comment, [{
-		key: "render",
-		value: function render() {
-			var _this2 = this;
-
-			return _react2.default.createElement(
+var Comment = function Comment(props) {
+	return _react2.default.createElement(
+		"div",
+		{ className: "commentLayout" },
+		_react2.default.createElement(
+			"div",
+			{ className: "header" },
+			_react2.default.createElement(
 				"div",
-				{ className: "commentLayout" },
+				{ className: "inline-block" },
 				_react2.default.createElement(
-					"div",
-					{ className: "header" },
-					_react2.default.createElement(
-						"div",
-						{ className: "inline-block" },
-						_react2.default.createElement(
-							"span",
-							{ className: "bold" },
-							this.props.data.user.login
-						)
-					),
-					this.props.user.userId == this.props.data.userId ? _react2.default.createElement(
-						"div",
-						{ className: "action rightFloat" },
-						_react2.default.createElement(
-							"a",
-							{ className: "link", onClick: function onClick() {
-									if (confirm('Вы уверены что хотите удалить запись?')) {
-										_this2.props.deleteComment(_this2.props.data.commentId, _this2.props.data.filmId);
-									}
-								} },
-							"x"
-						)
-					) : _react2.default.createElement("div", null)
-				),
-				_react2.default.createElement(
-					"div",
-					{ className: "content" },
-					_react2.default.createElement(
-						"div",
-						null,
-						this.props.data.body
-					)
-				),
-				_react2.default.createElement(
-					"div",
-					{ className: "rightFloat" },
-					this.props.data.createDate
+					"span",
+					{ className: "bold" },
+					props.data.user.login
 				)
-			);
-		}
-	}]);
-
-	return Comment;
-}(_react2.default.Component);
+			),
+			props.user.userId == props.data.userId ? _react2.default.createElement(
+				"div",
+				{ className: "action rightFloat" },
+				_react2.default.createElement(
+					"a",
+					{ className: "link", onClick: function onClick() {
+							if (confirm('Вы уверены что хотите удалить запись?')) {
+								props.deleteComment(props.data.commentId, props.data.filmId);
+							}
+						} },
+					"x"
+				)
+			) : _react2.default.createElement("div", null)
+		),
+		_react2.default.createElement(
+			"div",
+			{ className: "content" },
+			_react2.default.createElement(
+				"div",
+				null,
+				props.data.body
+			)
+		),
+		_react2.default.createElement(
+			"div",
+			{ className: "rightFloat" },
+			props.data.createDate
+		)
+	);
+};
 
 exports.default = Comment;
-;
 
 /***/ }),
 /* 858 */
@@ -98917,60 +98843,34 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var NewCommentForm = function (_React$Component) {
-    _inherits(NewCommentForm, _React$Component);
-
-    function NewCommentForm() {
-        _classCallCheck(this, NewCommentForm);
-
-        return _possibleConstructorReturn(this, (NewCommentForm.__proto__ || Object.getPrototypeOf(NewCommentForm)).apply(this, arguments));
-    }
-
-    _createClass(NewCommentForm, [{
-        key: "render",
-        value: function render() {
-            var _this2 = this;
-
-            return _react2.default.createElement(
+var NewCommentForm = function NewCommentForm(props) {
+    return _react2.default.createElement(
+        "div",
+        { className: "writeCommentBlock" },
+        _react2.default.createElement(
+            "div",
+            { className: "commentInput" },
+            _react2.default.createElement("textarea", { className: "commentArea", rows: "5", value: props.comment, onChange: function onChange(e) {
+                    return props.changeComment(e.target.value);
+                } }),
+            _react2.default.createElement(
                 "div",
-                { className: "writeCommentBlock" },
-                _react2.default.createElement(
-                    "div",
-                    { className: "commentInput" },
-                    _react2.default.createElement("textarea", { className: "commentArea", rows: "5", value: this.props.comment, onChange: function onChange(e) {
-                            return _this2.props.changeComment(e.target.value);
-                        } }),
-                    _react2.default.createElement(
-                        "div",
-                        { className: "actionBlock" },
-                        _react2.default.createElement("input", { type: "button", value: "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C", onClick: function onClick() {
-                                return _this2.props.addComment(_this2.props.user.userId, _this2.props.comment, _this2.props.filmId);
-                            } })
-                    )
-                )
-            );
-        }
-    }]);
-
-    return NewCommentForm;
-}(_react2.default.Component);
+                { className: "actionBlock" },
+                _react2.default.createElement("input", { type: "button", value: "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C", onClick: function onClick() {
+                        return props.addComment(props.user.userId, props.comment, props.filmId);
+                    } })
+            )
+        )
+    );
+};
 
 exports.default = NewCommentForm;
-;
 
 /***/ }),
 /* 859 */

@@ -7,7 +7,6 @@ import RegForm from '../../views/registration/RegForm.jsx';
 import { validate } from './validData.js'
 
 class Registrar extends React.Component {
-
     renderTextField = ({
         label,
         input,
