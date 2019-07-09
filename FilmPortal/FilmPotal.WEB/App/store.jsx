@@ -30,6 +30,7 @@ const initialState = {
         film: { comments: [] },
         userId: '',
         comment: '',
+        rating: '',
         error: ''
     }
 }

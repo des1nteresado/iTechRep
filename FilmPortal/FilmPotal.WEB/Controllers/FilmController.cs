@@ -95,6 +95,7 @@ namespace FilmPotal.WEB.Controllers
             return Ok("Comment added successfully!");
         }
 
+        [Authorize]
         [Route("rating")]
         [HttpPost]
         public IActionResult ModifyRating([FromBody] AddRatingRequest request)
@@ -114,6 +115,25 @@ namespace FilmPotal.WEB.Controllers
             }
 
             return Ok("Rating modified successfully!");
+
+        }
+
+        [Authorize]
+        [Route("mark")]
+        [HttpPost]
+        public IActionResult GetRating([FromBody] AddRatingRequest request)
+        {
+            int mark;
+            try
+            {
+                mark = _ratingService.GetRatingFilm(request.UserId, request.FilmId);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok(mark);
 
         }
 

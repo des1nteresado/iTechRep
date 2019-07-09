@@ -8,5 +8,7 @@ namespace FilmPortal.BusinessLayer.Interfaces
         void AddRating(AddRatingRequest rating);
 
         void DeleteRating(int ratingId);
+
+        int GetRatingFilm(int userId, int filmId);
     }
 }

@@ -1,10 +1,14 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
+import { getMark } from '../services/filmService';
 
 export default class Film extends React.Component {
+   
+
     render() {
         let commentBlock;
+        console.log(this.props.filmData)
         if (!this.props.isFull) {
             commentBlock =
                 <Link className="link" to={"/catalog/film?filmId=" + this.props.data.filmId}>Комментарии:{this.props.data.commentCount}</Link>;
@@ -22,7 +26,6 @@ export default class Film extends React.Component {
                         <div className="producer">Режисёр: {this.props.data.producer}</div>
                         <div className="averageMark">Рейтинг: {this.props.data.averageMark} ({this.props.data.markCount})</div>
                     </div>
-                 
                     <div className="footer">
                         <div className="actionBlock">
                             <div className="commentsBlock">

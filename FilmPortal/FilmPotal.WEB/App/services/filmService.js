@@ -1,4 +1,4 @@
-import { GET_FILM_SUCCESS, GET_FILM_ERROR, ADD_COMMENT_SUCCESS, ADD_COMMENT_ERROR, DELETE_COMMENT_SUCCESS, DELETE_COMMENT_ERROR, CHANGE_COMMENT_TEXT } from '../actions/filmActions.jsx'
+import { GET_FILM_SUCCESS, GET_FILM_ERROR, CHANGE_RATING_SUCCESS, CHANGE_RATING_ERROR, ADD_COMMENT_SUCCESS, ADD_COMMENT_ERROR, DELETE_COMMENT_SUCCESS, DELETE_COMMENT_ERROR, CHANGE_COMMENT_TEXT, GET_MARK_SUCCESS, GET_MARK_ERROR } from '../actions/filmActions.jsx'
 import AuthHelper from '../helpers/authHelper.js'
 
 export function changeComment(comment) {
@@ -76,5 +76,62 @@ export function deleteComment(commentId, filmId) {
             alert(ex);
             dispatch({ type: DELETE_COMMENT_ERROR, payload: ex });
         });
+    }
+}
+
+export function modifyRating(userId, mark, filmId) {
+    return (dispatch) => {
+        if (userId && mark) {
+            let token = AuthHelper.getToken();
+            fetch(window.constants.rating,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token
+                    },
+                    body: JSON.stringify({ userId: userId, mark: mark, filmId: filmId })
+                }).then((response) => {
+                    if (response.ok) {
+                        dispatch({ type: CHANGE_RATING_SUCCESS });
+                        getMark(userId, filmId)(dispatch);
+                        getFilm(filmId)(dispatch);
+                    } else {
+                        alert('Ошибка изменения рейтинга');
+                        dispatch({ type: CHANGE_RATING_ERROR, payload: 'Ошибка изменения рейтинга' });
+                    }
+                }).catch((ex) => {
+                    alert(ex);
+                    dispatch({ type: CHANGE_RATING_ERROR, payload: ex });
+                });
+        } else {
+            alert('Чтобы поставить оценку - войдите в аккаунт!');
+            dispatch({ type: CHANGE_RATING_ERROR, payload: 'Ошибка изменения рейтинга' });
+        }
+    }
+}
+
+export function getMark(userId, filmId) {
+    return (dispatch) => {
+        let token = AuthHelper.getToken();
+        fetch(window.constants.mark,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify({ userId: userId, filmId: filmId })
+            }).then((response) => {
+                let data = response;
+                data = response != '' ? response.json() : {};
+                return data;
+            }).then((data) => {
+                dispatch({ type: GET_MARK_SUCCESS, payload: data });
+                getFilm(filmId)(dispatch);
+            }).catch((ex) => {
+                dispatch({ type: GET_MARK_ERROR, payload: ex });
+                alert(ex);
+            });
     }
 }

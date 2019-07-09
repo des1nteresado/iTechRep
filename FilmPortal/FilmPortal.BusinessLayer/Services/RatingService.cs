@@ -69,5 +69,17 @@ namespace FilmPortal.BusinessLayer.Services
             _repository.Delete(ratingId);
 
         }
+
+        public int GetRatingFilm(int userId, int filmId)
+        {
+            var rating = _repository.GetAll().FirstOrDefault(p => p.UserId == userId && p.FilmId == filmId);
+
+            if (rating == null)
+            {
+                throw new Exception("Mark does not exist");
+            }
+
+            return rating.Mark;
+        }
     }
 }

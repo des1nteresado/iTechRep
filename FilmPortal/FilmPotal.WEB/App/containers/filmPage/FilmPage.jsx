@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Film from '../../components/Film.jsx';
 import Comment from '../../components/Comment.jsx';
 import NewCommentForm from '../../components/NewCommentForm.jsx';
-import { changeComment, getFilm, addComment, deleteComment } from '../../services/filmService.js'
+import { changeComment, getFilm, addComment, deleteComment, modifyRating, getMark } from '../../services/filmService.js'
 import Rating from 'material-ui-rating'
 
 
@@ -30,7 +30,7 @@ class FilmPage extends React.Component {
     render() {
         let comments = this.props.data.film.comments.map(item => {
             return (
-                <Comment key={item.commentId} data={item} user={this.props.user} deleteComment={this.deleteComment} getFilm={this.getFilm} />
+                <Comment key={item.commentId} data={item} user={this.props.user} deleteComment={this.deleteComment} />
             );
         });
 
@@ -38,12 +38,12 @@ class FilmPage extends React.Component {
 
         return (
             <div id="post">
-                <Film data={this.props.data.film} isLogged={this.props.user.isLogged} isFull={true} />
+                <Film data={this.props.data.film} filmData={this.props.data}user={this.props.user} getMark={this.props.getMark} isLogged={this.props.user.isLogged} isFull={true} />
                 <Rating
-                        value={this.props.data.film.averageMark}
-                        max={10}
-                        onChange={(value) => console.log(`Rated with value ${value}`)}
-                    />
+                    value={this.props.data.film.averageMark}
+                    max={10}
+                    onChange={(value) => this.props.modifyRating(this.props.user.userId, value, this.props.data.film.filmId)}
+                />
                 <h3>Комментарии <span className="itemCount">{this.props.data.film.comments.length}</span></h3>
                 <div className="commentsList">
                     {comments}
@@ -79,7 +79,9 @@ let mapDispatchToProps = (dispatch) => {
         changeComment: bindActionCreators(changeComment, dispatch),
         getFilm: bindActionCreators(getFilm, dispatch),
         addComment: bindActionCreators(addComment, dispatch),
-        deleteComment: bindActionCreators(deleteComment, dispatch)
+        deleteComment: bindActionCreators(deleteComment, dispatch),
+        modifyRating: bindActionCreators(modifyRating, dispatch),
+        getMark: bindActionCreators(getMark, dispatch)
     }
 }
 
