@@ -95930,7 +95930,7 @@ var Catalog = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 { id: 'catalog' },
-                _react2.default.createElement(_Sorter2.default, null),
+                _react2.default.createElement(_Sorter2.default, { getFilms: this.props.getFilms }),
                 _react2.default.createElement(
                     'div',
                     { id: 'lenta' },
@@ -96122,11 +96122,9 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-exports.default = SimpleSelect;
+exports.default = Sorter;
 
 var _react = __webpack_require__(0);
 
@@ -96156,8 +96154,6 @@ var _Select2 = _interopRequireDefault(_Select);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 var useStyles = (0, _styles.makeStyles)(function (theme) {
     return {
         root: {
@@ -96174,16 +96170,13 @@ var useStyles = (0, _styles.makeStyles)(function (theme) {
     };
 });
 
-function SimpleSelect() {
+function Sorter(props) {
     var classes = useStyles();
 
-    var _React$useState = _react2.default.useState({
-        age: '',
-        name: 'hai'
-    }),
+    var _React$useState = _react2.default.useState('NameAsc'),
         _React$useState2 = _slicedToArray(_React$useState, 2),
-        values = _React$useState2[0],
-        setValues = _React$useState2[1];
+        sortOrder = _React$useState2[0],
+        setSort = _React$useState2[1];
 
     var inputLabel = _react2.default.useRef(null);
 
@@ -96197,9 +96190,10 @@ function SimpleSelect() {
     }, []);
 
     function handleChange(event) {
-        setValues(function (oldValues) {
-            return _extends({}, oldValues, _defineProperty({}, event.target.name, event.target.value));
-        });
+        setSort(event.target.value);
+        console.log(event.target.value);
+        console.log(props.getFilms);
+        props.getFilms(0, event.target.value);
     }
 
     return _react2.default.createElement(
@@ -96208,38 +96202,44 @@ function SimpleSelect() {
         _react2.default.createElement(
             _InputLabel2.default,
             { ref: inputLabel, htmlFor: 'outlined-age-simple' },
-            'Age'
+            'Sort by'
         ),
         _react2.default.createElement(
             _Select2.default,
             {
-                value: values.age,
-                onChange: this.handleChange,
-                input: _react2.default.createElement(_OutlinedInput2.default, { labelWidth: labelWidth, name: 'age', id: 'outlined-age-simple' })
+                value: sortOrder,
+                onChange: handleChange,
+                input: _react2.default.createElement(_OutlinedInput2.default, { labelWidth: labelWidth, name: 'sort', id: 'outlined-age-simple' })
             },
             _react2.default.createElement(
                 _MenuItem2.default,
-                { value: '' },
-                _react2.default.createElement(
-                    'em',
-                    null,
-                    'None'
-                )
+                { value: 'NameAsc' },
+                'Name: A to Z'
             ),
             _react2.default.createElement(
                 _MenuItem2.default,
-                { value: 10 },
-                'Ten'
+                { value: 'NameDesc' },
+                'Name: Z to A'
             ),
             _react2.default.createElement(
                 _MenuItem2.default,
-                { value: 20 },
-                'Twenty'
+                { value: 'YearDesc' },
+                'Year: Newest'
             ),
             _react2.default.createElement(
                 _MenuItem2.default,
-                { value: 30 },
-                'Thirty'
+                { value: 'YearAsc' },
+                'Year: Oldest'
+            ),
+            _react2.default.createElement(
+                _MenuItem2.default,
+                { value: 'MarkDesc' },
+                'Rating: Highest'
+            ),
+            _react2.default.createElement(
+                _MenuItem2.default,
+                { value: 'MarkAsc' },
+                'Rating: Lowest'
             )
         )
     );

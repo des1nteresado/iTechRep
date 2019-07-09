@@ -20,41 +20,38 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default function SimpleSelect() {
+export default function Sorter(props) {
     const classes = useStyles();
-    const [values, setValues] = React.useState({
-        age: '',
-        name: 'hai',
-    });
+    const [sortOrder, setSort] = React.useState('NameAsc');
 
     const inputLabel = React.useRef(null);
     const [labelWidth, setLabelWidth] = React.useState(0);
     React.useEffect(() => {
-        setLabelWidth(inputLabel.current.offsetWidth);
+      setLabelWidth(inputLabel.current.offsetWidth);
     }, []);
 
     function handleChange(event) {
-        setValues(oldValues => ({
-            ...oldValues,
-            [event.target.name]: event.target.value,
-        }));
+        setSort(event.target.value);
+        console.log(event.target.value)
+        console.log(props.getFilms)
+        props.getFilms(0, event.target.value);
     }
 
     return (<FormControl variant="outlined" className={classes.formControl}>
         <InputLabel ref={inputLabel} htmlFor="outlined-age-simple">
-            Age
+            Sort by
         </InputLabel>
         <Select
-            value={values.age}
-            onChange={this.handleChange}
-            input={<OutlinedInput labelWidth={labelWidth} name="age" id="outlined-age-simple" />}
+            value={sortOrder}
+            onChange={handleChange}
+            input={<OutlinedInput labelWidth={labelWidth} name="sort" id="outlined-age-simple" />}
         >
-            <MenuItem value="">
-                <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value={'NameAsc'}>Name: A to Z</MenuItem>
+            <MenuItem value={'NameDesc'}>Name: Z to A</MenuItem>
+            <MenuItem value={'YearDesc'}>Year: Newest</MenuItem>
+            <MenuItem value={'YearAsc'}>Year: Oldest</MenuItem>
+            <MenuItem value={'MarkDesc'}>Rating: Highest</MenuItem>
+            <MenuItem value={'MarkAsc'}>Rating: Lowest</MenuItem>
         </Select>
     </FormControl>
     )
