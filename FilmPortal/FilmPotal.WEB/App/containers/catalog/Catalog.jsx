@@ -5,6 +5,7 @@ import queryString from 'query-string';
 import { Link } from 'react-router-dom';
 import Film from '../../components/Film.jsx';
 import getFilms from '../../services/catalogService.js'
+import SimpleSelect from '../../components/Sorter.jsx'
 
 class Catalog extends React.Component {
     constructor(props) {
@@ -63,6 +64,7 @@ class Catalog extends React.Component {
 
         return (
             <div id="catalog">
+                <SimpleSelect />
                 <div id="lenta">
                     {films}
                     <div>

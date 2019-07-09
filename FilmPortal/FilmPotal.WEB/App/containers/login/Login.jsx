@@ -9,7 +9,6 @@ import Account from '../../components/Account.jsx'
 import {validate} from './validLogin.js'
 
 class Login extends React.Component {
-
     renderTextField = ({
         label,
         input,

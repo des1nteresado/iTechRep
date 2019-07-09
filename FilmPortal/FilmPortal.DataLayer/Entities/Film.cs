@@ -19,5 +19,6 @@ namespace FilmPortal.DataLayer.Entities
         public virtual ICollection<Comment> Comments { get; set; }
 
         public virtual ICollection<Genre> Genres { get; set; }
+
     }
 }
