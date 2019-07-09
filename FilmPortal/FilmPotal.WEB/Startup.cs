@@ -69,6 +69,7 @@ namespace FilmPotal.WEB
             }
 
             app.UseStaticFiles();
+
             app.UseAuthentication();
             app.UseMvc(routes =>
             {

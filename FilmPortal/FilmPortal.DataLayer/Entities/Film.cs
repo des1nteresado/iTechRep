@@ -20,5 +20,7 @@ namespace FilmPortal.DataLayer.Entities
 
         public virtual ICollection<Genre> Genres { get; set; }
 
+        public virtual ICollection<Image> Images { get; set; }
+
     }
 }

@@ -96,6 +96,49 @@ namespace FilmPortal.DataLayer.Migrations
                     b.ToTable("Genres");
                 });
 
+            modelBuilder.Entity("FilmPortal.DataLayer.Entities.Image", b =>
+                {
+                    b.Property<int>("ImageId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("FilmId");
+
+                    b.Property<string>("Path");
+
+                    b.HasKey("ImageId");
+
+                    b.HasIndex("FilmId");
+
+                    b.ToTable("Image");
+
+                    b.HasData(
+                        new
+                        {
+                            ImageId = 1,
+                            FilmId = 1,
+                            Path = "/images/legend1.jpg"
+                        },
+                        new
+                        {
+                            ImageId = 2,
+                            FilmId = 1,
+                            Path = "/images/legend2.jpg"
+                        },
+                        new
+                        {
+                            ImageId = 3,
+                            FilmId = 2,
+                            Path = "/images/robot1.jpg"
+                        },
+                        new
+                        {
+                            ImageId = 4,
+                            FilmId = 2,
+                            Path = "/images/robot2.jpg"
+                        });
+                });
+
             modelBuilder.Entity("FilmPortal.DataLayer.Entities.Rating", b =>
                 {
                     b.Property<int>("RatingId")
@@ -123,9 +166,11 @@ namespace FilmPortal.DataLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Login");
+                    b.Property<string>("Login")
+                        .IsRequired();
 
-                    b.Property<string>("Password");
+                    b.Property<string>("Password")
+                        .IsRequired();
 
                     b.Property<bool>("isAdmin");
 
@@ -167,6 +212,14 @@ namespace FilmPortal.DataLayer.Migrations
                 {
                     b.HasOne("FilmPortal.DataLayer.Entities.Film")
                         .WithMany("Genres")
+                        .HasForeignKey("FilmId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("FilmPortal.DataLayer.Entities.Image", b =>
+                {
+                    b.HasOne("FilmPortal.DataLayer.Entities.Film")
+                        .WithMany("Images")
                         .HasForeignKey("FilmId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

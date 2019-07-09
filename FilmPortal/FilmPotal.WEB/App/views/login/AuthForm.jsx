@@ -6,7 +6,7 @@ import { FormStyleRedux, FormStyle, ButtonStyle } from '../../style.js';
 import { login } from '../../services/authenticationService.js'
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { Paper, Button } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 
 const BottomText = styled(Button)`
   && {
@@ -14,7 +14,7 @@ const BottomText = styled(Button)`
   }
 `
 const AuthForm = props => {
-    const { pristine, submitting, onBottomTextClick, bottomText, userNameValue, passwordValue, invalid, renderTextField } = props;
+    const { pristine, submitting, bottomText, userNameValue, passwordValue, invalid, renderTextField } = props;
     return (
         <React.Fragment>
             <form style={FormStyleRedux} data-method="post" onSubmit={(e) => {

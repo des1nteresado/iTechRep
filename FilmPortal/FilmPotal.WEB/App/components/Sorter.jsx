@@ -32,8 +32,6 @@ export default function Sorter(props) {
 
     function handleChange(event) {
         setSort(event.target.value);
-        console.log(event.target.value)
-        console.log(props.getFilms)
         props.getFilms(0, event.target.value);
     }
 

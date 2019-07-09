@@ -15,7 +15,6 @@ export default class Comment extends React.Component {
 						}}>x</a></div> : <div/>
 					}
 				</div>
-
 				<div className="content">
 					<div>
 						{this.props.data.body}

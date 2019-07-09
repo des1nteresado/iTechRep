@@ -27,7 +27,7 @@ const initialState = {
         isLoginFormShowed: false
     },
     film: {
-        film: { comments: [] },
+        film: { comments: [], images: [] },
         userId: '',
         comment: '',
         rating: '',

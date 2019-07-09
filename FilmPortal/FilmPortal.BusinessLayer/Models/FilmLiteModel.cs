@@ -23,6 +23,8 @@ namespace FilmPortal.BusinessLayer.Models
 
         public List<Comment> Comments { get; set; }
 
+        public List<Image> Images { get; set; }
+
         public List<Genre> Genres { get; set; }
 
     }

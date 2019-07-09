@@ -1,7 +1,7 @@
 import { GET_FILM_SUCCESS, DELETE_COMMENT_SUCCESS, DELETE_COMMENT_ERROR, GET_FILM_ERROR, ADD_COMMENT_SUCCESS, ADD_COMMENT_ERROR, CHANGE_COMMENT_TEXT, CHANGE_RATING_ERROR, CHANGE_RATING_SUCCESS, GET_MARK_SUCCESS, GET_MARK_ERROR } from '../actions/filmActions.jsx'
 
 const initialState = {
-    film: { comments: [] },
+    film: { comments: [], images:[] },
     userId: '',
     comment: '',
     rating: '',

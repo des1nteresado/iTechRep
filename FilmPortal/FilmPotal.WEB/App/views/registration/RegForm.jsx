@@ -12,7 +12,7 @@ const RegForm = props => {
             <form style={FormStyleRedux} data-method="post" onSubmit={(e) => {
                 console.log({ username: userNameValue, password: passwordValue });
                 e.preventDefault();
-                props.dispatch(registration({ username: userNameValue, password: passwordValue}));
+                props.dispatch(registration({ username: userNameValue, password: passwordValue }));
             }}>
                 <Field name="username" variant='outlined' component={renderTextField} label="Username" />
                 <Field name="password" type="password" variant='outlined' component={renderTextField} label="Password" />

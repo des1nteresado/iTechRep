@@ -35,7 +35,8 @@ namespace FilmPortal.DataLayer.Context
                 Producer = "Frensis Lourens",
                 Marks = new List<Rating>(),
                 Comments = new List<Comment>(),
-                Genres = new List<Genre>()
+                Genres = new List<Genre>(),
+                Images = new List<Image>()
             }, new Film
             {
                 FilmId = 2,
@@ -45,7 +46,34 @@ namespace FilmPortal.DataLayer.Context
                 Producer = "Alex Proyas",
                 Marks = new List<Rating>(),
                 Comments = new List<Comment>(),
-                Genres = new List<Genre>()
+                Genres = new List<Genre>(),
+                Images = new List<Image>()
+
+            });
+
+
+            modelBuilder.Entity<Image>().HasData(new Image
+            {
+                ImageId = 1,
+                FilmId = 1,
+                Path = "/images/legend1.jpg"
+            }, new Image
+            {
+                ImageId = 2,
+                FilmId = 1,
+                Path = "/images/legend2.jpg"
+            },
+               new Image
+            {
+                ImageId = 3,
+                FilmId = 2,
+                Path = "/images/robot1.jpg"
+            },
+            new Image
+            {
+                ImageId = 4,
+                FilmId = 2,
+                Path = "/images/robot2.jpg"
             });
 
             modelBuilder.Entity<User>().HasData(new User

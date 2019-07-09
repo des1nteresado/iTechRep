@@ -8,7 +8,8 @@ import Comment from '../../components/Comment.jsx';
 import NewCommentForm from '../../components/NewCommentForm.jsx';
 import { changeComment, getFilm, addComment, deleteComment, modifyRating, getMark } from '../../services/filmService.js'
 import Rating from 'material-ui-rating'
-
+import Carousel from 'react-images';
+const images = [{ src: '/images/legend1.jpg' }, { src: '/images/legend2.jpg' }];
 
 class FilmPage extends React.Component {
     constructor(props) {
@@ -34,16 +35,20 @@ class FilmPage extends React.Component {
             );
         });
 
+        console.log(this.props.data.film)
+
         let isLogged = this.props.user.isLogged;
 
         return (
             <div id="post">
-                <Film data={this.props.data.film} filmData={this.props.data}user={this.props.user} getMark={this.props.getMark} isLogged={this.props.user.isLogged} isFull={true} />
+                <Film data={this.props.data.film} filmData={this.props.data} user={this.props.user} getMark={this.props.getMark} isLogged={this.props.user.isLogged} isFull={true} />
                 <Rating
                     value={this.props.data.film.averageMark}
                     max={10}
                     onChange={(value) => this.props.modifyRating(this.props.user.userId, value, this.props.data.film.filmId)}
                 />
+                <h3>Изображения</h3>
+                <Carousel views={images} />
                 <h3>Комментарии <span className="itemCount">{this.props.data.film.comments.length}</span></h3>
                 <div className="commentsList">
                     {comments}
