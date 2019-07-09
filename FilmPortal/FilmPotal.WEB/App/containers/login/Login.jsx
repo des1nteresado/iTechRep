@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import AuthForm from '../../views/login/AuthForm.jsx';
 import { login, logout } from '../../services/authenticationService.js'
 import Account from '../../components/Account.jsx'
-import {validate} from './validLogin.js'
+import { validate } from './validLogin.js'
 
 class Login extends React.Component {
     renderTextField = ({
@@ -26,7 +26,6 @@ class Login extends React.Component {
         )
 
     render() {
-        const { pristine, submitting, userNameValue, passwordValue, invalid } = this.props;
         let isLogged = this.props.user.isLogged;
         return (
             <React.Fragment>
@@ -36,11 +35,12 @@ class Login extends React.Component {
                         logout={this.props.logout} /> :
                     < AuthForm
                         renderTextField={this.renderTextField}
-                        userNameValue={userNameValue}
-                        passwordValue={passwordValue}
-                        pristine={pristine}
-                        submitting={submitting}
-                        invalid={invalid}
+                        userNameValue={this.props.userNameValue}
+                        passwordValue={this.props.passwordValue}
+                        pristine={this.props.pristine}
+                        submitting={this.props.submitting}
+                        invalid={this.props.invalid}
+                        user={this.props.user}
                         bottomText="Don't have an account? Register"
                     />
                 }

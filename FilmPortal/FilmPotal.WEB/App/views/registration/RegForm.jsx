@@ -1,28 +1,23 @@
 ﻿import React from 'react';
 import { bindActionCreators } from 'redux';
 import { Field } from 'redux-form';
-import { FormStyleRedux, FormStyle, ButtonStyle } from '../../style.js';
 import { connect } from 'react-redux';
+import Paper from '@material-ui/core/Paper';
 import { registration } from '../../services/registrationService.js';
 
 const RegForm = props => {
-    const { pristine, submitting, userNameValue, passwordValue, invalid, renderTextField } = props;
     return (
-        <React.Fragment>
-            <form style={FormStyleRedux} data-method="post" onSubmit={(e) => {
-                console.log({ username: userNameValue, password: passwordValue });
+        <Paper className="paper" >
+            <form className="registrForm" data-method="post" onSubmit={(e) => {
                 e.preventDefault();
-                props.dispatch(registration({ username: userNameValue, password: passwordValue }));
+                props.dispatch(registration({ username: props.userNameValue, password: props.passwordValue }));
             }}>
-                <Field name="username" variant='outlined' component={renderTextField} label="Username" />
-                <Field name="password" type="password" variant='outlined' component={renderTextField} label="Password" />
-                <Field name="confirmPassword" type="password" variant='outlined' component={renderTextField} label="Confirm password" />
-
-                <button type="submit" style={ButtonStyle} disabled={invalid || submitting || pristine}  >
-                    REGISTRATION
-      </button>
+                <Field name="username" variant='outlined' component={props.renderTextField} label="Username" />
+                <Field name="password" type="password" variant='outlined' component={props.renderTextField} label="Password" />
+                <Field name="confirmPassword" type="password" variant='outlined' component={props.renderTextField} label="Confirm password" />
+                <button type="submit" className="registrButton" disabled={props.invalid || props.submitting || props.pristine}> REGISTRATION </button>
             </form>
-        </React.Fragment>
+        </Paper>
     );
 };
 

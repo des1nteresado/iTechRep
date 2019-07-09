@@ -2,35 +2,33 @@
 import { bindActionCreators } from 'redux';
 import { Field } from 'redux-form';
 import { Link } from 'react-router-dom';
-import { FormStyleRedux, FormStyle, ButtonStyle } from '../../style.js';
 import { login } from '../../services/authenticationService.js'
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Button } from '@material-ui/core'
+import Paper from '@material-ui/core/Paper';
 
 const BottomText = styled(Button)`
   && {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    font-size: 13px;
   }
 `
 const AuthForm = props => {
-    const { pristine, submitting, bottomText, userNameValue, passwordValue, invalid, renderTextField } = props;
     return (
-        <React.Fragment>
-            <form style={FormStyleRedux} data-method="post" onSubmit={(e) => {
+        <Paper className="paper" >
+            <form className="loginForm" data-method="post" onSubmit={(e) => {
                 e.preventDefault();
-                props.dispatch(login({ username: userNameValue, password: passwordValue }));
+                props.dispatch(login({ username: props.userNameValue, password: props.passwordValue }));
             }}>
-                <Field name="username" variant='outlined' component={renderTextField} label="Username" />
-                <Field name="password" type="password" variant='outlined' component={renderTextField} label="Password" />
+                <Field name="username" variant='outlined' component={props.renderTextField} label="Username" />
+                <Field name="password" type="password" variant='outlined' component={props.renderTextField} label="Password" />
                 <Link to='/registration' style={{ textDecoration: 'none' }}>
-                     <BottomText color='primary' size='small'>{bottomText}</BottomText>
+                    <BottomText color='primary' >{props.bottomText}</BottomText>
                 </Link>
-                <button type="submit" style={ButtonStyle} disabled={invalid || submitting || pristine}  >
-                    LOGIN
-      </button>
+                <button type="submit" className="loginButton" disabled={props.invalid || props.submitting || props.pristine}>LOGIN</button>
             </form>
-        </React.Fragment>
+        </Paper>
     );
 };
 

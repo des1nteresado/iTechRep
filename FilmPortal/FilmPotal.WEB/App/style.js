@@ -61,7 +61,7 @@ const FormStyleRedux = {
     alignItems: 'center',
     width: '250px',
     margin: 'auto',
-    height: '230px',
+    height: '300px',
     paddingTop: '7px'
 }
 
