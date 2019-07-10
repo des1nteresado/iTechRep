@@ -63,11 +63,15 @@ class Catalog extends React.Component {
         });
 
         return (
-            <div id="catalog">
-                <Sorter className='sorter' getFilms={this.props.getFilms} />
-                <div> {films} </div>
-                <div className="pagination">
-                    {renderPageNumbers}
+            <div className="catalog">
+                <div className="sorter">
+                    <Sorter getFilms={this.props.getFilms} />
+                </div>
+                <div className="containers">
+                    <div> {films} </div>
+                    <div className="pagination">
+                        {renderPageNumbers}
+                    </div>
                 </div>
             </div>
         );
