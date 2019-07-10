@@ -10,7 +10,7 @@ const Film = props => {
     let rating;
     if (!props.isFull) {
         commentBlock =
-            <Link className="comment" to={"/catalog/film?filmId=" + props.data.filmId}>Комментарии: {props.data.commentCount}</Link>;
+            <Link className="commentLink" to={"/catalog/film?filmId=" + props.data.filmId}>Комментарии: {props.data.commentCount}</Link>;
     }
     else {
         console.log('userID ' + props.user.userId + 'filmID ' + props.data.filmId)

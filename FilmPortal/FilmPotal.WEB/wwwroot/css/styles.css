@@ -7,51 +7,6 @@
     margin-top: 20px;
 }
 
-.commentsList {
-    width: 70%;
-    min-width: 300px;
-}
-
-.commentsList .header {
-    background-color: #705d5e;
-    color: #000000;
-    font-size: 15px;
-    padding: 10px;
-}
-
-.commentsList .content {
-    background-color: #ffffff;
-    padding: 10px;
-    border: 1px solid #705d5e;
-    font-size: 17px;
-}
-
-.content {
-    padding: 10px;
-    font-size: 19px;
-}
-
-.tagCloud {
-    margin-top: 20px;
-}
-
-.row {
-    margin-bottom: 10px;
-}
-
-.writeCommentBlock .commentInput {
-    width: 70%;
-    min-width: 300px;
-}
-
-.commentArea {
-    width: 100%;
-}
-
-.commentLayout {
-    margin-bottom: 10px;
-}
-
 .pagination {
     display: inline-block;
     justify-content: center;
@@ -206,7 +161,7 @@ img {
     text-decoration: none;
 }
 
-.comment {
+.commentLink {
     color: #828282;
 }
 
@@ -230,4 +185,63 @@ img {
 .page .page__comments {
     margin: auto;
     width: 80%;
+}
+
+.comment {
+    margin-bottom: 20px;
+}
+
+.comment .comment__header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom-width: 1px; 
+    border-bottom-style: solid; 
+    border-bottom-color: #828282; 
+}
+
+.comment__header .username {
+    font-size: 22px;
+    color: #828282;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: Arial, sans-serif;
+    text-decoration: none;
+}
+
+.comment__header .buttons .buttons__delete {
+    background: transparent;
+    border: 2px solid #f00;
+    border-radius: 2em;
+    color: #f00;
+    display: inline-block;
+    font-size: 11px;
+    height: 20px;
+    line-height: 2px;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    width: 20px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.comment p {
+    margin: 0;
+}
+
+.comment .comment__body {
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    margin: 10px 10px 10px 10px;
+    text-decoration: none;
+}
+
+.comment .comment__date {
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    padding: 0px 10px 10px 10px;
+    text-decoration: none;
 }

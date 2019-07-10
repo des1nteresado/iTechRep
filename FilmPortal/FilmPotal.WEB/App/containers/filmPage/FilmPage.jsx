@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import queryString from 'query-string';
 import { Link } from 'react-router-dom';
+import Paper from '@material-ui/core/Paper';
 import Film from '../../components/Film.jsx';
 import Comment from '../../components/Comment.jsx';
 import NewCommentForm from '../../components/NewCommentForm.jsx';
@@ -68,7 +69,6 @@ class FilmPage extends React.Component {
                             </Link> чтобы оставить комментарий.</div>
                     }
                 </div>
-
             </div>
         );
     }
