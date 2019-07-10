@@ -127,7 +127,6 @@ export function getMark(userId, filmId) {
                 return data;
             }).then((data) => {
                 dispatch({ type: GET_MARK_SUCCESS, payload: data });
-                getFilm(filmId)(dispatch);
             }).catch((ex) => {
                 dispatch({ type: GET_MARK_ERROR, payload: ex });
                 alert(ex);

@@ -7,8 +7,6 @@ import Film from '../../components/Film.jsx';
 import Comment from '../../components/Comment.jsx';
 import NewCommentForm from '../../components/NewCommentForm.jsx';
 import { changeComment, getFilm, addComment, deleteComment, modifyRating, getMark } from '../../services/filmService.js'
-import Rating from 'material-ui-rating'
-import ImageGallery from 'react-image-gallery';
 import Carousel from 'react-images';
 
 class FilmPage extends React.Component {
@@ -46,34 +44,30 @@ class FilmPage extends React.Component {
         let isLogged = this.props.user.isLogged;
 
         return (
-            <div id="post">
-                <Film data={this.props.data.film} filmData={this.props.data} user={this.props.user} getMark={this.props.getMark} isLogged={this.props.user.isLogged} isFull={true} />
-                <Rating
-                    value={this.props.data.film.averageMark}
-                    max={10}
-                    onChange={(value) => this.props.modifyRating(this.props.user.userId, value, this.props.data.film.filmId)}
-                />
-                <h3>Изображения</h3>
-                <div className='terminate'>
+            <div className="page">
+                <div className="page__info">
+                    <Film data={this.props.data.film} getMark={this.props.getMark} modifyRating={this.props.modifyRating} user={this.props.user} getMark={this.props.getMark} isLogged={this.props.user.isLogged} isFull={true} />
+                </div>
+                <div className='page__images'>
                     {gallery}
                 </div>
-                <h3>Комментарии <span className="itemCount">{this.props.data.film.comments.length}</span></h3>
-                <div className="commentsList">
+                <div className="page__comments">
+                    <h3>Комментарии <span className="itemCount">{this.props.data.film.comments.length}</span></h3>
                     {comments}
-                </div>
-                <h3>Написать комментарий</h3>
-                {
-                    isLogged ? <NewCommentForm
-                        user={this.props.user}
-                        comment={this.props.data.comment}
-                        changeComment={this.props.changeComment}
-                        filmId={this.props.data.film.filmId}
-                        addComment={this.props.addComment} />
-                        : <div>
-                            <Link to='/login' style={{ textDecoration: 'none' }}>
-                                Войдите
+                    <h3>Написать комментарий</h3>
+                    {
+                        isLogged ? <NewCommentForm
+                            user={this.props.user}
+                            comment={this.props.data.comment}
+                            changeComment={this.props.changeComment}
+                            filmId={this.props.data.film.filmId}
+                            addComment={this.props.addComment} />
+                            : <div>
+                                <Link to='/login' style={{ textDecoration: 'none' }}>
+                                    Войдите
                             </Link> чтобы оставить комментарий.</div>
-                }
+                    }
+                </div>
 
             </div>
         );
