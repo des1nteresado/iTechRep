@@ -53,9 +53,9 @@ class FilmPage extends React.Component {
                     {gallery}
                 </div>
                 <div className="page__comments">
-                    <h3>Комментарии <span className="itemCount">{this.props.data.film.comments.length}</span></h3>
+                    <p className="page__commentCount">Comments: {this.props.data.film.commentCount} </p>
                     {comments}
-                    <h3>Написать комментарий</h3>
+                    <p className="page__newComment">Leave a comment</p>
                     {
                         isLogged ? <NewCommentForm
                             user={this.props.user}

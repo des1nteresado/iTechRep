@@ -2,11 +2,9 @@ import React from 'react';
 
 const NewCommentForm = props => {
     return (
-        <div className="writeCommentBlock">
-            <div className="commentInput">
-                <textarea className="commentArea" rows="5" value={props.comment} onChange={(e) => props.changeComment(e.target.value)} />
-                <div className="actionBlock"><input type="button" value="Отправить" onClick={() => props.addComment(props.user.userId, props.comment, props.filmId)} /></div>
-            </div>
+        <div className="newCommentForm">
+            <textarea className="newCommentForm__textarea" rows="5" value={props.comment} onChange={(e) => props.changeComment(e.target.value)} />
+            <button className="newCommentForm__button" type="submit" value="Отправить" onClick={() => props.addComment(props.user.userId, props.comment, props.filmId)}>Send</button>
         </div>
     );
 };

@@ -35,9 +35,9 @@ const Film = props => {
                 </div>
                 <div className="film__content">
                     <p><Link className="film__name" to={"/catalog/film?filmId=" + props.data.filmId}>{props.data.name}</Link></p>
-                    <p className="film__producer">Режисёр: {props.data.producer}</p>
-                    <p className="film__year">Год выпуска: {props.data.year}</p>
-                    <div className="film__mark">Рейтинг: {props.data.averageMark} ({props.data.markCount})</div>
+                    <p className="film__producer">Producer: {props.data.producer}</p>
+                    <p className="film__year">Year: {props.data.year}</p>
+                    <div className="film__mark">Rating: {props.data.averageMark} ({props.data.markCount})</div>
                     <div> {rating} </div>
                     <p className="film__description"> {props.data.description} </p>
                     <div className="film__comments">

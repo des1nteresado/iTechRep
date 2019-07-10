@@ -187,6 +187,24 @@ img {
     width: 80%;
 }
 
+.page .page__comments .page__commentCount {
+    font-size: 22px;
+    color: #828282;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.page .page__comments .page__newComment {
+    font-size: 22px;
+    color: #828282;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
 .comment {
     margin-bottom: 20px;
 }
@@ -244,4 +262,23 @@ img {
     font-family: Arial, sans-serif;
     padding: 0px 10px 10px 10px;
     text-decoration: none;
+}
+
+.newCommentForm .newCommentForm__textarea {
+    width: 100%;
+}
+
+.newCommentForm .newCommentForm__button {
+    background-color: #b71c1c;
+    color: #FFFFFF;
+    border: none;
+    text-transform: uppercase;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 80px;
+    height: 36px;
+    font-size: 16px;
+    font-family: Arial;
+    letter-spacing: 0.5;
+    cursor: Pointer;
 }
