@@ -20,6 +20,8 @@ class FilmPage extends React.Component {
         const parsed = queryString.parse(location.search);
 
         if (parsed) {
+            if (this.props.user.isLogged)
+                this.props.getMark(this.props.user.userId, parsed['filmId']);
             this.props.getFilm(parsed['filmId']);
         }
     }
@@ -47,7 +49,7 @@ class FilmPage extends React.Component {
         return (
             <div className="page">
                 <div className="page__info">
-                    <Film data={this.props.data.film} getMark={this.props.getMark} modifyRating={this.props.modifyRating} user={this.props.user} getMark={this.props.getMark} isLogged={this.props.user.isLogged} isFull={true} />
+                    <Film data={this.props.data.film} rating={this.props.data.rating} modifyRating={this.props.modifyRating} user={this.props.user} isLogged={this.props.user.isLogged} isFull={true} />
                 </div>
                 <div className='page__images'>
                     {gallery}
@@ -63,10 +65,10 @@ class FilmPage extends React.Component {
                             changeComment={this.props.changeComment}
                             filmId={this.props.data.film.filmId}
                             addComment={this.props.addComment} />
-                            : <div>
+                            : <div className='page__boolComment'>
                                 <Link to='/login' style={{ textDecoration: 'none' }}>
-                                    Войдите
-                            </Link> чтобы оставить комментарий.</div>
+                                    Login
+                            </Link> to leave a comment.</div>
                     }
                 </div>
             </div>

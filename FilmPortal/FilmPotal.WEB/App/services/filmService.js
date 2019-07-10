@@ -94,6 +94,7 @@ export function modifyRating(userId, mark, filmId) {
                 }).then((response) => {
                     if (response.ok) {
                         dispatch({ type: CHANGE_RATING_SUCCESS });
+                        getMark(userId, filmId)(dispatch);
                         getFilm(filmId)(dispatch);
                     } else {
                         alert('Ошибка изменения рейтинга');
@@ -122,14 +123,17 @@ export function getMark(userId, filmId) {
                 },
                 body: JSON.stringify({ userId: userId, filmId: filmId })
             }).then((response) => {
-                let data = response;
-                data = response != '' ? response.json() : {};
-                return data;
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    dispatch({ type: GET_MARK_ERROR, payload: 'Ошибка получения оценки' });
+                    throw 'Ошибка получения оценки';
+                }
             }).then((data) => {
                 dispatch({ type: GET_MARK_SUCCESS, payload: data });
+                getFilm(filmId)(dispatch);
             }).catch((ex) => {
                 dispatch({ type: GET_MARK_ERROR, payload: ex });
-                alert(ex);
             });
     }
 }

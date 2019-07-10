@@ -128,9 +128,9 @@ namespace FilmPotal.WEB.Controllers
             {
                 mark = _ratingService.GetRatingFilm(request.UserId, request.FilmId);
             }
-            catch (Exception ex)
+            catch
             {
-                return BadRequest(ex.Message);
+                return Ok();
             }
 
             return Ok(mark);

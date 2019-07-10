@@ -8,20 +8,19 @@ const stub = '/images/cinema.jpg'
 const Film = props => {
     let commentBlock;
     let rating;
+    let userRating;
     if (!props.isFull) {
         commentBlock =
-            <Link className="commentLink" to={"/catalog/film?filmId=" + props.data.filmId}>Комментарии: {props.data.commentCount}</Link>;
+            <Link className="commentLink" to={"/catalog/film?filmId=" + props.data.filmId}>Comments: {props.data.commentCount}</Link>;
     }
     else {
-        console.log('userID ' + props.user.userId + 'filmID ' + props.data.filmId)
+        userRating = props.rating ? 'Your mark: ' + props.rating : 'Rate it!';
         rating = <Rating
             value={props.data.averageMark}
             max={10}
             onChange={(value) => props.modifyRating(props.user.userId, value, props.data.filmId)}
         />
     }
-
-
 
     let image = !!props.data.images.length ? props.data.images["0"].path : stub;
 
@@ -39,6 +38,10 @@ const Film = props => {
                     <p className="film__year">Year: {props.data.year}</p>
                     <div className="film__mark">Rating: {props.data.averageMark} ({props.data.markCount})</div>
                     <div> {rating} </div>
+                    {
+                        props.isLogged ?
+                            <p className='film__userMark'>{userRating}</p> : ''
+                    }
                     <p className="film__description"> {props.data.description} </p>
                     <div className="film__comments">
                         {commentBlock}
