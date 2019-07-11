@@ -2,7 +2,6 @@ import { GET_FILM_SUCCESS, DELETE_COMMENT_SUCCESS, DELETE_COMMENT_ERROR, GET_FIL
 
 const initialState = {
     film: { comments: [], images:[] },
-    userId: '',
     comment: '',
     rating: '',
     error: ''
@@ -17,7 +16,7 @@ export default function film(state = initialState, action) {
             return { ...state, error: action.payload }
 
         case ADD_COMMENT_SUCCESS:
-            return { ...state, userId: '', comment: '', error: '' }
+            return { ...state, comment: '', error: '' }
 
         case ADD_COMMENT_ERROR:
             return { ...state, error: action.payload }
@@ -29,7 +28,7 @@ export default function film(state = initialState, action) {
             return { ...state, error: action.payload }
 
         case DELETE_COMMENT_SUCCESS:
-            return { ...state, userId: '', comment: '', error: '' }
+            return { ...state, comment: '', error: '' }
 
         case DELETE_COMMENT_ERROR:
             return { ...state, error: action.payload }

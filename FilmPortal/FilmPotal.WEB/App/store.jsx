@@ -22,13 +22,10 @@ const initialState = {
         isLogged: AuthHelper.isLogged(),
         name: AuthHelper.getLogin(),
         userId: AuthHelper.getUserId(),
-        password: '',
         error: '',
-        isLoginFormShowed: false
     },
     film: {
         film: { comments: [], images: [] },
-        userId: '',
         comment: '',
         rating: '',
         error: ''
