@@ -28,8 +28,8 @@ class Catalog extends React.Component {
         this.props.getFilms(pageIndex, sortOrder);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (this.state.query != location.search) {
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevState.query != location.search) {
             this.setState({ query: location.search });
             this.getFilms();
         }
