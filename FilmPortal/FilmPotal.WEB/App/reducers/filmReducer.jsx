@@ -37,7 +37,7 @@ export default function film(state = initialState, action) {
             return { ...state, rating: action.payload }
 
         case GET_MARK_ERROR:
-            return { ...state, error: action.payload }
+            return { ...state, rating: '', error: action.payload }
 
         case CHANGE_COMMENT_TEXT:
             return { ...state, comment: action.payload }

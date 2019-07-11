@@ -130,6 +130,7 @@ export function getMark(userId, filmId) {
                     throw 'Ошибка получения оценки';
                 }
             }).then((data) => {
+                console.log(data)
                 dispatch({ type: GET_MARK_SUCCESS, payload: data });
                 getFilm(filmId)(dispatch);
             }).catch((ex) => {
