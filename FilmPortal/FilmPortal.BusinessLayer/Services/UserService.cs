@@ -20,7 +20,7 @@ namespace FilmPortal.BusinessLayer.Services
 
         public UserModel GetUserByName(string username)
         {
-            var user = _repository.GetAll().FirstOrDefault(p => p.Login == username);
+            var user = _repository.GetAllQueryable().FirstOrDefault(p => p.Login == username);
             var userModel = _mapper.Map<User, UserModel>(user);
             return userModel;
         }

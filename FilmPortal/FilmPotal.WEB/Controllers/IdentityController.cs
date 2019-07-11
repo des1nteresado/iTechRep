@@ -52,7 +52,9 @@ namespace FilmPotal.WEB.Controllers
             {
                 access_token = encodedJwt,
                 username = identity.Name,
-                userId = user.UserId
+                userId = user.UserId,
+                comments = user.Comments,
+                marks = user.Marks
             };
 
             return Ok(response);

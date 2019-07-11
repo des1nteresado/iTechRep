@@ -22,7 +22,9 @@ const initialState = {
         isLogged: AuthHelper.isLogged(),
         name: AuthHelper.getLogin(),
         userId: AuthHelper.getUserId(),
-        error: '',
+        comments: [],
+        marks: [],
+        error: ''
     },
     film: {
         film: { comments: [], images: [] },

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { reduxForm, formValueSelector } from 'redux-form'
 import TextField from '@material-ui/core/TextField';
 import AuthForm from '../../views/login/AuthForm.jsx';
-import { login, logout } from '../../services/authenticationService.js'
+import { login, logout } from '../../services/userService.js'
 import Account from '../../components/Account.jsx'
 import { validate } from './validLogin.js'
 
@@ -41,6 +41,7 @@ class Login extends React.Component {
                         submitting={this.props.submitting}
                         invalid={this.props.invalid}
                         user={this.props.user}
+                        login={this.props.login}
                         bottomText="Don't have an account? Register"
                     />
                 }

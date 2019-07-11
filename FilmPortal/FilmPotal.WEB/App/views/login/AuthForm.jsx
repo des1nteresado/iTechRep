@@ -2,7 +2,6 @@
 import { bindActionCreators } from 'redux';
 import { Field } from 'redux-form';
 import { Link } from 'react-router-dom';
-import { login } from '../../services/authenticationService.js'
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { Button } from '@material-ui/core'
@@ -19,7 +18,7 @@ const AuthForm = props => {
         <Paper className="paper" >
             <form className="loginForm" data-method="post" onSubmit={(e) => {
                 e.preventDefault();
-                props.dispatch(login({ username: props.userNameValue, password: props.passwordValue }));
+                props.login({ username: props.userNameValue, password: props.passwordValue });
             }}>
                 <Field name="username" variant='outlined' component={props.renderTextField} label="Username" />
                 <Field name="password" type="password" variant='outlined' component={props.renderTextField} label="Password" />
@@ -32,10 +31,4 @@ const AuthForm = props => {
     );
 };
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        login: bindActionCreators(login, dispatch)
-    }
-}
-
-export default connect(mapDispatchToProps)(AuthForm) 
+export default AuthForm; 

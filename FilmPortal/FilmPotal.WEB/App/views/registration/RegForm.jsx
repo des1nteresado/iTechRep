@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { Field } from 'redux-form';
 import { connect } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
-import { registration } from '../../services/registrationService.js';
+import { registration } from '../../services/userService.js';
 
 const RegForm = props => {
     return (
