@@ -10,11 +10,6 @@ import { changeComment, getFilm, addComment, deleteComment, modifyRating, getMar
 import Carousel from 'react-images';
 
 class FilmPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.deleteComment = this.deleteComment.bind(this);
-    }
-
     componentDidMount() {
         const parsed = queryString.parse(location.search);
 
@@ -25,14 +20,10 @@ class FilmPage extends React.Component {
         }
     }
 
-    deleteComment(commentId) {
-        this.props.deleteComment(commentId, this.props.data.film.filmId);
-    }
-
     render() {
         let comments = this.props.data.film.comments.map(item => {
             return (
-                <Comment key={item.commentId} data={item} user={this.props.user} deleteComment={this.deleteComment} />
+                <Comment key={item.commentId} data={item} user={this.props.user} deleteComment={this.props.deleteComment} />
             );
         });
 
