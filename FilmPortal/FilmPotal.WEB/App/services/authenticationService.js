@@ -1,4 +1,4 @@
-﻿import { LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, SHOW_LOGIN_FORM, INPUT_LOGIN, INPUT_PASSWORD } from '../actions/userActions.jsx'
+﻿import { LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT } from '../actions/userActions.jsx'
 import AuthHelper from '../helpers/authHelper.js'
 
 export const logout = () => {

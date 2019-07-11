@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom';
 import Film from '../../components/Film.jsx';
 import getFilms from '../../services/catalogService.js'
 import Sorter from '../../components/Sorter.jsx'
-import Paper from '@material-ui/core/Paper';
-
 
 class Catalog extends React.Component {
     constructor(props) {
