@@ -9,5 +9,9 @@
         public int FilmId { get; set; }
 
         public int UserId { get; set; }
+
+        public virtual Film Film { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

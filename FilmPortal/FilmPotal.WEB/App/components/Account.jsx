@@ -9,10 +9,12 @@ export default class Account extends React.Component {
     render() {
         let comments = this.props.user.comments.map(item => {
             return (
-                <Comment key={item.commentId} isAccount={true} data={item} user={this.props.user} deleteComment={this.props.deleteComment}  />
+                <Comment key={item.commentId} isAccount={true} data={item} user={this.props.user} deleteComment={this.props.deleteComment} />
             );
         });
-        return (
+
+
+    return (
             <React.Fragment>
                 <div className="account">
                     <div className="account__header">

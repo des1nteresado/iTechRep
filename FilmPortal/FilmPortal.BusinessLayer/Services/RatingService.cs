@@ -3,6 +3,7 @@ using System.Linq;
 using AutoMapper;
 using FilmPortal.BusinessLayer.Interfaces;
 using FilmPortal.BusinessLayer.Models;
+using FilmPortal.DataLayer.Context;
 using FilmPortal.DataLayer.Entities;
 using FilmPortal.DataLayer.Interfaces;
 
@@ -10,17 +11,19 @@ namespace FilmPortal.BusinessLayer.Services
 {
     public class RatingService : IRatingService
     {
+        private readonly RepositoryContext _context;
         private readonly IRepository<Rating> _repository;
         private readonly IRepository<User> _userRepository;
         private readonly IRepository<Film> _filmRepository;
         private readonly IMapper _mapper;
 
-        public RatingService(IRepository<Rating> repository, IMapper mapper, IRepository<User> userRepository, IRepository<Film> filmRepository)
+        public RatingService(IRepository<Rating> repository, IMapper mapper, IRepository<User> userRepository, IRepository<Film> filmRepository, RepositoryContext context)
         {
             _repository = repository;
             _mapper = mapper;
             _userRepository = userRepository;
             _filmRepository = filmRepository;
+            _context = context;
         }
 
         public void AddRating(AddRatingRequest request)
@@ -39,25 +42,35 @@ namespace FilmPortal.BusinessLayer.Services
             }
 
             var rating = _mapper.Map<AddRatingRequest, Rating>(request);
-            if (_repository.GetAllQueryable().Any(p => p.UserId == rating.UserId && p.Mark == rating.Mark && p.FilmId == rating.FilmId))
+
+            using (var transaction = _context.Database.BeginTransaction())
             {
-                var mark = _repository.GetAllQueryable().FirstOrDefault(p => p.UserId == rating.UserId && p.Mark == rating.Mark && p.FilmId == rating.FilmId);
-                if (mark != null)
+                try
                 {
-                    DeleteRating(mark.RatingId);
+                    var existingMark = _repository.GetAllQueryable()
+                        .FirstOrDefault(p => p.UserId == rating.UserId && p.FilmId == rating.FilmId);
+
+                    if (existingMark != null && existingMark.Mark == rating.Mark)
+                    {
+                        DeleteRating(existingMark.RatingId);
+                    }
+                    else if (existingMark != null)
+                    {
+                        existingMark.Mark = rating.Mark;
+                        _repository.Update(existingMark);
+                    }
+                    else
+                    {
+                        _repository.Insert(rating);
+                    }
+                    transaction.Commit();
+                }
+                catch
+                {
+                    transaction.Rollback();
                 }
             }
-            else if (_repository.GetAllQueryable().Any(p => p.UserId == rating.UserId && p.FilmId == rating.FilmId))
-            {
-                var mark = _repository.GetAllQueryable().FirstOrDefault(p => p.UserId == rating.UserId && p.FilmId == rating.FilmId);
-                if (mark == null) return;
-                mark.Mark = rating.Mark;
-                _repository.Update(mark);
-            }
-            else
-            {
-                _repository.Insert(rating);
-            }
+
         }
 
         public void DeleteRating(int ratingId)
