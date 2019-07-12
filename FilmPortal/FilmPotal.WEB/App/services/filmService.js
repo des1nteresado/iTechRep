@@ -1,5 +1,6 @@
 import { GET_FILM_SUCCESS, GET_FILM_ERROR, CHANGE_RATING_SUCCESS, CHANGE_RATING_ERROR, ADD_COMMENT_SUCCESS, ADD_COMMENT_ERROR, DELETE_COMMENT_SUCCESS, DELETE_COMMENT_ERROR, CHANGE_COMMENT_TEXT, GET_MARK_SUCCESS, GET_MARK_ERROR } from '../actions/filmActions.jsx'
 import AuthHelper from '../helpers/authHelper.js'
+import { getUser } from './userService.js';
 
 export function changeComment(comment) {
     return {
@@ -55,7 +56,7 @@ export function addComment(userId, comment, filmId) {
     }
 }
 
-export function deleteComment(commentId, filmId) {
+export function deleteComment(commentId, filmId, userId) {
     return (dispatch) => {
         let token = AuthHelper.getToken();
         fetch(window.constants.comment + '?commentId=' + commentId, {
@@ -68,6 +69,7 @@ export function deleteComment(commentId, filmId) {
             if (response.ok) {
                 dispatch({ type: DELETE_COMMENT_SUCCESS });
                 getFilm(filmId)(dispatch);
+                getUser(userId)(dispatch);
             } else {
                 alert('Ошибка удаления комментария');
                 dispatch({ type: DELETE_COMMENT_ERROR, payload: ex });
@@ -130,7 +132,6 @@ export function getMark(userId, filmId) {
                     throw 'Ошибка получения оценки';
                 }
             }).then((data) => {
-                console.log(data)
                 dispatch({ type: GET_MARK_SUCCESS, payload: data });
                 getFilm(filmId)(dispatch);
             }).catch((ex) => {

@@ -13,22 +13,24 @@
     align-items: center;
     margin-top: 20px;
     margin-left: 45%;
-  }
-  
-  .pagination a {
+}
+
+.pagination a {
     color: black;
     float: left;
     padding: 8px 16px;
     text-decoration: none;
     transition: background-color .3s;
-  }
-  
-  .pagination a.active {
+}
+
+.pagination a.active {
     background-color: #4CAF50;
     color: white;
-  }
+}
 
-  .pagination a:hover:not(.active) {background-color: #ddd;}
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
 
 .registrButton {
     background-color: #b71c1c;
@@ -185,8 +187,8 @@ img {
     margin-top: 20px;
 }
 
-.page .page__images img{
-    border-radius: 1%; 
+.page .page__images img {
+    border-radius: 1%;
     width: 100%;
     height: 650px;
 }
@@ -214,6 +216,47 @@ img {
     text-decoration: none;
 }
 
+.account {
+    margin: auto;
+    width: 80%;
+}
+
+.account .account__header {
+    font-size: 36px;
+    color: #828282;
+    font-family: Arial, sans-serif;
+    letter-spacing: 1px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.account .account__header p {
+    margin: 0;
+}
+
+.account .account__button {
+    background-color: #b71c1c;
+    color: #FFFFFF;
+    border: none;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 100px;
+    height: 36px;
+    font-size: 16px;
+    font-family: Arial;
+    letter-spacing: 0.5;
+    cursor: Pointer;
+}
+
+.account .account__comments .account__commentCount {
+    font-size: 22px;
+    color: #828282;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
 .comment {
     margin-bottom: 20px;
 }
@@ -221,9 +264,9 @@ img {
 .comment .comment__header {
     display: flex;
     justify-content: space-between;
-    border-bottom-width: 1px; 
-    border-bottom-style: solid; 
-    border-bottom-color: #828282; 
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #828282;
 }
 
 .comment__header .username {

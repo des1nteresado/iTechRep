@@ -4,9 +4,10 @@ import { bindActionCreators } from 'redux';
 import { reduxForm, formValueSelector } from 'redux-form'
 import TextField from '@material-ui/core/TextField';
 import AuthForm from '../../views/login/AuthForm.jsx';
-import { login, logout } from '../../services/userService.js'
+import { login, logout, getUser } from '../../services/userService.js'
 import Account from '../../components/Account.jsx'
 import { validate } from './validLogin.js'
+import { deleteComment } from '../../services/filmService.js'
 
 class Login extends React.Component {
     renderTextField = ({
@@ -32,7 +33,10 @@ class Login extends React.Component {
                 {isLogged ?
                     <Account
                         user={this.props.user}
-                        logout={this.props.logout} /> :
+                        logout={this.props.logout}
+                        getUser={this.props.getUser}
+                        deleteComment={this.props.deleteComment}
+                    /> :
                     < AuthForm
                         renderTextField={this.renderTextField}
                         userNameValue={this.props.userNameValue}
@@ -75,6 +79,8 @@ let mapDispatchToProps = (dispatch) => {
     return {
         login: bindActionCreators(login, dispatch),
         logout: bindActionCreators(logout, dispatch),
+        getUser: bindActionCreators(getUser, dispatch),
+        deleteComment: bindActionCreators(deleteComment, dispatch),
     }
 }
 

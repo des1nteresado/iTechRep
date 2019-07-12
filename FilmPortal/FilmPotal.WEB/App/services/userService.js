@@ -1,4 +1,4 @@
-﻿import { LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, REGISTR_SUCCESS, REGISTR_ERROR } from '../actions/userActions.jsx'
+﻿import { GET_USER_SUCCESS, GET_USER_ERROR, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT, REGISTR_SUCCESS, REGISTR_ERROR } from '../actions/userActions.jsx'
 import AuthHelper from '../helpers/authHelper.js'
 
 export const registration = (data) => {
@@ -11,8 +11,8 @@ export const registration = (data) => {
             body: JSON.stringify(data)
         }).then((response) => {
             if (response.ok) {
-                alert('Регистрация прошла успешно.')   
-                window.location = '/login'          
+                alert('Регистрация прошла успешно.')
+                window.location = '/login'
             } else {
                 dispatch({ type: REGISTR_ERROR, payload: 'Пользователь с таким именем уже зарегестрирован!' });
                 throw 'Пользователь с таким именем уже зарегестрирован!';
@@ -54,6 +54,32 @@ export const login = (data) => {
         }).catch((ex) => {
             alert(ex);
             dispatch({ type: LOGIN_ERROR, payload: ex });
+        });
+    }
+}
+
+export const getUser = (userId) => {
+    return (dispatch) => {
+        let token = AuthHelper.getToken();
+        fetch(constants.user, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify(userId)
+        }).then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                dispatch({ type: GET_USER_ERROR, payload: 'Ошибка получения пользователя' });
+                throw 'Ошибка получения пользователя';
+            }
+        }).then((data) => {
+            dispatch({ type: GET_USER_SUCCESS, payload: data });
+        }).catch((ex) => {
+            alert(ex);
+            dispatch({ type: GET_USER_ERROR, payload: ex });
         });
     }
 }

@@ -14,7 +14,7 @@ const Comment = props => {
 						props.user.userId == props.data.userId ?
 							<button className="buttons__delete" onClick={() => {
 								if (confirm('Вы уверены что хотите удалить комментарий?')) {
-									props.deleteComment(props.data.commentId, props.data.filmId);
+									props.deleteComment(props.data.commentId, props.data.filmId, props.user.userId);
 								}
 							}}>x</button> : null
 					}

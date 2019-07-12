@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using AutoMapper;
 using FilmPortal.BusinessLayer.Entities;
 using FilmPortal.BusinessLayer.Interfaces;
@@ -18,9 +19,28 @@ namespace FilmPortal.BusinessLayer.Services
             _mapper = mapper;
         }
 
-        public UserModel GetUserByName(string username)
+        public UserModel GetUserByName(string userName)
         {
-            var user = _repository.GetAllQueryable().FirstOrDefault(p => p.Login == username);
+            var user = _repository.GetAllQueryable().FirstOrDefault(p => p.Login == userName);
+
+            if (user == null)
+            {
+                throw new Exception("User does not exist!");
+            }
+
+            var userModel = _mapper.Map<User, UserModel>(user);
+            return userModel;
+        }
+
+        public UserModel GetUserById(int userId)
+        {
+            var user = _repository.GetById(userId);
+
+            if (user == null)
+            {
+                throw new Exception("User does not exist!");
+            }
+
             var userModel = _mapper.Map<User, UserModel>(user);
             return userModel;
         }
