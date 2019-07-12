@@ -39,14 +39,17 @@ namespace FilmPortal.BusinessLayer.Services
             }
 
             var rating = _mapper.Map<AddRatingRequest, Rating>(request);
-            if (_repository.GetAll().Any(p => p.UserId == rating.UserId && p.Mark == rating.Mark && p.FilmId == rating.FilmId))
+            if (_repository.GetAllQueryable().Any(p => p.UserId == rating.UserId && p.Mark == rating.Mark && p.FilmId == rating.FilmId))
             {
-                var mark = _repository.GetAll().FirstOrDefault(p => p.UserId == rating.UserId && p.Mark == rating.Mark && p.FilmId == rating.FilmId);
-                if (mark != null) DeleteRating(mark.RatingId);
+                var mark = _repository.GetAllQueryable().FirstOrDefault(p => p.UserId == rating.UserId && p.Mark == rating.Mark && p.FilmId == rating.FilmId);
+                if (mark != null)
+                {
+                    DeleteRating(mark.RatingId);
+                }
             }
-            else if (_repository.GetAll().Any(p => p.UserId == rating.UserId && p.FilmId == rating.FilmId))
+            else if (_repository.GetAllQueryable().Any(p => p.UserId == rating.UserId && p.FilmId == rating.FilmId))
             {
-                var mark = _repository.GetAll().FirstOrDefault(p => p.UserId == rating.UserId && p.FilmId == rating.FilmId);
+                var mark = _repository.GetAllQueryable().FirstOrDefault(p => p.UserId == rating.UserId && p.FilmId == rating.FilmId);
                 if (mark == null) return;
                 mark.Mark = rating.Mark;
                 _repository.Update(mark);
@@ -72,7 +75,7 @@ namespace FilmPortal.BusinessLayer.Services
 
         public int GetRatingFilm(int userId, int filmId)
         {
-            var rating = _repository.GetAll().FirstOrDefault(p => p.UserId == userId && p.FilmId == filmId);
+            var rating = _repository.GetAllQueryable().FirstOrDefault(p => p.UserId == userId && p.FilmId == filmId);
 
             if (rating == null)
             {
