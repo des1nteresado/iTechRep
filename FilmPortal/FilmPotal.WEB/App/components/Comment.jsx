@@ -7,7 +7,16 @@ const Comment = props => {
 		<Paper className="comment">
 			<div className="comment__header">
 				<div className="username">
-					<p>{props.data.user.login}</p>
+					{
+						props.isAccount ?
+							'' :
+							<p>{props.data.user.login}</p>
+					}
+					{
+						props.isAccount ?
+							<p>Film: {props.data.film.name}</p> :
+							''
+					}
 				</div>
 				<div className="buttons">
 					{

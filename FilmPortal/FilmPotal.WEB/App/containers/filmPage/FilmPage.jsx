@@ -23,7 +23,7 @@ class FilmPage extends React.Component {
     render() {
         let comments = this.props.data.film.comments.map(item => {
             return (
-                <Comment key={item.commentId} data={item} user={this.props.user} deleteComment={this.props.deleteComment} />
+                <Comment key={item.commentId} isAccount={false} data={item} user={this.props.user} deleteComment={this.props.deleteComment} />
             );
         });
 
