@@ -1,7 +1,8 @@
-﻿import { GET_FILMS_SUCCESS, GET_FILMS_ERROR } from '../actions/catalogActions.jsx'
+﻿import { GET_FILMS_SUCCESS, GET_FILMS_BEGIN, GET_FILMS_ERROR } from '../actions/catalogActions.jsx'
 
 export default (pageIndex = 0, sortOrder) => {
     return (dispatch) => {
+        dispatch({ type: GET_FILMS_BEGIN });
         let queryTrailer = '?pageIndex=' + pageIndex;
         if (sortOrder) {
             queryTrailer += '&sortOrder=' + sortOrder;

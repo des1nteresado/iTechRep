@@ -23,6 +23,12 @@
     transition: background-color .3s;
 }
 
+.loader {
+    color: black;
+    margin: auto;
+    margin-top: 200px;
+}
+
 .pagination a.active {
     background-color: #4CAF50;
     color: white;

@@ -65,6 +65,7 @@ class Catalog extends React.Component {
             getFilms={this.props.getFilms}
             films={films}
             renderPageNumbers={renderPageNumbers}
+            isLoading={this.props.isLoading}
             />
         );
     }
@@ -73,6 +74,7 @@ class Catalog extends React.Component {
 let mapStateToProps = (state) => {
     return {
         films: state.catalog.data,
+        isLoading: state.catalog.loading,
         error: state.catalog.error,
     }
 }

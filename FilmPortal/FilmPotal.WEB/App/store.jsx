@@ -16,6 +16,7 @@ const reducer = combineReducers({
 const initialState = {
     catalog: {
         data: { currentPage: 0, totalPages: 0, pageSize: 0, records: [] },
+        loading: false,
         error: ''
     },
     user: {
