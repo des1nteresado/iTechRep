@@ -17,26 +17,19 @@ export default (state = initialState, action) => {
                 ...state, isLogged: true, name: action.payload.username, userId: action.payload.userId, comments: action.payload.comments,
                 marks: action.payload.marks, error: ''
             }
-
         case LOGIN_ERROR:
             return { ...state, error: action.payload }
-
         case LOGOUT:
             return { ...state, isLogged: false, name: '', userId: '', comments: [], marks: [] }
-
         case REGISTR_SUCCESS:
             return { ...state, error: '' }
-
         case REGISTR_ERROR:
             return { ...state, error: action.payload }
-
         case GET_USER_SUCCESS:
             return { ...state, comments: action.payload.comments,
                 marks: action.payload.marks, error: '' }
-
         case GET_USER_ERROR:
             return { ...state, error: action.payload }
-
         default:
             return state;
     }

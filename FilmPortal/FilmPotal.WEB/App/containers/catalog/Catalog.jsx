@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Film from '../../components/Film.jsx';
 import getFilms from '../../services/catalogService.js'
 import Sorter from '../../components/Sorter.jsx'
+import CatalogForm from '../../views/catalog/CatalogForm.jsx'
 
 class Catalog extends React.Component {
     constructor(props) {
@@ -61,17 +62,11 @@ class Catalog extends React.Component {
         });
 
         return (
-            <div className="catalog">
-                <div className="sorter">
-                    <Sorter getFilms={this.props.getFilms} />
-                </div>
-                <div className="containers">
-                    <div> {films} </div>
-                    <div className="pagination">
-                        {renderPageNumbers}
-                    </div>
-                </div>
-            </div>
+            <CatalogForm
+            getFilms={this.props.getFilms}
+            films={films}
+            renderPageNumbers={renderPageNumbers}
+            />
         );
     }
 };

@@ -10,6 +10,12 @@ import { validate } from './validLogin.js'
 import { deleteComment } from '../../services/filmService.js'
 
 class Login extends React.Component {
+    componentDidMount() {
+        if (this.props.user.isLogged) {
+            this.props.getUser(this.props.user.userId);
+        }
+    }
+
     renderTextField = ({
         label,
         input,
@@ -34,7 +40,6 @@ class Login extends React.Component {
                     <Account
                         user={this.props.user}
                         logout={this.props.logout}
-                        getUser={this.props.getUser}
                         deleteComment={this.props.deleteComment}
                     /> :
                     < AuthForm

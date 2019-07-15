@@ -9,10 +9,8 @@ export default (state = initialState, action) => {
     switch (action.type) {
         case GET_FILMS_SUCCESS:
             return { ...state, data: action.posts, error: '' }
-
         case GET_FILMS_ERROR:
             return { ...state, error: action.error }
-
         default:
             return state;
     }

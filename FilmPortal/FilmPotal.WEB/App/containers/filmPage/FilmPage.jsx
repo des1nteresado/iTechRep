@@ -2,12 +2,10 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import queryString from 'query-string';
-import { Link } from 'react-router-dom';
-import Film from '../../components/Film.jsx';
 import Comment from '../../components/Comment.jsx';
-import NewCommentForm from '../../components/NewCommentForm.jsx';
 import { changeComment, getFilm, addComment, deleteComment, modifyRating, getMark } from '../../services/filmService.js'
 import Carousel from 'react-images';
+import FilmPageForm from '../../views/filmPage/FilmPageForm.jsx'
 
 class FilmPage extends React.Component {
     componentDidMount() {
@@ -37,31 +35,16 @@ class FilmPage extends React.Component {
         let isLogged = this.props.user.isLogged;
 
         return (
-            <div className="page">
-                <div className="page__info">
-                    <Film data={this.props.data.film} rating={this.props.data.rating} modifyRating={this.props.modifyRating} user={this.props.user} isLogged={this.props.user.isLogged} isFull={true} />
-                </div>
-                <div className='page__images'>
-                    {gallery}
-                </div>
-                <div className="page__comments">
-                    <p className="page__commentCount">Comments: {this.props.data.film.commentCount} </p>
-                    {comments}
-                    <p className="page__newComment">Leave a comment</p>
-                    {
-                        isLogged ? <NewCommentForm
-                            user={this.props.user}
-                            comment={this.props.data.comment}
-                            changeComment={this.props.changeComment}
-                            filmId={this.props.data.film.filmId}
-                            addComment={this.props.addComment} />
-                            : <div className='page__boolComment'>
-                                <Link to='/login' style={{ textDecoration: 'none' }}>
-                                    Login
-                            </Link> to leave a comment.</div>
-                    }
-                </div>
-            </div>
+            <FilmPageForm
+                isLogged={isLogged}
+                gallery={gallery}
+                comments={comments}
+                data={this.props.data}
+                user={this.props.user}
+                modifyRating={this.props.modifyRating}
+                addComment={this.props.addComment}
+                changeComment={this.props.changeComment}
+            />
         );
     }
 };

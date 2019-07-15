@@ -1,8 +1,7 @@
 ﻿import React from 'react';
-import { TextStyle } from '../style.js'
 
 const About = () => (
-    <div style={TextStyle}>
+    <div>
         <h1>Hello. It is a simple web application about films.</h1>
     </div>
 )

@@ -5,7 +5,7 @@ import Rating from 'material-ui-rating'
 
 const stub = '/images/cinema.jpg'
 
-const Film = props => {
+const Film = (props) => {
     let commentBlock;
     let rating;
     let userRating;

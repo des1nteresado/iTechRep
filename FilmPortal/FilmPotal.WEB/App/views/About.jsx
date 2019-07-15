@@ -1,8 +1,7 @@
 ﻿import React from 'react';
-import { TextStyle } from '../style.js'
 
 const About = () => (
-    <div style={TextStyle}>
+    <div>
         <h1>About company!</h1>
     </div>
 )
