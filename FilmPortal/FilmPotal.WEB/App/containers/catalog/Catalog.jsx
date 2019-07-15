@@ -5,7 +5,6 @@ import queryString from 'query-string';
 import { Link } from 'react-router-dom';
 import Film from '../../components/Film.jsx';
 import getFilms from '../../services/catalogService.js'
-import Sorter from '../../components/Sorter.jsx'
 import CatalogForm from '../../views/catalog/CatalogForm.jsx'
 
 class Catalog extends React.Component {

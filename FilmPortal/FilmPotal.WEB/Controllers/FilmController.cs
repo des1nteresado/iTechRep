@@ -130,7 +130,7 @@ namespace FilmPotal.WEB.Controllers
             }
             catch
             {
-                return Ok();
+                return NoContent();
             }
 
             return Ok(mark);
