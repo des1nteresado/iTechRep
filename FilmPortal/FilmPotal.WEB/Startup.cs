@@ -52,6 +52,7 @@ namespace FilmPotal.WEB
             services.AddSingleton(Configuration);
             services.AddScoped<IFilmService, FilmService>();
             services.AddScoped<ICommentService, CommentService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IGenreService, GenreService>();
             services.AddScoped<IRatingService, RatingService>();
             services.AddScoped<IIdentityService, IdentityService>();
@@ -64,11 +65,22 @@ namespace FilmPotal.WEB
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseWebpackDevMiddleware();
             }
 
             app.UseStaticFiles();
+
             app.UseAuthentication();
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(
+                    name: "DefaultApi",
+                    template: "api/{controller}/{action}/{id?}");
+            routes.MapSpaFallbackRoute("spa-fallback", new { controller = "Home", action = "Index" });
+            });
         }
     }
 }

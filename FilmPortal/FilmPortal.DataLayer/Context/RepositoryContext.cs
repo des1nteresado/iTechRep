@@ -30,22 +30,50 @@ namespace FilmPortal.DataLayer.Context
             {
                 FilmId = 1,
                 Name = "I am Legend",
-                Description = "Desription",
+                Description = "Robert Neville is a brilliant scientist, but even he could not contain the terrible virus that was unstoppable, incurable, and man-made. Somehow immune, Neville is now the last human survivor in what is left of New York City and maybe the world.\r\n\r\nFor three years, Neville has faithfully sent out daily radio messages, desperate to find any other survivors who might be out there. But he is not alone.\r\n\r\nMutant victims of the plague—The Infected—lurk in the shadows, watching Neville's every move, waiting for him to make a fatal mistake...",
                 Year = 2007,
                 Producer = "Frensis Lourens",
                 Marks = new List<Rating>(),
                 Comments = new List<Comment>(),
-                Genres = new List<Genre>()
+                Genres = new List<Genre>(),
+                Images = new List<Image>()
             }, new Film
             {
                 FilmId = 2,
                 Name = "I, Robot",
-                Description = "Desription",
+                Description = "In 2035, techno-phobic homicide detective Del Spooner of the Chicago PD heads the investigation of the apparent suicide of leading robotics scientist, Dr. Alfred Lanning. Unconvinced of the motive, Spooner's investigation into Lanning's death reveals a trail of secrets and agendas within the USR (United States Robotics) corporation and suspicions of murder. Little does he know that his investigation would lead to uncovering a larger threat to humanity.",
                 Year = 2004,
                 Producer = "Alex Proyas",
                 Marks = new List<Rating>(),
                 Comments = new List<Comment>(),
-                Genres = new List<Genre>()
+                Genres = new List<Genre>(),
+                Images = new List<Image>()
+
+            });
+
+
+            modelBuilder.Entity<Image>().HasData(new Image
+            {
+                ImageId = 1,
+                FilmId = 1,
+                Path = "/images/legend1.jpg"
+            }, new Image
+            {
+                ImageId = 2,
+                FilmId = 1,
+                Path = "/images/legend2.jpg"
+            },
+               new Image
+               {
+                   ImageId = 3,
+                   FilmId = 2,
+                   Path = "/images/robot1.jpg"
+               },
+            new Image
+            {
+                ImageId = 4,
+                FilmId = 2,
+                Path = "/images/robot2.jpg"
             });
 
             modelBuilder.Entity<User>().HasData(new User

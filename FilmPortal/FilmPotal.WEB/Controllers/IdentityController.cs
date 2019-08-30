@@ -8,15 +8,16 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace FilmPotal.WEB.Controllers
 {
-    [Route("identity")]
-    [ApiController]
+    [Route("api/[controller]")]
     public class IdentityController : ControllerBase
     {
         private readonly IIdentityService _service;
+        private readonly IUserService _userService;
 
-        public IdentityController(IIdentityService service)
+        public IdentityController(IIdentityService service, IUserService serviceUser)
         {
             _service = service;
+            _userService = serviceUser;
         }
 
         [Route("login")]
@@ -35,6 +36,8 @@ namespace FilmPotal.WEB.Controllers
                 return Unauthorized("Wrong login or password.");
             }
 
+            var user = _userService.GetUserByName(model.Username);
+
             var now = DateTime.UtcNow;
             var jwt = new JwtSecurityToken(
                 issuer: AuthOptions.ISSUER,
@@ -48,7 +51,10 @@ namespace FilmPotal.WEB.Controllers
             var response = new
             {
                 access_token = encodedJwt,
-                username = identity.Name
+                username = identity.Name,
+                userId = user.UserId,
+                comments = user.Comments,
+                marks = user.Marks
             };
 
             return Ok(response);

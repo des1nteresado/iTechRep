@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript">
+        constants = {
+            catalog: '@Url.RouteUrl("DefaultApi", new {controller = "Film", action = "films" })',
+            film: '@Url.RouteUrl("DefaultApi", new {controller = "Film", action = "film" })',
+            comment: '@Url.RouteUrl("DefaultApi", new {controller = "Film", action = "comment" })',
+            rating: '@Url.RouteUrl("DefaultApi", new {controller = "Film", action = "rating" })',
+            mark: '@Url.RouteUrl("DefaultApi", new {controller = "Film", action = "mark" })',
+            login: '@Url.RouteUrl("DefaultApi", new {controller = "Identity", action = "login" })',
+            registration: '@Url.RouteUrl("DefaultApi", new {controller = "Identity", action = "registration" })',
+            user: '@Url.RouteUrl("DefaultApi", new {controller = "User", action = "user" })',
+            tokenKey: 'tokenKey'
+        }
+    </script>
+    <link href="~/css/styles.css" rel="stylesheet" media="all">
+    <title>Film portal</title>
+</head>
+<body>
+    <div id="content">
+    </div>
+    <script type="text/javascript" src="@Url.Content("~/assets/bundle.js")"></script>
+</body>
+</html>

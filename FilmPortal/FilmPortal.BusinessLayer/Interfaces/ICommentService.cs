@@ -5,10 +5,10 @@ namespace FilmPortal.BusinessLayer.Interfaces
 {
     public interface ICommentService
     {
-        bool AddComment(AddCommentRequest comment);
+        void AddComment(AddCommentRequest comment);
 
-        bool DeleteComment(int commentId);
+        void DeleteComment(int commentId);
 
-        bool UpdateComment(Comment comment);
+        void UpdateComment(Comment comment);
     }
 }

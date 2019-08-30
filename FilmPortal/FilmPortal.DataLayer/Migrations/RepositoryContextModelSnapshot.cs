@@ -64,7 +64,11 @@ namespace FilmPortal.DataLayer.Migrations
                         new
                         {
                             FilmId = 1,
-                            Description = "Desription",
+                            Description = @"Robert Neville is a brilliant scientist, but even he could not contain the terrible virus that was unstoppable, incurable, and man-made. Somehow immune, Neville is now the last human survivor in what is left of New York City and maybe the world.
+
+For three years, Neville has faithfully sent out daily radio messages, desperate to find any other survivors who might be out there. But he is not alone.
+
+Mutant victims of the plague—The Infected—lurk in the shadows, watching Neville's every move, waiting for him to make a fatal mistake...",
                             Name = "I am Legend",
                             Producer = "Frensis Lourens",
                             Year = 2007
@@ -72,7 +76,7 @@ namespace FilmPortal.DataLayer.Migrations
                         new
                         {
                             FilmId = 2,
-                            Description = "Desription",
+                            Description = "In 2035, techno-phobic homicide detective Del Spooner of the Chicago PD heads the investigation of the apparent suicide of leading robotics scientist, Dr. Alfred Lanning. Unconvinced of the motive, Spooner's investigation into Lanning's death reveals a trail of secrets and agendas within the USR (United States Robotics) corporation and suspicions of murder. Little does he know that his investigation would lead to uncovering a larger threat to humanity.",
                             Name = "I, Robot",
                             Producer = "Alex Proyas",
                             Year = 2004
@@ -94,6 +98,49 @@ namespace FilmPortal.DataLayer.Migrations
                     b.HasIndex("FilmId");
 
                     b.ToTable("Genres");
+                });
+
+            modelBuilder.Entity("FilmPortal.DataLayer.Entities.Image", b =>
+                {
+                    b.Property<int>("ImageId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("FilmId");
+
+                    b.Property<string>("Path");
+
+                    b.HasKey("ImageId");
+
+                    b.HasIndex("FilmId");
+
+                    b.ToTable("Image");
+
+                    b.HasData(
+                        new
+                        {
+                            ImageId = 1,
+                            FilmId = 1,
+                            Path = "/images/legend1.jpg"
+                        },
+                        new
+                        {
+                            ImageId = 2,
+                            FilmId = 1,
+                            Path = "/images/legend2.jpg"
+                        },
+                        new
+                        {
+                            ImageId = 3,
+                            FilmId = 2,
+                            Path = "/images/robot1.jpg"
+                        },
+                        new
+                        {
+                            ImageId = 4,
+                            FilmId = 2,
+                            Path = "/images/robot2.jpg"
+                        });
                 });
 
             modelBuilder.Entity("FilmPortal.DataLayer.Entities.Rating", b =>
@@ -123,9 +170,11 @@ namespace FilmPortal.DataLayer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Login");
+                    b.Property<string>("Login")
+                        .IsRequired();
 
-                    b.Property<string>("Password");
+                    b.Property<string>("Password")
+                        .IsRequired();
 
                     b.Property<bool>("isAdmin");
 
@@ -167,6 +216,14 @@ namespace FilmPortal.DataLayer.Migrations
                 {
                     b.HasOne("FilmPortal.DataLayer.Entities.Film")
                         .WithMany("Genres")
+                        .HasForeignKey("FilmId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("FilmPortal.DataLayer.Entities.Image", b =>
+                {
+                    b.HasOne("FilmPortal.DataLayer.Entities.Film")
+                        .WithMany("Images")
                         .HasForeignKey("FilmId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

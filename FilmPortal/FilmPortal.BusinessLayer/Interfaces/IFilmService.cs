@@ -13,7 +13,7 @@ namespace FilmPortal.BusinessLayer.Interfaces
 
         void AddFilm(AddFilmRequest film);
 
-        bool DeleteFilm(int filmId);
+        void DeleteFilm(int filmId);
 
         void UpdateFilm(Film film);
     }

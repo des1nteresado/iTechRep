@@ -1,0 +1,348 @@
+﻿body {}
+
+.container {
+    width: 80%;
+    margin: auto;
+    height: 400px;
+    margin-top: 20px;
+}
+
+.pagination {
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 45%;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.loader {
+    color: black;
+    margin: auto;
+    margin-top: 200px;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.registrButton {
+    background-color: #b71c1c;
+    color: #FFFFFF;
+    border: none;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 130px;
+    height: 36px;
+    font-size: 14px;
+    font-family: Arial;
+    letter-spacing: 0.5;
+    cursor: Pointer;
+}
+
+.loginButton {
+    background-color: #b71c1c;
+    color: #FFFFFF;
+    border: none;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 100px;
+    height: 36px;
+    font-size: 16px;
+    font-family: Arial;
+    letter-spacing: 0.5;
+    cursor: Pointer;
+}
+
+.paper {
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 30px
+}
+
+.catalog {
+    display: flex;
+}
+
+.catalog .sorter {
+    margin-top: 20px;
+}
+
+.catalog .containers {
+    margin-top: 10px;
+}
+
+.registrForm {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    margin: auto;
+    height: 330px;
+    padding-top: 7px;
+}
+
+.loginForm {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    margin: auto;
+    height: 250px;
+    padding-top: 7px;
+}
+
+img {
+    border-radius: 2%
+}
+
+.film {
+    display: flex;
+    height: 100%;
+}
+
+.film .film__img {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.film .film__content {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.film .film__content .film__name {
+    font-size: 22px;
+    color: #828282;
+    margin-bottom: 30px;
+    font-family: Arial, sans-serif;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.film .film__content .film__year {
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    text-decoration: none;
+}
+
+.film .film__content .film__producer {
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    text-decoration: none;
+}
+
+.film .film__content .film__mark {
+    font-size: 18px;
+    display: flex;
+    font-family: Arial, sans-serif;
+    text-decoration: none;
+}
+
+.film .film__content .film__userMark {
+    font-size: 18px;
+    display: flex;
+    font-family: Arial, sans-serif;
+    text-decoration: none;
+    margin: 0;
+}
+
+.film .film__content .film__description {
+    font-size: 18px;
+    display: flex;
+    font-family: Arial, sans-serif;
+    text-decoration: none;
+    margin-right: 40px;
+}
+
+.film .film__content .film__comments {
+    font-size: 22px;
+    font-family: Arial, sans-serif;
+    padding-top: 20px;
+    text-decoration: none;
+}
+
+.commentLink {
+    color: #828282;
+}
+
+.page {
+    width: 80%;
+    margin: auto;
+}
+
+.page .page__images {
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.page .page__images img {
+    border-radius: 1%;
+    width: 100%;
+    height: 650px;
+}
+
+.page .page__comments {
+    margin: auto;
+    width: 80%;
+}
+
+.page .page__comments .page__commentCount {
+    font-size: 22px;
+    color: #828282;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.page .page__comments .page__newComment {
+    font-size: 22px;
+    color: #828282;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.account {
+    margin: auto;
+    width: 80%;
+}
+
+.account .account__header {
+    font-size: 36px;
+    color: #828282;
+    font-family: Arial, sans-serif;
+    letter-spacing: 1px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+.account .account__header p {
+    margin: 0;
+}
+
+.account .account__button {
+    background-color: #b71c1c;
+    color: #FFFFFF;
+    border: none;
+    text-transform: uppercase;
+    border-radius: 5px;
+    width: 100px;
+    height: 36px;
+    font-size: 16px;
+    font-family: Arial;
+    letter-spacing: 0.5;
+    cursor: Pointer;
+}
+
+.account .account__comments .account__commentCount {
+    font-size: 22px;
+    color: #828282;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.comment {
+    margin-bottom: 20px;
+}
+
+.comment .comment__header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #828282;
+}
+
+.comment__header .username {
+    font-size: 22px;
+    color: #828282;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: Arial, sans-serif;
+    text-decoration: none;
+}
+
+.comment__header .buttons .buttons__delete {
+    background: transparent;
+    border: 2px solid #f00;
+    border-radius: 2em;
+    color: #f00;
+    display: inline-block;
+    font-size: 11px;
+    height: 20px;
+    line-height: 2px;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    width: 20px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.comment p {
+    margin: 0;
+}
+
+.comment .comment__body {
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    margin: 10px 10px 10px 10px;
+    text-decoration: none;
+}
+
+.comment .comment__date {
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    padding: 0px 10px 10px 10px;
+    text-decoration: none;
+}
+
+.page__boolComment {
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    color: #828282;
+}
+
+.newCommentForm .newCommentForm__textarea {
+    width: 100%;
+}
+
+.newCommentForm .newCommentForm__button {
+    background-color: #b71c1c;
+    color: #FFFFFF;
+    border: none;
+    text-transform: uppercase;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 80px;
+    height: 36px;
+    font-size: 16px;
+    font-family: Arial;
+    letter-spacing: 0.5;
+    cursor: Pointer;
+}

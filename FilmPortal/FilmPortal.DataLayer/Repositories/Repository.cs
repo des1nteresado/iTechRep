@@ -15,14 +15,14 @@ namespace FilmPortal.DataLayer.Repositories
             _context = context;
         }
 
-        public virtual IEnumerable<T> List()
+        public virtual IEnumerable<T> GetAll()
         {
             return _context.Set<T>().AsEnumerable();
         }
 
         public IQueryable<T> GetAllQueryable()
         {
-            return _context.Set<T>().AsQueryable();
+            return _context.Set<T>();
         }
 
         public T GetById(int id)

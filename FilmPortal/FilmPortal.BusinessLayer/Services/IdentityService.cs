@@ -25,7 +25,7 @@ namespace FilmPortal.BusinessLayer.Services
 
         public ClaimsIdentity GetIdentity(IdentityModel model)
         {
-            var user = _repository.List().FirstOrDefault(p => p.Login == model.Username);
+            var user = _repository.GetAllQueryable().FirstOrDefault(p => p.Login == model.Username);
             if (user == null) return null;
             var sha256 = new SHA256Managed();
             var passwordHash = Convert.ToBase64String(sha256.ComputeHash(Encoding.UTF8.GetBytes(model.Password)));
@@ -40,7 +40,7 @@ namespace FilmPortal.BusinessLayer.Services
 
         public bool AddUser(IdentityModel model)
         {
-            var userTest = _repository.List().FirstOrDefault(p => p.Login == model.Username);
+            var userTest = _repository.GetAllQueryable().FirstOrDefault(p => p.Login == model.Username);
 
             if (userTest != null || string.IsNullOrEmpty(model.Username) || string.IsNullOrEmpty(model.Password))
             {

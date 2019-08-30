@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using FilmPortal.BusinessLayer.Helpers;
 using FilmPortal.BusinessLayer.Interfaces;
 using FilmPortal.BusinessLayer.Models;
@@ -7,14 +8,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FilmPotal.WEB.Controllers
 {
-    [Route("catalog")]
-    [ApiController]
+    [Route("api/[controller]")]
     public class FilmController : ControllerBase
     {
         private readonly IFilmService _filmService;
         private readonly ICommentService _commentService;
         private readonly IRatingService _ratingService;
-
 
         public FilmController(IFilmService filmService, ICommentService commentService, IRatingService ratingService)
         {
@@ -51,6 +50,7 @@ namespace FilmPotal.WEB.Controllers
             return Ok(film);
         }
 
+        [Authorize]
         [Route("film")]
         [HttpPost]
         public IActionResult AddFilm([FromBody] AddFilmRequest request)
@@ -60,11 +60,19 @@ namespace FilmPotal.WEB.Controllers
                 return BadRequest(ModelState);
             }
 
-            _filmService.AddFilm(request);
+            try
+            {
+                _filmService.AddFilm(request);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
-            return BadRequest();
+            return Ok("Film added successfully!");
         }
 
+        [Authorize]
         [Route("comment")]
         [HttpPost]
         public IActionResult AddComment([FromBody] AddCommentRequest request)
@@ -74,96 +82,94 @@ namespace FilmPotal.WEB.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (_commentService.AddComment(request))
+            try
             {
-                return Ok("Comment added successfully!");
+                _commentService.AddComment(request);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
 
-            return BadRequest();
+
+            return Ok("Comment added successfully!");
         }
 
+        [Authorize]
         [Route("rating")]
         [HttpPost]
-        public IActionResult AddRating([FromBody] AddRatingRequest request)
+        public IActionResult ModifyRating([FromBody] AddRatingRequest request)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (_ratingService.AddRating(request))
+            try
             {
-                return Ok("Rating added successfully!");
+                _ratingService.AddRating(request);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
 
-            return BadRequest();
+            return Ok("Rating modified successfully!");
+
         }
 
-        //[Route("comment")]
-        //[HttpPut]
-        //public IActionResult UpdateComment([FromBody] Comment request)
-        //{
-        //    if (_commentService.UpdateComment(request))
-        //    {
-        //        return Ok("Comment updated successfully!");
-        //    }
+        [Authorize]
+        [Route("mark")]
+        [HttpPost]
+        public IActionResult GetRating([FromBody] AddRatingRequest request)
+        {
+            int mark;
+            try
+            {
+                mark = _ratingService.GetRatingFilm(request.UserId, request.FilmId);
+            }
+            catch
+            {
+                return NoContent();
+            }
 
-        //    return BadRequest();
-        //}
+            return Ok(mark);
 
-        //[Route("rating")]
-        //[HttpPut]
-        //public IActionResult UpdateRating([FromBody] Rating request)
-        //{
-        //    if (_ratingService.AddRating(request))
-        //    {
-        //        return Ok("Rating updated successfully!");
-        //    }
-
-        //    return BadRequest();
-        //}
+        }
 
         [Route("comment")]
         [HttpDelete]
         public IActionResult DeleteComment(int commentId)
         {
-            if (_commentService.DeleteComment(commentId))
+            try
             {
-                return Ok("Comment deleted successfully!");
+                _commentService.DeleteComment(commentId);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
 
-            return BadRequest();
+            return Ok("Comment deleted successfully!");
         }
 
+        [Authorize]
         [Route("film")]
         [HttpDelete]
         public IActionResult DeleteFilm(int filmId)
         {
-            if (_filmService.DeleteFilm(filmId))
+            try
             {
-                return Ok("Film deleted successfully!");
+                _filmService.DeleteFilm(filmId);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
 
-            return BadRequest();
-        }
-
-        [Route("rating")]
-        [HttpDelete]
-        public IActionResult DeleteRating(int ratingId)
-        {
-            if (_ratingService.DeleteRating(ratingId))
-            {
-                return Ok("Rating deleted successfully!");
-            }
-
-            return BadRequest();
-        }
-
-        [Authorize]
-        [Route("getlogin")]
-        public IActionResult GetLogin()
-        {
-            return Ok($"Ваш логин: {User.Identity.Name}");
+            return Ok("Film deleted successfully!");
         }
     }
 }

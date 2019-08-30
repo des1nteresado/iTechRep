@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using FilmPortal.BusinessLayer.Interfaces;
 using FilmPortal.BusinessLayer.Models;
 using FilmPortal.DataLayer.Entities;
@@ -20,46 +21,51 @@ namespace FilmPortal.BusinessLayer.Services
             _userRepository = repositoryUser;
             _filmRepository = filmRepository;
         }
-        public bool AddComment(AddCommentRequest request)
+
+        public void AddComment(AddCommentRequest request)
         {
             var user = _userRepository.GetById(request.UserId);
+
+            if (user == null)
+            {
+                throw new Exception("User does not exist.");
+            }
+
             var film = _filmRepository.GetById(request.FilmId);
 
-            if (user == null || film == null || string.IsNullOrEmpty(request.Comment))
+            if (film == null)
             {
-                return false;
+                throw new Exception("Film does not exist.");
+            }
+            if (string.IsNullOrEmpty(request.Comment))
+            {
+                throw new Exception("Comment does not exist or empty.");
             }
 
             var comment = _mapper.Map<AddCommentRequest, Comment>(request);
             _repository.Insert(comment);
-
-            return true;
         }
 
-        public bool DeleteComment(int commentId) 
+        public void DeleteComment(int commentId)
         {
             var comment = _repository.GetById(commentId);
 
             if (comment == null)
             {
-                return false;
+                throw new Exception("Comment does not exist.");
             }
 
             _repository.Delete(commentId);
-
-            return true;
         }
 
-        public bool UpdateComment(Comment comment) //как передевать коммент?
+        public void UpdateComment(Comment comment)
         {
             if (comment == null)
             {
-                return false;
+                throw new Exception("Comment is null");
             }
 
             _repository.Update(comment);
-
-            return true;
         }
     }
 }

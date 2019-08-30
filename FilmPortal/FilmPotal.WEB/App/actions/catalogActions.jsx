@@ -1,0 +1,3 @@
+﻿export const GET_FILMS_BEGIN = 'GET_FILMS_BEGIN'
+export const GET_FILMS_SUCCESS = 'GET_FILMS_SUCCESS'
+export const GET_FILMS_ERROR = 'GET_FILMS_ERROR'
